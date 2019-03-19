@@ -1,0 +1,19 @@
+/* div.listClass-container {
+    width: 100%;
+    height: 1200px;
+    background-color: #f7f7f7;
+    padding-top: 80px;
+} */
+div.listTutor-con{
+    width: 90%;
+    height: 650px;
+    margin: auto;
+    
+}
+div.list-title{
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+div.list-title h1{
+    color: #069d86;
+}

@@ -1,0 +1,117 @@
+div.post-container{
+    width: 100%;
+    height: 540px;
+    background-image: url('../../images/bg.png'); 
+    background-size: cover;
+    padding-top: 70px;
+}
+div.left{
+    width: 35%;
+    margin-left: 5%;
+    height: 100%;
+    float: left;
+} 
+div.right{
+    width: 28%;
+    height: 70%;
+    float: left; 
+    margin-left: 22%;
+    margin-top: 5%;
+    background: linear-gradient(to bottom, #FFF 1%, #98c5e1 98%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    box-sizing: border-box;
+    border-bottom: 1px solid #DFDFDF;
+    border-left: 1px solid #ECECEC;
+    border-radius: 8px;
+    border-right: 1px solid #ECECEC;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.04);
+}
+p.text-post{
+    margin-top: 30px;
+    color: #0C7C82;
+    font-size: 25px;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 24px;
+}
+div.title{
+    height: 32px;
+    color: black;
+    font-size: 18px;
+    text-align: left;
+    margin-left: 5%;
+    margin-top: 5px;
+}
+div.title2{
+    height: 32px;
+    color: black;
+    font-size: 18px;
+    text-align: left;
+    margin-left: 5%;
+    margin-top: 10px;
+}
+div.input-subject{
+    width: 90%;
+    height: 45px;
+    border: 1px solid #bcbcbc;
+    margin-left: 5%;
+    border-radius: 5px;
+    position: relative;
+} 
+select.dropdown{
+    width: 88%;
+    height: 100%;
+    border: none;
+    background: none;
+} 
+option.opt{
+    margin-left: 10px;
+}
+div.icon1{
+    width: 9%;
+    height: 30px;
+    float: left;
+    margin-left: 2%;
+    margin-top: 2%;
+    background-image: url('../../images/icon-book.png');
+}
+
+div.city{
+    width: 90%;
+    height: 45px;
+    border: 1px solid #bcbcbc;
+    margin-left: 5%;
+    border-radius: 5px;
+}
+div.city input{
+    width:86%;
+    height: 100%;
+    border: none;
+    background: none;
+    color: black;
+    float: left;
+    margin-left: 2%;
+}
+div.icon3{
+    width: 9%;
+    height: 30px;
+    float: left;
+    margin-left: 2%;
+    margin-top: 2%;
+    background-image: url('../../images/city.png');
+}
+div.btn-post{
+    width: 100%;
+    height: 12%;
+    margin-top: 25px;
+}
+button.btn-post{
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(to right, #0f959b, #064a50);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+}
+button.btn-post:hover{
+    background: linear-gradient(to right,#064a50, #0f959b );
+}

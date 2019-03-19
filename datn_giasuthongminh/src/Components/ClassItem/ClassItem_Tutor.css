@@ -1,0 +1,115 @@
+div.classItem-tutor-con{
+    width: 100%;
+    height: 160px;
+    border-radius: 5px;
+    box-shadow: 0 0px 10px 0 rgba(31, 28, 38, 0.35); 
+    background-color: white;
+}
+div.classItem-tutor-con:hover{
+    background-color: #f1fbf1;
+}
+div.image-logoBK{
+    height: 100%;
+    width: 15%;
+    background: url('../../images/logobk.png') center center no-repeat;
+    background-size: cover;
+    float: left;
+}
+div.Class-tutor-detail{
+    height: 100%;
+    width: 47%;
+    float: left;
+    margin-left: 1%;
+}
+div.name-class-tutor{
+    width: 100%;
+    height: 40px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+p.name-class-tutor{
+    font-size: 18px;
+    margin-top: 5px;
+    float: left;
+    margin-left: 10px;
+}
+label.name-class-tutor{
+    color: #069D86;
+}
+div.detail-class-tutor{
+    width: 100%;
+    height: 70px;
+}
+p.detail-class-tutor{
+    width: 98%;
+    margin: auto;
+    text-align: start;
+    font-style: italic;
+}
+div.info-class-tutor{
+    width: 100%;
+    height: 42px;
+}
+div.info-class1-tutor{
+    width: 19%;
+    height: 100%;
+    float: left;
+    margin-left: 2%;
+}
+p.info-class1-tutor{
+    text-align: start;
+    margin-left: 5px;
+    margin-top: 6px;
+}
+div.info-class2-tutor{
+    width: 23%;
+    height: 100%;
+    float: left;
+    margin-left: 2%;
+}
+div.class-info-tutor{
+    height: 100%;
+    width: 20%;
+    float: left;
+}
+div.value-fee-tutor{
+    height: 50px;
+    width: 100%;
+    color: #FF961E;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 20px;
+    margin-top: 55px;
+}
+div.class-offer-tutor{
+    height: 100%;
+    width: 17%;
+    float: left;
+}
+div.button-manage-tutor{
+    width: 80%;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #f7f7f7;
+    background-color: #FF961E;
+    color: white;
+    margin-top: 60px;
+    margin-left: 30px;
+    font-size: 18px;
+}
+div.button-manage-tutor:hover{
+    transform: scale(1.05);
+}
+div.class-info-tutor1{
+    width: 100%;
+    height: 25px;
+    margin-top: 20px;
+}
+div.class-info-tutor2{
+    width: 100%;
+    height: 25px;
+    margin-top: 10px;
+}
+p.infomation-tutor2{
+    color: #FF961E;
+}

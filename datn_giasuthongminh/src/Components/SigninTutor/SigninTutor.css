@@ -1,0 +1,74 @@
+div.signTutor-con{
+    width: 100%;
+    height: 500px;
+    background-image: url('../../images/becomeTutor.jpg');
+    overflow: auto;
+    margin-top: 20px;
+}
+div.becomeTutor{
+    width: 420px;
+    height: 380px;
+    margin-left: 120px;
+    margin-top: 50px;
+    background: linear-gradient(to bottom, #FFF 1%, #98c5e1 98%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    box-sizing: border-box;
+    border-bottom: 1px solid #DFDFDF;
+    border-left: 1px solid #ECECEC;
+    border-radius: 8px;
+    border-right: 1px solid #ECECEC;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.04);
+    overflow: auto;
+}
+div.text-becomeTutor{
+    width: 100%;
+    height: 27px;
+}
+p.text-becomeTutor{
+    margin-top: 30px;
+    color: #069d86;
+    font-size: 25px;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 24px;
+}
+div.form-signin{
+    width: 400px;
+    height: 300px;
+    margin: auto;
+    margin-top: 20px;
+}
+div.part-signinTutor{
+    width: 100%;
+    height: 30px;
+    margin-top: 10px;
+}
+div.left-part{
+    width: 35%;
+    height: 100%;
+    float: left;
+}
+div.right-part{
+    width: 65%;
+    height: 100%;
+    float: left;
+}
+div.right-part input{
+    width: 100%;
+    height: 100%;
+}
+div.btn-become{
+    width: 100%;
+    height: 50px;
+    margin-top: 25px;
+}
+button.btn-become{
+    width: 50%;
+    height: 90%;
+    background: linear-gradient(to right, #0f959b, #064a50);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+}
+button.btn-become:hover{
+    background: linear-gradient(to right,#064a50, #0f959b );
+}

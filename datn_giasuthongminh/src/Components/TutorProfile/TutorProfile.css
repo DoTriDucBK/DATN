@@ -1,0 +1,236 @@
+div.tutor-profile-con{
+    width: 100%;
+    height: 1800px;
+    /* background-color: #f7f7f7; */
+    padding: 80px;
+}
+div.tutor-profile-container{
+    width: 92%;
+    height: 1690px;
+    background-color: #f7f7f7;
+    margin:auto;
+}
+div.title-tutor-profile{
+    width: 100%;
+    height: 50px;
+    /* background-color: yellow; */
+    margin-top: 10px;
+}
+p.title-profile{
+    color: #069D86;
+    font-size: 30px;
+    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+div.title-tutor-profile1{
+    width: 100%;
+    height: 45px;
+    margin-top: 10px;
+}
+div.title-tutor-profile1-left{
+    width: 20%;
+    height: 100%;
+    float: left;
+    background-color: #069D86;
+}
+p.title-tutor-profile1-left{
+    color: white;
+    text-align: center;
+    margin-top: 5px;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+div.title-tutor-profile1-right{
+    width: 80%;
+    height: 100%;
+    border-bottom: 1px solid #069D86;
+    float: left;
+}
+div.value1-tutor{
+    width: 95%;
+    height: 80px;
+    margin: auto;
+    margin-top: 12px;
+}
+div.value1-tutor-left{
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+div.value-title1{
+    width: 90%;
+    height: 30px;   
+    margin: auto;
+    margin-top: 8px;
+}
+p.value-title1{
+    text-align: left;
+    font-size: 17px;
+    color: #069D86;
+    margin-left: 2px;
+}
+div.value-title2{
+    width: 90%;
+    height: 38px;
+    margin: auto;
+}
+input.value-title2{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    border: 1px solid #DFDFDF;
+    padding-left: 5px;
+}
+div.value1-tutor-right{
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+select.value-title2{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #DFDFDF;
+    border-radius: 5px;
+}
+div.profile-detail{
+    width: 90%;
+    height: 200px;
+    margin: auto;
+    margin-top: 20px;
+}
+div.profile-detail-title{
+    width: 100%;
+    height: 30px;
+}
+p.profile-detail-title{
+    text-align: left;
+    font-size: 17px;
+    color: #069D86;
+    margin-left: 2px;
+}
+div.profile-detail-value{
+    width: 100%;
+    height: 170px;
+}
+textarea.profile-detail-value{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    border-radius: 5px;
+}
+div.title-tutor-profile2{
+    width: 100%;
+    height: 45px;
+    margin-top: 40px;
+}
+input.valueTitle{
+    float: left;
+    margin-top: 5px;
+}
+input.valueTitle1{
+    float: left;
+    margin-top: 5px;
+    margin-left: 30px;
+}
+label.valueTitle{
+    float: left;
+    margin-left: 5px;
+}
+div.title-tutor-profile1-left1{
+    width: 25%;
+    height: 100%;
+    float: left;
+    background-color: #069D86;
+}
+div.title-tutor-profile1-right1{
+    width: 75%;
+    height: 100%;
+    border-bottom: 1px solid #069D86;
+    float: left;
+}
+div.image-info-tutor{
+    width: 100%;
+    height: 350px;
+    margin-top: 25px;
+}
+div.image-info-tutor1{
+    width: 28%;
+    height: 100%;
+    margin-right: 3%;
+    margin-left: 2%;
+    float: left;
+    background-color: white;
+}
+div.title-image-info-tutor{
+    width: 100%;
+    height: 55px;
+    margin-top: 10px;
+}
+p.title-image-info{
+    font-size: 18px;
+    color: black;
+}
+img.show_avatar_default{
+    width: 90%;
+    height: 200px;
+    margin: auto;
+    margin-top: 10px;
+}
+div.submit-image-info{
+    width: 100%;
+    height: 60px;
+    margin-top: 10px;
+}
+input.inputfile{
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+label.nameChooseImage {
+    width: 180px;
+    height: 50px;
+    font-size: 1.25em;
+    font-weight: 400;
+    line-height: 50px;
+    vertical-align: middle;
+    color: black;
+    border: 1px solid #069D86;
+    display: inline-block;
+    cursor: pointer;
+}
+/* .inputfile:focus + label,
+.inputfile + label:hover {
+    color: #069D86;
+} */
+label.nameChooseImage:hover{
+    color: #069D86;
+}
+img.show_avatar_default1{
+    width: 90%;
+    height: 200px;
+    margin: auto;
+    margin-top: 10px;
+    border: 1px solid #DFDFDF;
+}
+div.btn-submit-info{
+    width: 100%;
+    height: 60px;
+    margin-top: 40px;
+}
+button.btn-submit-info{
+    width: 200px;
+    height: 50px;
+    background: linear-gradient(to right, #0f959b, #064a50);
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+}
+button.btn-submit-info:hover{
+    background: linear-gradient(to right, #064a50, #0f959b);
+}

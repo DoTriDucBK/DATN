@@ -1,0 +1,41 @@
+{
+  "name": "datn_giasuthongminh",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bootstrap": "^4.3.1",
+    "react": "^16.8.1",
+    "react-alert": "^5.2.0",
+    "react-alert-template-basic": "^1.0.0",
+    "react-bootstrap": "^1.0.0-beta.5",
+    "react-dom": "^16.8.1",
+    "react-js-pagination": "^3.0.2",
+    "react-pager": "^1.3.3",
+    "react-pagination-custom": "^1.0.8",
+    "react-popupbox": "^2.0.8",
+    "react-redux": "^6.0.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.1.5",
+    "react-scroll-to-component": "^1.0.2",
+    "react-slick": "^0.23.2",
+    "reactstrap": "^7.1.0",
+    "redux": "^4.0.1",
+    "slick-carousel": "^1.8.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

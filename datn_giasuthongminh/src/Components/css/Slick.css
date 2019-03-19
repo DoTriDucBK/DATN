@@ -1,0 +1,37 @@
+@font-face{
+    font-family: 'FontAwesome';
+    src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.ttf')
+}
+.slick-list>.slick-track>.slick-slide{
+    display: block;
+    width: 280px !important;
+    margin: 12px !important;
+}
+
+.slick-dots li{
+    /* display: none !important; */
+    box-shadow: none 
+}
+.slick-prev:before, .slick-next:before{
+    font-family: 'FontAwesome' !important;
+    font-size: 65px !important;
+    color: #087e83 !important;
+    font-weight: 900
+}
+
+.slick-prev:before{
+    content: '\f104' !important;
+    /* content:"fa-angle-left"; */
+    font-family: FontAwesome !important;
+}
+.slick-next:before{
+    content: '\f105' !important;
+}
+.slick-prev{
+    left: -50px !important;
+}
+.slick-next {
+    right: -50px !important;
+}
+
+

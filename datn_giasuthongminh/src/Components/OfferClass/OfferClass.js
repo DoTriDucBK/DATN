@@ -41,6 +41,7 @@ class OfferClass extends Component {
         this.setState({
             methodTeaching: this.checkedCheckboxMethod
         });
+        // Lưu hình thức học vào biến typeMethod
         if(this.state.methodTeaching.has("Online") && this.state.methodTeaching.has("Offline")){
             this.setState({typeMethod:2})
         }else if(this.state.methodTeaching.has("Online")){

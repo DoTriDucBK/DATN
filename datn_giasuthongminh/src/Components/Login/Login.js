@@ -13,7 +13,11 @@ class Login extends Component {
             passwordInput: {
                 value: "",
                 error: ""
-            }
+            },
+            message:"",
+            isClick: false,
+            redirectSignUp: false,
+            redirectHome: false
         }
 
     }

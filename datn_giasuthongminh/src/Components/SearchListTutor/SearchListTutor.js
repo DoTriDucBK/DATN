@@ -44,6 +44,10 @@ class SearchListTutor extends Component {
         );
         return listTutor;
     }
+    // Hàm tìm kiếm tutor
+    searchTutor = () => {
+
+    }
     render() {
         return (
             <div className="searchList-con">
@@ -172,7 +176,7 @@ class SearchListTutor extends Component {
                             <option value="3">Chuyên gia</option>
                             <option value="4">Đối tượng khác</option>
                         </select>
-                        <button className="search-title-btn"> <i className="fas fa-search"></i> &nbsp;Tìm kiếm</button>
+                        <button className="search-title-btn" onClick={this.searchTutor}> <i className="fas fa-search"></i> &nbsp;Tìm kiếm</button>
                     </div>
                     <div className="result-sea rch">
                         <p className="number-search">Có <label>100</label> kết quả</p>

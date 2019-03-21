@@ -1,5 +1,5 @@
 import MyService from '../utils/Service';
-
+import MyUtils from '../utils/MyUtils';
 const ClassInfoApi = {
     getAll: async () => {
         var classes = null;
@@ -22,6 +22,11 @@ const ClassInfoApi = {
         }
         return result
 
-    }
+    },
+    searchClass: async (options) => {
+        options= MyUtils.clearBlank(options);
+        let result = await MyService.getRequestData("/class-info/search-class", options);
+        return result
+    },
 }
 export default ClassInfoApi;

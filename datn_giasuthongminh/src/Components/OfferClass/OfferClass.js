@@ -102,7 +102,6 @@ class OfferClass extends Component {
             return <Redirect push to="/listclass"/>
         }
         return (
-            <form>
                 <div className="offerClass">
                     <div className="title-offer">
                         <h1>Mô tả yêu cầu lớp học</h1>
@@ -247,10 +246,9 @@ class OfferClass extends Component {
                         <input type="checkbox"/><label>Bạn đã đồng ý với chính sách của <b>Gia sư BK</b></label>
                     </div>
                     <div className="btn-offer">
-                        <button type="submit" className="btn-offer" onClick={this.onSubmitForm}>Đăng tin </button>
+                        <button type="button" className="btn-offer" onClick={this.onSubmitForm}>Đăng tin </button>
                     </div>
             </div>
-            </form>
             
         );
     }

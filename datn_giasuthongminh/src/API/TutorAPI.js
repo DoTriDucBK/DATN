@@ -1,5 +1,5 @@
 import MyService from '../utils/Service';
-
+import MyUtils from '../utils/MyUtils';
 const TutorApi = {
     getAll: async () => {
         var tutors = null;
@@ -13,6 +13,12 @@ const TutorApi = {
     },
     getTutorBySubject: async (sub) => {
         let result = await MyService.getRequestData("/tutor/tutor-subject", { "nameSubject": sub });
+        return result
+    },
+
+    searchTutor: async (options) => {
+        options= MyUtils.clearBlank(options);
+        let result = await MyService.getRequestData("/tutor/search-tutor", options);
         return result
     },
     createTutor: async () => {

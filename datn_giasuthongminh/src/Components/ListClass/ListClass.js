@@ -41,6 +41,34 @@ class ListClass extends Component {
         );
         return listClass;
     }
+    searchClass = async () => {
+        if(this.state.methodTeaching==="Online"){
+            this.setState({typeMethod:"0"})
+        }else if(this.state.methodTeaching ==="Offline"){
+            this.setState({typeMethod:"1"})
+        }else if(this.state.methodTeaching ==="both"){
+            this.setState({typeMethod:"2"})
+        }
+        var options={
+            nameSubject : this.state.subject,
+            nameCity: this.state.city,
+            typeMeethod:this.state.method
+            // jobTutor:this.state.jobTutor
+
+        }
+
+        var list = await ClassInfoAPI.searchClass(options).then(
+            classInfo => {
+                if(classInfo && classInfo.code === "success"){
+                    list = classInfo.data
+                    this.setState({ classInfo:classInfo.data})
+                }else if(classInfo && classInfo.code ==="error"){
+                    alert(classInfo.message)
+                }
+            }
+        ).catch(err => console.log(err)
+        )
+    }
     render() {
         return (
             <div className="listClass-container">
@@ -56,7 +84,7 @@ class ListClass extends Component {
                     <div className="select-result-searchClass">
                         <div className="select-searchClass">
                             <select required="" className="select-searchClass" name="city" onChange={this.handleChangeSearch}>
-                                <option value hidden className="opt-searchClass">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--Tỉnh thành--</option>
+                                <option value="" className="opt-searchClass">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--Tỉnh thành--</option>
                                 <optgroup label="Địa điểm phổ biến">
                                     <option value="Hà Nội">Hà Nội</option>
                                     <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
@@ -126,7 +154,7 @@ class ListClass extends Component {
                                 </optgroup>
                             </select>
                             <select required="" className="select-searchClass" name="subject" onChange={this.handleChangeSearch}>
-                                <option value hidden className="opt-searchClass">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--Môn học--</option>
+                                <option value="" className="opt-searchClass">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--Môn học--</option>
                                 <optgroup label="Môn học phổ thông">
                                     <option value="Toán">Toán</option>
                                     <option value="Vật lí">Vật lí</option>
@@ -154,26 +182,27 @@ class ListClass extends Component {
                                 </optgroup>
                             </select>
                             <select required="" className="select-searchClass" name="method" onChange={this.handleChangeSearch}>
-                                <option value hidden className="opt-searchClass">&nbsp;&nbsp;&nbsp;&nbsp;--Hình thức dạy--</option>
+                                <option value="" className="opt-searchClass">&nbsp;&nbsp;&nbsp;&nbsp;--Hình thức dạy--</option>
                                 <option value="Online">Online</option>
                                 <option value="Offline">Offline (Tại nhà)</option>
+                                <option value="both">Cả 2 hình thức</option>
                             </select>
                             <select required="" className="select-searchClass"name="doubleClass" onChange={this.handleChangeSearch}>
-                                <option value hidden className="opt-searchClass">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--Học ghép--</option>
+                                <option value="" className="opt-searchClass">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--Học ghép--</option>
                                 <option value="Có">Có</option>
                                 <option value="Không">Không</option>
                             </select>
                             <select required="" className="select-searchClass" name="fee" onChange={this.handleChangeSearch}>
-                                <option value hidden className="opt-searchClass">&nbsp;--Mức giá một buổi--</option>
+                                <option value="" className="opt-searchClass">&nbsp;--Mức giá một buổi--</option>
                                 <option value="1">Dưới 100000</option>
                                 <option value="2">Từ 100000 - 200000</option>
                                 <option value="3">Từ 200000 - 300000</option>
                                 <option value="4">Trên 300000</option>
                             </select>
-                            <button className="search-title-btnClass"> <i className="fas fa-search"></i> &nbsp;Tìm kiếm</button>
+                            <button className="search-title-btnClass" onClick={this.searchClass}> <i className="fas fa-search"></i> &nbsp;Tìm kiếm</button>
                         </div>
                         <div className="result-searchClass">
-                            <p className="number-searchClass">Có <label>100</label> kết quả</p>
+                            <p className="number-searchClass">Có <label>{this.state.classInfo.length}</label> kết quả</p>
                         </div>
                     </div>
                     <div className="title-class-offer">

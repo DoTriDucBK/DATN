@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import './SearchListTutor.css';
 import TutorItem from '../../Components/TutorItem/TutorItem';
 import TutorAPI from '../../API/TutorAPI';
+import MyUtils from '../../utils/MyUtils';
 class SearchListTutor extends Component {
     constructor(props) {
         super(props);
         this.state = {
             // textSearch:props.match.params.textSearch,
             subject: "",
+            addressTutor:"",
+            methodTeaching:"",
+            jobTutor:"",
+            typeMethod:"",
             listTutor: []
         }
     }
@@ -45,8 +50,32 @@ class SearchListTutor extends Component {
         return listTutor;
     }
     // Hàm tìm kiếm tutor
-    searchTutor = () => {
+    searchTutor = async () => {
+        if(this.state.methodTeaching==="Online"){
+            this.setState({typeMethod:"0"})
+        }else if(this.state.methodTeaching ==="Offline"){
+            this.setState({typeMethod:"1"})
+        }else if(this.state.methodTeaching ==="both"){
+            this.setState({typeMethod:"2"})
+        }
+        var options={
+            nameSubject : this.state.subject,
+            addressTutor: this.state.addressTutor,
+            methodTeaching:this.state.typeMethod,
+            jobTutor:this.state.jobTutor
+        }
 
+        var list = await TutorAPI.searchTutor(options).then(
+            listTutor => {
+                if(listTutor && listTutor.code === "success"){
+                    list = listTutor.data
+                    this.setState({ listTutor:listTutor.data})
+                }else if(listTutor&& listTutor.code ==="error"){
+                    alert(listTutor.message)
+                }
+            }
+        ).catch(err => console.log(err)
+        )
     }
     render() {
         return (
@@ -61,8 +90,8 @@ class SearchListTutor extends Component {
                 </div>
                 <div className="select-result-search">
                     <div className="select-search">
-                        <select required="" className="select-search">
-                            <option value="All" className="opt-search">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--Tỉnh thành--</option>
+                        <select required="" className="select-search" name="addressTutor" onChange={this.handleChangeInputTextForm}>
+                            <option value="" className="opt-search">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--Tỉnh thành--</option>
                             <optgroup label="Địa điểm phổ biến">
                                 <option value="Hà Nội">Hà Nội</option>
                                 <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
@@ -132,7 +161,7 @@ class SearchListTutor extends Component {
                             </optgroup>
                         </select>
                         <select required="" className="select-search" name="subject" onChange={this.handleChangeInputTextForm} value={this.state.subject}>
-                            <option value="All" className="opt-search">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--Môn học--</option>
+                            <option value="" className="opt-search">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--Môn học--</option>
                             <optgroup label="Môn học phổ thông">
                                 <option value="Toán">Toán</option>
                                 <option value="Vật lí">Vật lí</option>
@@ -159,27 +188,27 @@ class SearchListTutor extends Component {
                                 <option value="Ngành nghề khác">Ngành nghề khác</option>
                             </optgroup>
                         </select>
-                        <select required="" className="select-search">
-                            <option value="All" className="opt-search">&nbsp;&nbsp;&nbsp;--Hình thức dạy--</option>
+                        <select required="" className="select-search" name="methodTeaching" onChange={this.handleChangeInputTextForm}>
+                            <option value="" className="opt-search">&nbsp;&nbsp;&nbsp;--Hình thức dạy--</option>
                             <option value="Online">Online</option>
                             <option value="Offline">Offline (Tại nhà)</option>
+                            <option value="both">Cả 2 hình thức</option>
                         </select>
                         <select required="" className="select-search">
-                            <option value="All" className="opt-search">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--Giới tính--</option>
+                            <option value="" className="opt-search">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--Giới tính--</option>
                             <option value="1">Nam</option>
                             <option value="2">Nữ</option>
                         </select>
-                        <select required="" className="select-search">
-                            <option value="All" className="opt-search">&nbsp;&nbsp;&nbsp;--Nghề nghiệp--</option>
-                            <option value="1">Sinh viên</option>
-                            <option value="2">Giáo viên</option>
-                            <option value="3">Chuyên gia</option>
-                            <option value="4">Đối tượng khác</option>
+                        <select required="" className="select-search" name="jobTutor" onChange={this.handleChangeInputTextForm}>
+                            <option value="" className="opt-search">&nbsp;&nbsp;&nbsp;--Nghề nghiệp--</option>
+                            <option value="Sinh viên">Sinh viên</option>
+                            <option value="Giáo viên">Giáo viên</option>
+                            <option value="Chuyên gia">Chuyên gia</option>
                         </select>
                         <button className="search-title-btn" onClick={this.searchTutor}> <i className="fas fa-search"></i> &nbsp;Tìm kiếm</button>
                     </div>
                     <div className="result-sea rch">
-                        <p className="number-search">Có <label>100</label> kết quả</p>
+                        <p className="number-search">Có <label>{this.state.listTutor.length}</label> kết quả</p>
                     </div>
                 </div>
                 <div className="result-container">

@@ -19,6 +19,7 @@
     "react-scripts": "2.1.5",
     "react-scroll-to-component": "^1.0.2",
     "react-slick": "^0.23.2",
+    "reactjs-localstorage": "0.0.7",
     "reactstrap": "^7.1.0",
     "redux": "^4.0.1",
     "slick-carousel": "^1.8.1"

@@ -6,13 +6,30 @@ class Signin extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: "",
-            telUser: "",
-            emailUser: "",
-            idUser: "",
-            passwordUser: "",
-            rePassword:"",
-            redirectHome: false
+            userInfo: {
+                user_acc_pass: {
+                    value: "",
+                    error: ""
+                },
+                user_acc_emai: {
+                    value: "",
+                    error: ""
+                },
+                user_acc_phon: {
+                    value: "",
+                    error: ""
+                },
+                user_acc_confirm: {
+                    value: "",
+                    error: ""
+                },
+                user_acc_fullname: {
+                    value: "",
+                }
+            },
+            message: "",
+            isClick: false,
+            redirectHome: false,
         };
     }
     handleChangeForm = (e) => {

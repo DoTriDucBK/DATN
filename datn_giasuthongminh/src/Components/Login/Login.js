@@ -44,9 +44,8 @@ class Login extends Component {
             reactLocalStorage.setObject("user.info", user);
         } else alert("Lỗi kết nối mạng")
         reactLocalStorage.set("home.is_login", true);
-        console.log(this.state);
         this.setState({
-            redirectHome: true,
+            redirectHome: true, 
         })
     };
 
@@ -92,6 +91,7 @@ class Login extends Component {
                         <p className="login-username">Username</p>
                     </div>
                     <input type="text" placeholder="Tên đăng nhập"
+                        value={this.state.usernameInput.value}
                         onChange={this.onChangeUsername}>
                     </input>
                 </div>
@@ -99,7 +99,7 @@ class Login extends Component {
                     <div className="login-username-title">
                         <p className="login-username">Password</p>
                     </div>
-                    <input type="password" placeholder="Mật khẩu" onChange={this.onChangePassword}></input>
+                    <input type="password" placeholder="Mật khẩu" value={this.state.passwordInput.value} onChange={this.onChangePassword}></input>
                 </div>
                 <div className="login-btn">
                     <button className="btn-login" onClick={this.handleSubmit}>Đăng nhập</button>

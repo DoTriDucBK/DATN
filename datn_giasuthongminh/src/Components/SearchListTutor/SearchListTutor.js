@@ -3,6 +3,9 @@ import './SearchListTutor.css';
 import TutorItem from '../../Components/TutorItem/TutorItem';
 import TutorAPI from '../../API/TutorAPI';
 import MyUtils from '../../utils/MyUtils';
+import Pagination from "react-js-pagination";
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 class SearchListTutor extends Component {
     constructor(props) {
         super(props);
@@ -13,9 +16,14 @@ class SearchListTutor extends Component {
             methodTeaching:"",
             jobTutor:"",
             typeMethod:"",
-            listTutor: []
+            listTutor: [],
+            activePage: 1
         }
     }
+    handlePageChange=(pageNumber) =>{
+        console.log(`active page is ${pageNumber}`);
+        this.setState({activePage: pageNumber});
+      }
     handleChangeInputTextForm = (e) => {
         this.setState({
             [e.target.name]: e.target.value
@@ -216,7 +224,13 @@ class SearchListTutor extends Component {
                         {this.show_tutor()}
                     </div>
                     <div className="rank-page">
-                        Đây là chỗ phân trang. ok
+                    <Pagination
+          activePage={this.state.activePage}
+          itemsCountPerPage={8}
+          totalItemsCount={this.state.listTutor.length}
+          pageRangeDisplayed={5}
+          onChange={this.handlePageChange}
+        />
                     </div>
                 </div>
             </div>

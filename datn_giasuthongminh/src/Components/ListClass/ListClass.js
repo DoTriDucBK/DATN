@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './ListClass.css';
 import ClassItem from '../../Components/ClassItem/ClassItem';
 import ClassInfoAPI from '../../API/ClassInfoAPI';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 class ListClass extends Component {
     constructor(props) {
         super(props);

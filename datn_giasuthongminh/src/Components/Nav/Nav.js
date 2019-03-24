@@ -21,7 +21,7 @@ class Nav extends Component {
             textSearch: "",
             modal: false,
             modalSignin: false,
-            modalErr:false
+            modalErr: false
         }
         this.toggle = this.toggle.bind(this);
         this.toggleSignin = this.toggleSignin.bind(this);
@@ -78,10 +78,10 @@ class Nav extends Component {
     }
 
     render() {
-        var is_login = reactLocalStorage.get("home.is_login");
         var userInfo = reactLocalStorage.getObject("user.info", null);
-        console.log(userInfo);
-        console.log(is_login);
+        var user_name = userInfo ? userInfo.userName : "";
+        var is_login = reactLocalStorage.get("home.is_login");
+        console.log(user_name);
         if (this.state.redirectLogin) {
             return <Redirect push to="/login" />;
         } else if (this.state.redirectHome) {
@@ -102,7 +102,7 @@ class Nav extends Component {
                         {/* <label className="nameLogo">Gia sư BK</label> */}
                     </a>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <form className="form-inline my-2 my-lg-0 search">
+                        <form className="form-inline my-2 my-lg-0 search form-search">
                             <input className=" search mr-sm-2" type="search"
                                 placeholder="Tìm kiếm gia sư theo môn học" aria-label="Search"
                                 onChange={this.handleSearchChange}
@@ -113,7 +113,7 @@ class Nav extends Component {
                             </div>
                             {/*   onClick={this.redirectSearchTutor} className="nav-link" */}
                         </form>
-                        <ul className="navbar-nav mr-4 ul-nav">
+                        <ul className="navbar-nav mr-4 ul-nav ul-custom">
                             <li className="nav-item">
                                 <Link to="/" className="nav-link" ><i className="fas fa-home"></i>  Trang chủ</Link>
                             </li>
@@ -126,12 +126,28 @@ class Nav extends Component {
                             <li className="nav-item">
                                 <Link to="/guide" className="nav-link">Xem hướng dẫn</Link>
                             </li>
-                            <li className="nav-item" onClick={this.toggle}>
+                            {/* <li className="nav-item nav-item-login" onClick={this.toggle}>
                                 <a className="nav-link ">Đăng nhập</a>
                             </li>
-                            <li className="nav-item" onClick={this.toggleSignin}>
+                            <li className="nav-item nav-item-signin" onClick={this.toggleSignin}>
                                 <button type="button" className="nav-btn-dangki">Đăng ký</button>
+                            </li> */}
+                            {/* <li className="nav-item nav-item1">
+                                <div className="profile-user">
+                                    <div className="img-profile">
+
+                                    </div>
+                                    <div className="user-profile">
+                                        <p className="user-profile">Nguyễn Đức Thắng</p>
+
+                                    </div>
+                                </div>
+
+
                             </li>
+                            <li className="nav-item nav-item2">
+                                <label className="menu-dropdown"><i class="fas fa-bars"></i></label>
+                            </li> */}
                         </ul>
 
                     </div>

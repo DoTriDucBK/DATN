@@ -90,4 +90,16 @@ div.rank-page{
     height: 60px;
     background-color: yellow;
     margin-top: 20px;
+    overflow: auto;
+}
+div.rank-page ul{
+    margin-left: 420px !important;
+    margin-top: 15px !important;
+}
+div.rank-page ul li{
+    border: 1px solid blue !important;
+    width: 30px !important;
+    height: 30px !important;
+    text-align: center !important;
+    line-height: 30px !important;
 }

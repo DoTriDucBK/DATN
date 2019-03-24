@@ -13,7 +13,7 @@ const required = (value) => {
 
 const email = (value) => {
     if (!isEmail(value)) {
-        return <span className="form-error is-visible" style={{ color: "red" }}>Vui lòng nhập đúng định dạng</span>;
+        return <span className=" is-visible" style={{ color: "red"}}>Vui lòng nhập đúng định dạng</span>;
     } else return false
 };
 

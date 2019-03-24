@@ -7,6 +7,7 @@ import Signin from '../Signin/Signin';
 import { Modal, ModalBody } from 'reactstrap';
 import '../css/ModalCustome.css';
 import InfoMess from './InfoMess';
+import { reactLocalStorage } from "reactjs-localstorage";
 
 class Nav extends Component {
     constructor(props) {
@@ -77,6 +78,10 @@ class Nav extends Component {
     }
 
     render() {
+        var is_login = reactLocalStorage.get("home.is_login");
+        var userInfo = reactLocalStorage.getObject("user.info", null);
+        console.log(userInfo);
+        console.log(is_login);
         if (this.state.redirectLogin) {
             return <Redirect push to="/login" />;
         } else if (this.state.redirectHome) {

@@ -22,8 +22,9 @@ div.title-signin h1{
 div.part-signin{
     width: 85%;
     height: 70px;
-    margin-top: 10px;
+    /* margin-top: 10px; */
     margin: auto;
+    margin-bottom: 15px;
 }
 div.title-part-signin{
     width: 90%;

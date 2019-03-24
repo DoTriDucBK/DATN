@@ -32,7 +32,7 @@ class App extends Component {
 				<div className="App">
 					<Nav />
 					<main>
-						<Route exact path="/" component={() => <Home />} />
+						<Route path="/" component={Home} />
 						<Route path="/become-tutor" component={Home} />
 						<Route path="/guide" component={Home} />
 						<Route path="/tutor-item" component={TutorItem} />

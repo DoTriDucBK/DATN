@@ -132,22 +132,35 @@ class Nav extends Component {
                             <li className="nav-item nav-item-signin" onClick={this.toggleSignin}>
                                 <button type="button" className="nav-btn-dangki">Đăng ký</button>
                             </li> */}
-                            {/* <li className="nav-item nav-item1">
+                            <li className="nav-item  ">
                                 <div className="profile-user">
                                     <div className="img-profile">
 
                                     </div>
                                     <div className="user-profile">
-                                        <p className="user-profile">Nguyễn Đức Thắng</p>
+                                        <p className="user-profile">{user_name}</p>
 
                                     </div>
                                 </div>
-
-
                             </li>
-                            <li className="nav-item nav-item2">
-                                <label className="menu-dropdown"><i class="fas fa-bars"></i></label>
-                            </li> */}
+                            <li className="nav-item nav-item2 dropdown">
+                                <label className="menu-dropdown dropbtn"><i className="fas fa-bars"></i></label>
+                                <div className="dropdown-content">
+                                <ul className="dropdown-content-info">
+                                    <li className="dropdown-item-title1">Chức năng gia sư</li>
+                                    <li className="dropdown-content-item"> <label><i className="fas fa-school"></i>&nbsp;&nbsp;Xem danh sách lớp học</label></li>
+                                    <li className="dropdown-content-item"> <label><i className="fas fa-graduation-cap"></i>&nbsp;Các đề nghị dạy đã gửi</label></li>
+                                    <li className="dropdown-item-title">Chức năng học viên</li>
+                                    <li className="dropdown-content-item"> <label><i className="fas fa-tasks"></i>&nbsp;&nbsp;Quản lý các yêu cầu</label></li>
+                                    <li className="dropdown-content-item"> <label><i className="fas fa-plus-circle"></i>&nbsp;Đăng yêu cầu mới</label></li>
+                                    <li className="dropdown-item-title">Chức năng cá nhân</li>
+                                    <li className="dropdown-content-item"> <label><i className="fas fa-tools"></i>&nbsp;&nbsp;Sửa thông tin cá nhân</label></li>
+                                    <li className="dropdown-content-item"> <label><i className="fas fa-unlock-alt"></i>&nbsp;Đổi mật khẩu</label></li>
+                                    <li className="dropdown-content-item"> <label><i className="fas fa-sign-out-alt"></i>&nbsp;Đăng xuất</label></li>
+                                </ul>
+                                    
+                                </div>
+                            </li>
                         </ul>
 
                     </div>

@@ -52,7 +52,7 @@ class ListClass extends Component {
         var options={
             nameSubject : this.state.subject,
             nameCity: this.state.city,
-            typeMeethod:this.state.method
+            typeMethod:this.state.method
             // jobTutor:this.state.jobTutor
 
         }

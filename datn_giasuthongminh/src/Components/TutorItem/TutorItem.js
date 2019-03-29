@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './TutorItem.css';
 import {Redirect} from 'react-router';
 import MyUtil from '../../utils/MyUtils';
+import { reactLocalStorage } from "reactjs-localstorage";
 class TutorItem extends Component {
     constructor(props){
         super(props);
@@ -10,7 +11,9 @@ class TutorItem extends Component {
             nameTutor:"",
             addTutor:"",
             subjectTutor:"",
-            fee:""
+            fee:"",
+            redirectListClassInvitation:false,
+            idTutor:[this.props.idTutor]
         }
     }
     redirectPersonalPage = () =>{
@@ -20,10 +23,21 @@ class TutorItem extends Component {
             addTutor: [this.props.address],
             fee:[this.props.fee],
             subjectTutor:[this.props.subject],
-            birthday:[this.props.birthday]
+            birthday:[this.props.birthday],
+            idTutor:[this.props.idTutor]
         });
     }
+    redirectListClassInvitation = () => {
+        this.setState({
+            redirectListClassInvitation:true
+        })
+    }
     render() {
+        var userInfo = reactLocalStorage.getObject("user.info", null);
+        var idUser = userInfo ? userInfo.idUser : "";
+        // var is_login = reactLocalStorage.get("home.is_login");
+        console.log(idUser);
+        
         if (this.state.redirectPersonalPage){
             return <Redirect to={{
                 pathname: '/personal-page',
@@ -33,6 +47,17 @@ class TutorItem extends Component {
                 fee: [this.state.fee], 
                 birthday:[this.state.birthday]}
             }}>
+            </Redirect>
+        }
+        if(this.state.redirectListClassInvitation){
+            return <Redirect to={{
+                pathname:"/manage-invitation",
+                state:{
+                    id_User:[idUser],
+                    idTutor:[this.state.idTutor]
+                }
+            }}>
+
             </Redirect>
         }
         return (
@@ -58,7 +83,7 @@ class TutorItem extends Component {
                     </div>
                     <div className="btn">
                         <button className="btn btn1" onClick={this.redirectPersonalPage}>Xem chi tiết</button>&nbsp;&nbsp;
-                        <button className="btn btn2">Mời dạy</button>
+                        <button className="btn btn2" onClick={this.redirectListClassInvitation}>Mời dạy</button>
                     </div>
                 </div>
             </div>

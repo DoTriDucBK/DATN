@@ -126,13 +126,10 @@ class Nav extends Component {
                             <li className="nav-item">
                                 <Link to="/guide" className="nav-link">Xem hướng dẫn</Link>
                             </li>
-                            <li className="nav-item nav-item-login" onClick={this.toggle}>
-                                <a className="nav-link ">Đăng nhập</a>
-                            </li>
-                            <li className="nav-item nav-item-signin" onClick={this.toggleSignin}>
-                                <button type="button" className="nav-btn-dangki">Đăng ký</button>
-                            </li>
-                            {/* <li className="nav-item  ">
+                            {/* {
+                                is_login?
+                                <div>
+                                <li className="nav-item li-item-user ">
                                 <div className="profile-user">
                                     <div className="img-profile">
 
@@ -160,7 +157,21 @@ class Nav extends Component {
                                 </ul>
                                     
                                 </div>
-                            </li> */}
+                            </li>
+                            </div> */}
+                            {/* :  */}
+                            {/* <div> */}
+                                <li className="nav-item nav-item-login" onClick={this.toggle}>
+                            <a className="nav-link ">Đăng nhập</a>
+                        </li>
+                        <li className="nav-item nav-item-signin" onClick={this.toggleSignin}>
+                            <button type="button" className="nav-btn-dangki">Đăng ký</button>
+                        </li>
+                        {/* </div> */}
+
+                            {/* } */}
+                            
+                            {/*  */}
                         </ul>
 
                     </div>

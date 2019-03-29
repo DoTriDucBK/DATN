@@ -25,7 +25,6 @@ class SigninTutor extends Component {
             
             e.preventDefault();
         var data = {
-            idTutorLogin: this.state.passTutor+"1",
             userNameTutor: this.state.nameTutor,
             telUserTutor: this.state.telTutor,
             emailUserTutor: this.state.telTutor,

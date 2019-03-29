@@ -3,27 +3,42 @@ import './SearchListTutor.css';
 import TutorItem from '../../Components/TutorItem/TutorItem';
 import TutorAPI from '../../API/TutorAPI';
 import MyUtils from '../../utils/MyUtils';
-import Pagination from "react-js-pagination";
-// import 'bootstrap/dist/css/bootstrap.min.css';
-import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 class SearchListTutor extends Component {
     constructor(props) {
         super(props);
         this.state = {
             // textSearch:props.match.params.textSearch,
             subject: "",
-            addressTutor:"",
-            methodTeaching:"",
-            jobTutor:"",
-            typeMethod:"",
+            addressTutor: "",
+            methodTeaching: "",
+            jobTutor: "",
+            typeMethod: "",
             listTutor: [],
-            activePage: 1
+            activePage: 1,
+            tutorPerPage: 8
         }
     }
-    handlePageChange=(pageNumber) =>{
-        console.log(`active page is ${pageNumber}`);
-        this.setState({activePage: pageNumber});
-      }
+    handlePageChange = (e) => {
+
+        this.setState({ activePage: Number(e.target.id) });
+    }
+    handlePageChangePre = () => {
+        if(this.state.activePage > 1){
+            this.setState({
+                activePage: this.state.activePage - 1
+            })
+        }
+        
+    }
+    handlePageChangeNext = () => {
+        var lastPage = Math.ceil(this.state.listTutor.length / this.state.tutorPerPage);
+        if(this.state.activePage < lastPage) {
+            this.setState({
+                activePage: this.state.activePage + 1
+            })
+        }
+        
+    }
     handleChangeInputTextForm = (e) => {
         this.setState({
             [e.target.name]: e.target.value
@@ -57,28 +72,35 @@ class SearchListTutor extends Component {
         );
         return listTutor;
     }
+    
+    // checkActive = (e) => {
+    //     var num = e.target.value;
+    //     if(this.state.activePage === num){
+            
+    //     }
+    // }
     // Hàm tìm kiếm tutor
     searchTutor = async () => {
-        if(this.state.methodTeaching==="Online"){
-            this.setState({typeMethod:"0"})
-        }else if(this.state.methodTeaching ==="Offline"){
-            this.setState({typeMethod:"1"})
-        }else if(this.state.methodTeaching ==="both"){
-            this.setState({typeMethod:"2"})
+        if (this.state.methodTeaching === "Online") {
+            this.setState({ typeMethod: "0" })
+        } else if (this.state.methodTeaching === "Offline") {
+            this.setState({ typeMethod: "1" })
+        } else if (this.state.methodTeaching === "both") {
+            this.setState({ typeMethod: "2" })
         }
-        var options={
-            nameSubject : this.state.subject,
+        var options = {
+            nameSubject: this.state.subject,
             addressTutor: this.state.addressTutor,
-            methodTeaching:this.state.typeMethod,
-            jobTutor:this.state.jobTutor
+            methodTeaching: this.state.typeMethod,
+            jobTutor: this.state.jobTutor
         }
 
         var list = await TutorAPI.searchTutor(options).then(
             listTutor => {
-                if(listTutor && listTutor.code === "success"){
+                if (listTutor && listTutor.code === "success") {
                     list = listTutor.data
-                    this.setState({ listTutor:listTutor.data})
-                }else if(listTutor&& listTutor.code ==="error"){
+                    this.setState({ listTutor: listTutor.data })
+                } else if (listTutor && listTutor.code === "error") {
                     alert(listTutor.message)
                 }
             }
@@ -86,6 +108,34 @@ class SearchListTutor extends Component {
         )
     }
     render() {
+        const { listTutor, activePage, tutorPerPage } = this.state;
+
+        // Logic for displaying todos
+        const indexOfLastTutor = activePage * tutorPerPage;
+        const indexOfFirstTutor = indexOfLastTutor - tutorPerPage;
+        const currentTutor = listTutor.slice(indexOfFirstTutor, indexOfLastTutor);
+
+        const renderTodos = currentTutor.map((item) => {
+            return <div className="col col-md-3 row1" key={item.idTutor}>
+                <TutorItem key={item.idTutor} name={item.nameTutor} address={item.addressTutor} subject={item.nameSubject} fee={item.fee} detail={item.infoTutor} />
+            </div>;
+        });
+        // Logic for displaying page numbers
+        const pageNumbers = [];
+        for (let i = 1; i <= Math.ceil(listTutor.length / tutorPerPage); i++) {
+            pageNumbers.push(i);
+        }
+        const divStyle = {
+            background:'#069D86',
+          };
+        const renderPageNumbers = pageNumbers.map(number => {
+            return (
+                <div className="item-page" value={number} key={number}><label key={number}
+                    id={number}
+                    onClick={this.handlePageChange}>{number}</label></div>
+            );
+        });
+
         return (
             <div className="searchList-con">
                 <div className="title-container">
@@ -221,17 +271,16 @@ class SearchListTutor extends Component {
                 </div>
                 <div className="result-container">
                     <div className="row">
-                        {this.show_tutor()}
+                        {renderTodos}
                     </div>
                     <div className="rank-page">
-                    <Pagination
-          activePage={this.state.activePage}
-          itemsCountPerPage={8}
-          totalItemsCount={this.state.listTutor.length}
-          pageRangeDisplayed={5}
-          onChange={this.handlePageChange}
-        />
+                        <div className="page-number">
+                            <div className="item-page" onClick={this.handlePageChangePre}><label ><i className="fas fa-angle-left"></i></label></div>
+                            {renderPageNumbers}
+                            <div className="item-page"><label onClick={this.handlePageChangeNext}><i className="fas fa-angle-right"></i></label></div>
+                        </div>
                     </div>
+
                 </div>
             </div>
         );

@@ -29,7 +29,7 @@ class ListTutor extends Component {
                 <TutorItem key={item.idTutor} name={item.nameTutor}
                      address={item.addressTutor} subject= {item.nameSubject}
                      fee={item.fee} detail={item.infoTutor}
-                     birthday={item.birthdayTutor}/>
+                     birthday={item.birthdayTutor} idTutor={item.idTutor}/>
              </div>
         );
         return listTutor;

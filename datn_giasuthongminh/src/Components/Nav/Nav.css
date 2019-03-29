@@ -32,7 +32,7 @@ input.search{
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 form.form-search{
-    width: 450px !important;
+    width: 430px !important;
 }
 div.image-logo{
     width: 115px;
@@ -86,22 +86,23 @@ nav div.notChange{
     text-align: center;
     vertical-align: middle;
 }
-nav div.profile-user{
+/* nav div.profile-user{
     height: 90%;
+    max-width: 100%;
     margin: auto;
-    /* background-color: red; */
-}
+    text-align: right
+} */
 nav div.img-profile{
-    width: 38px;
+    width: 36px;
     height: 36px;
     background: url('../../images/anhdaidien.png') center center;
     background-size: cover;
     float: left;
     border-radius: 50%;
 }
-nav.div.user-profile{
-    width: 115px;
-    height: 100px;
+nav div.user-profile{
+    width: 160px;
+    height: 50px;
     float: left;
     /* background-color: green; */
     /* line-height: 100px;
@@ -119,6 +120,11 @@ li.nav-item2{
     width: 20px !important;
     margin-left: 20px !important;
     float: right !important;
+}
+li.li-item-user{
+    float: left !important;
+    width: 200px !important;
+    /* background-color: red !important; */
 }
 label.menu-dropdown{
     font-size: 28px;

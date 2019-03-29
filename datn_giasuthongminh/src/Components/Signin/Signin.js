@@ -149,7 +149,6 @@ class Signin extends Component {
                     </div>
                 </div>
                 {userInfo.user_acc_emai.error ? userInfo.user_acc_emai.error : null}
-                            <br />
                 <div className="part-signin">
                     <div className="title-part-signin">
                         Mật khẩu
@@ -160,7 +159,6 @@ class Signin extends Component {
                     </div>
                 </div>
                 {userInfo.user_acc_pass.error ? userInfo.user_acc_pass.error : null}
-                            <br />
                 <div className="part-signin">
                     <div className="title-part-signin">
                         Nhập lại mật khẩu

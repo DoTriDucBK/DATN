@@ -1,9 +1,9 @@
 import MyService from '../utils/Service';
 import MyUtils from '../utils/MyUtils';
-const ClassInfoApi = {
+const ClassUserApi = {
     getAll: async () => {
         var classes = null;
-        await MyService.getRequestData("/class-info")
+        await MyService.getRequestData("/class-user")
             .then(result => {
                 classes = result;
 
@@ -12,13 +12,13 @@ const ClassInfoApi = {
         return classes;
     },
     getClassByIdUser: async (id) => {
-        let result = await MyService.getRequestData("/class-info/class-id", { "idUser": id });
+        let result = await MyService.getRequestData("/class-user/class-id", { "idUser": id });
         return result
     },
-    createClassInfo: async (data) => {
+    createClassUser: async (data) => {
         console.log(data, "??????????????")
         var result = null;
-        await MyService.postRequestData("/class-info", data)
+        await MyService.postRequestData("/class-user", data)
             .then(data => result = data)
             .catch(err => console.log(err)) 
         if (result.data) {
@@ -26,11 +26,6 @@ const ClassInfoApi = {
         }
         return result
 
-    },
-    searchClass: async (options) => {
-        options= MyUtils.clearBlank(options);
-        let result = await MyService.getRequestData("/class-info/search-class", options);
-        return result
-    },
+    }
 }
-export default ClassInfoApi;
+export default ClassUserApi;

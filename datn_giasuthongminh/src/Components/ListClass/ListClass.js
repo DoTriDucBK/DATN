@@ -12,8 +12,31 @@ class ListClass extends Component {
             subject:"",
             fee:"",
             doubleClass:"",
-            method:""
+            method:"",
+            activePage: 1,
+            classPerPage: 4
         }
+    }
+    handlePageChange = (e) => {
+
+        this.setState({ activePage: Number(e.target.id) });
+    }
+    handlePageChangePre = () => {
+        if(this.state.activePage > 1){
+            this.setState({
+                activePage: this.state.activePage - 1
+            })
+        }
+        
+    }
+    handlePageChangeNext = () => {
+        var lastPage = Math.ceil(this.state.classInfo.length / this.state.classPerPage);
+        if(this.state.activePage < lastPage) {
+            this.setState({
+                activePage: this.state.activePage + 1
+            })
+        }
+        
     }
     async componentDidMount() {
         let value = await ClassInfoAPI.getAll();
@@ -27,20 +50,21 @@ class ListClass extends Component {
             [e.target.name] : e.target.value
         });
     }
-    showClassInfo = () => {
-        const listClass = this.state.classInfo.map((item, index) =>
-            <div className="result-item-class" key={index}>
-                <ClassItem description={item.description}
-                    detailClass={item.detailClass}
-                    nameSubject={item.nameSubject}
-                    city={item.nameCity}
-                    typeMethod={item.typeMethod}
-                    numberDay={item.numberDay}
-                    fee={item.fee} />
-            </div>
-        );
-        return listClass;
-    }
+    // showClassInfo = () => {
+    //     const listClass = this.state.classInfo.map((item, index) =>
+    //         <div className="result-item-class" key={index}>
+    //             <ClassItem description={item.description}
+    //                 detailClass={item.detailClass}
+    //                 nameSubject={item.nameSubject}
+    //                 city={item.nameCity}
+    //                 typeMethod={item.typeMethod}
+    //                 numberDay={item.numberDay}
+    //                 fee={item.fee}
+    //                 status={item.status} />
+    //         </div>
+    //     );
+    //     return listClass;
+    // }
     searchClass = async () => {
         if(this.state.methodTeaching==="Online"){
             this.setState({typeMethod:"0"})
@@ -70,6 +94,40 @@ class ListClass extends Component {
         )
     }
     render() {
+        const { classInfo, activePage, classPerPage } = this.state;
+
+        // Logic for displaying todos
+        const indexOfLastClass = activePage * classPerPage;
+        const indexOfFirstClass = indexOfLastClass - classPerPage;
+        const currentClass = classInfo.slice(indexOfFirstClass, indexOfLastClass);
+
+        const renderTodos = currentClass.map((item,index) => {
+            return <div className="result-item-class" key={index}>
+            <ClassItem description={item.description}
+                detailClass={item.detailClass}
+                nameSubject={item.nameSubject}
+                city={item.nameCity}
+                typeMethod={item.typeMethod}
+                numberDay={item.numberDay}
+                fee={item.fee} 
+                status={item.status}/>
+        </div>
+        });
+        // Logic for displaying page numbers
+        const pageNumbers = [];
+        for (let i = 1; i <= Math.ceil(classInfo.length / classPerPage); i++) {
+            pageNumbers.push(i);
+        }
+        const divStyle = {
+            background:'#069D86',
+          };
+        const renderPageNumbers = pageNumbers.map(number => {
+            return (
+                <div className="item-page" value={number} key={number}><label key={number}
+                    id={number}
+                    onClick={this.handlePageChange}>{number}</label></div>
+            );
+        });
         return (
             <div className="listClass-container">
                 <div className="listClass-con">
@@ -216,30 +274,19 @@ class ListClass extends Component {
                             <p className="title-class-offer3">Học phí đề nghị</p>
                         </div>
                         <div className="title-class-offer4">
-                            <p className="title-class-offer4">Phí nhận lớp</p>
+                            <p className="title-class-offer4">Trạng thái</p>
                         </div>
                     </div>
                     <div>
-                        {this.showClassInfo()}
+                     {renderTodos}
                     </div>
-
-                    {/* <div> */}
-                    {/* <Pagination className="pagination-sm pull-right"
-                        activePage={this.state.activePage}
-                        itemsCountPerPage={10}
-                        totalItemsCount={450}
-                        pageRangeDisplayed={5}
-                        onChange={this.handlePageChange}
-        /> */}
-                    {/* <Pagination
-				total={this.state.total}
-				current={this.state.current}
-				visiblePages={this.state.visiblePage}
-				titles={{ first: '<|', last: '>|' }}
-				className="pagination-sm pull-right"
-				onPageChanged={this.handlePageChanged}
-			/> */}
-                    {/* </div> */}
+                    <div className="rank-page">
+                        <div className="page-number">
+                            <div className="item-page" onClick={this.handlePageChangePre}><label ><i className="fas fa-angle-left"></i></label></div>
+                            {renderPageNumbers}
+                            <div className="item-page"><label onClick={this.handlePageChangeNext}><i className="fas fa-angle-right"></i></label></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         );

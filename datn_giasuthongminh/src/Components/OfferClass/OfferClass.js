@@ -66,9 +66,8 @@ class OfferClass extends Component {
             }else{
                 event.preventDefault();
                 var data = {
-                    idClass: this.state.fee+"1",
                     fee:this.state.fee,
-                    idUser:this.state.fee+"2",
+                    idUser:1,
                     status:1,
                     idPartHour:3,
                     nameGrade:"8",

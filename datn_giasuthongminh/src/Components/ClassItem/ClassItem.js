@@ -1,8 +1,34 @@
 import React, { Component } from 'react';
 import './ClassItem.css';
 import MyUtils from '../../utils/MyUtils';
+import {Redirect} from "react-router-dom";
 class ClassItem extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            redirectDetailClass:false,
+            status: "",
+        }
+    }
+    componentDidMount(){
+        var s= parseInt(this.props.status);
+        if( s === 0){
+            this.setState({status:"Còn lớp"})
+        }else if(s === 1){
+            this.setState({status:"Hết lớp"})
+        }else if (s === 2){
+            this.setState({status:"Đang yêu cầu"})
+        }
+    }
+    onClickOffer = () => {
+        this.setState({
+            redirectDetailClass:true
+        })
+    }
     render() {
+        if(this.state.redirectDetailClass){
+            return <Redirect push to="/detail-class"/>
+        }
         return (
             <div className="classItem-con">
                 <div className="img-logoBK">
@@ -35,10 +61,10 @@ class ClassItem extends Component {
                 </div>
                 <div className="class-offer">
                     <div className="fee-offer">
-                        <p className="fee-offer">Phí:<label className="fee-offer">&nbsp;<b>{MyUtils.currencyFormat(400000)} vnđ</b></label></p>
+                        <div className="status-offer"><label className="status-offer">{this.state.status}</label></div>
                     </div>
                     <div className="button-offer">
-                        <button className="button-offer">Đề nghị dạy</button>
+                        <button className="button-offer" onClick={this.onClickOffer}>Đề nghị dạy</button>
                     </div>
                 </div>
             </div>

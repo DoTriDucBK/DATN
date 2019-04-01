@@ -12,7 +12,7 @@ class TutorItem extends Component {
             addTutor:"",
             subjectTutor:"",
             fee:"",
-            redirectListClassInvitation:false,
+            redirectListClassUser:false,
             idTutor:[this.props.idTutor]
         }
     }
@@ -27,9 +27,9 @@ class TutorItem extends Component {
             idTutor:[this.props.idTutor]
         });
     }
-    redirectListClassInvitation = () => {
+    redirectListClassUser = () => {
         this.setState({
-            redirectListClassInvitation:true
+            redirectListClassUser:true
         })
     }
     render() {
@@ -49,9 +49,9 @@ class TutorItem extends Component {
             }}>
             </Redirect>
         }
-        if(this.state.redirectListClassInvitation){
+        if(this.state.redirectListClassUser){
             return <Redirect to={{
-                pathname:"/manage-invitation",
+                pathname:"/class-user",
                 state:{
                     id_User:[idUser],
                     idTutor:[this.state.idTutor]
@@ -83,7 +83,7 @@ class TutorItem extends Component {
                     </div>
                     <div className="btn">
                         <button className="btn btn1" onClick={this.redirectPersonalPage}>Xem chi tiết</button>&nbsp;&nbsp;
-                        <button className="btn btn2" onClick={this.redirectListClassInvitation}>Mời dạy</button>
+                        <button className="btn btn2" onClick={this.redirectListClassUser}>Mời dạy</button>
                     </div>
                 </div>
             </div>

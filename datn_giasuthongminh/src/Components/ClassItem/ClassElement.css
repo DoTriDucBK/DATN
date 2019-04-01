@@ -15,3 +15,40 @@ div.button-manage{
 div.classItem-con:hover{
     background-color: #F1FBF1;
 }
+div.tutor-offer{
+    width: 400px;
+    height: 68px;
+    /* overflow: auto; */
+}
+div.img-profile{
+    width: 20%;
+    height: 100%;
+    background: url('../../images/anhdaidien.png') center center;
+    background-size: cover;
+    float: left;
+    margin-left: 1%;
+}
+div.info-profile-tutor{
+    width: 74%;
+    height: 100%;
+    margin-left: 10px;
+    float: left;
+}
+div.user-birthday{
+    width: 100%;
+    height: 49%;
+    margin-top: 1%;
+}
+div.user-dialog{
+    width: 57%;
+    height: 100%;
+    float: left;
+}
+div.birthday-dialog{
+    width: 43%;
+    height: 100%;
+    float: left;
+}
+label.dialog-text{
+    color: #069D86;
+}

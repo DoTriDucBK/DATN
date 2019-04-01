@@ -19,6 +19,7 @@ import ClassElement from '../ClassItem/ClassElement';
 import ManageInvitation from '../ManagePersonalInfo/ManageInvitation';
 import TutorProfile from '../TutorProfile/TutorProfile';
 import DetailClassOffer from '../DetailClassOffer/DetailClassOffer';
+import ManageClass from '../ManageClass/ManageClass';
 class App extends Component {
 	constructor(props) {
 		super(props)
@@ -51,6 +52,7 @@ class App extends Component {
 						<Route path="/manage-invitation" component={ManageInvitation}/>
 						<Route path="/tutor-profile" component={TutorProfile}/>
 						<Route path="/detail-class" component={DetailClassOffer} />
+						<Route path="/class-user" component={ManageClass}/>
 					</main>
 					<Footer />
 				</div>

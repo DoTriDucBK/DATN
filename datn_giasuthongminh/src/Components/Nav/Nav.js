@@ -8,7 +8,7 @@ import { Modal, ModalBody } from 'reactstrap';
 import '../css/ModalCustome.css';
 import InfoMess from './InfoMess';
 import { reactLocalStorage } from "reactjs-localstorage";
-
+import UserApi from '../../API/UserAPI';
 class Nav extends Component {
     constructor(props) {
         super(props);
@@ -76,7 +76,17 @@ class Nav extends Component {
     alertInfo = () => {
         alert("Nhập dữ liệu tìm kiếm đi ĐỒ NGỐC! Ahihi");
     }
-
+    handleLogout = async () => {
+        var result = await UserApi.logout();
+        console.log(result)
+        if (result){
+            reactLocalStorage.setObject("user.info", null)
+        } else alert("Lỗi kết nối mạng")
+        // reactLocalStorage.set("home.is_login", true);
+        // this.setState({
+        //     redirectHome: true, 
+        // })
+    }
     render() {
         var userInfo = reactLocalStorage.getObject("user.info", null);
         var user_name = userInfo ? userInfo.userName : "";
@@ -126,7 +136,7 @@ class Nav extends Component {
                             <li className="nav-item">
                                 <Link to="/guide" className="nav-link">Xem hướng dẫn</Link>
                             </li>
-                            {/* {
+                            {
                                 is_login?
                                 <div>
                                 <li className="nav-item li-item-user ">
@@ -153,23 +163,23 @@ class Nav extends Component {
                                     <li className="dropdown-item-title">Chức năng cá nhân</li>
                                     <li className="dropdown-content-item"> <label><i className="fas fa-tools"></i>&nbsp;&nbsp;Sửa thông tin cá nhân</label></li>
                                     <li className="dropdown-content-item"> <label><i className="fas fa-unlock-alt"></i>&nbsp;Đổi mật khẩu</label></li>
-                                    <li className="dropdown-content-item"> <label><i className="fas fa-sign-out-alt"></i>&nbsp;Đăng xuất</label></li>
+                                    <li className="dropdown-content-item" onClick={this.handleLogout}> <label><i className="fas fa-sign-out-alt"></i>&nbsp;Đăng xuất</label></li>
                                 </ul>
                                     
                                 </div>
                             </li>
-                            </div> */}
-                            {/* :  */}
-                            {/* <div> */}
+                            </div>
+                             : 
+                             <div> 
                                 <li className="nav-item nav-item-login" onClick={this.toggle}>
                             <a className="nav-link ">Đăng nhập</a>
                         </li>
                         <li className="nav-item nav-item-signin" onClick={this.toggleSignin}>
                             <button type="button" className="nav-btn-dangki">Đăng ký</button>
                         </li>
-                        {/* </div> */}
+                         </div> 
 
-                            {/* } */}
+                             } 
                             
                             {/*  */}
                         </ul>

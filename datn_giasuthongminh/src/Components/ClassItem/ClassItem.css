@@ -95,7 +95,9 @@ div.status-offer{
     height: 90%;
     width: 80%;
     margin: auto;
+    /* background: url('../../images/sohot.PNG') center center; */
     background: url('../../images/sohot.PNG') center center;
+
     background-size: center;
     border-radius: 5px;
 }

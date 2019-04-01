@@ -39,15 +39,22 @@ const UserApi = {
     },
     logout: async () => {
         var user = reactLocalStorage.getObject("user.info", null);
-        if (!user) return false
+        if (!user){
+            console.log("Duc")
+            return false
+        } 
         else {
             var result = null;
-            var token = user ? user.user_acc_tokn : ""
-            await MyService.putRequestData("/user/logout", { user_acc_id: user.user_acc_id }, token)
+            var token = user ? user.token : ""
+            console.log(token);
+            console.log(user.idUser);
+            await MyService.putRequestData("/user/logout", { idUser: user.idUser }, token)
                 .then(data => result = data)
                 .catch(err => console.log(err))
+                console.log("ĐUCCCC")
             if (result && result.code === "success") {
                 reactLocalStorage.setObject("user.info", null)
+                console.log("DDDĐ")
                 return true
             } else return false
         }

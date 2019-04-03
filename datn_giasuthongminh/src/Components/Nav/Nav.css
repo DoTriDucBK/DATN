@@ -112,6 +112,9 @@ nav p.user-profile{
     text-align: left;
     margin-top: 8px;
 }
+/* div.login-logout{
+    background-color: red !important;
+} */
 li.nav-item1{
     width: 180px !important;
     margin-left: 20px !important;
@@ -132,9 +135,11 @@ label.menu-dropdown{
 }
 li.nav-item-login{
     margin-left: 8px !important;
+    float: left !important;
 }
 li.nav-item-signin{
     margin-left: 10px !important;
+    float: left !important;
 }
 li.nav-item{
     margin-left: 8px !important;

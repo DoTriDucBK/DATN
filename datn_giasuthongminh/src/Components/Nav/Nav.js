@@ -170,7 +170,7 @@ class Nav extends Component {
                             </li>
                             </div>
                              : 
-                             <div> 
+                             <div className="login-logout"> 
                                 <li className="nav-item nav-item-login" onClick={this.toggle}>
                             <a className="nav-link ">Đăng nhập</a>
                         </li>

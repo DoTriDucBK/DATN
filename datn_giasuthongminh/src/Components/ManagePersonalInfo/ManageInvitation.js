@@ -3,21 +3,23 @@ import './ManageClassOffer.css';
 import './ManageInvitation.css';
 import ClassItem_Tutor from '../ClassItem/ClassItem_Tutor';
 import ClassInfoAPI from '../../API/ClassInfoAPI';
+import { reactLocalStorage } from "reactjs-localstorage";
+import ClassUserApi from '../../API/ClassUserAPI';
 class ManageInvitation extends Component {
     constructor(props){
         super(props);
         this.state={
-            idUser:0,
+            idUser:reactLocalStorage.getObject("user.info").idUser,
             idTutor:0,
             listClass:[]
         }
     }
     async componentDidMount(){
-            let value = await ClassInfoAPI.getClassByIdUser(this.props.location.state.id_User);
+            let value = await ClassInfoAPI.getClassByIdUser(this.state.idUser);
             this.setState({
                 listClass: value.data,
-                idUser:parseInt(this.props.location.state.id_User),
-            idTutor:parseInt(this.props.location.state.idTutor)
+                // idUser:parseInt(this.props.location.state.id_User),
+            // idTutor:parseInt(this.props.location.state.idTutor)
             });
             console.log(this.state)
     }

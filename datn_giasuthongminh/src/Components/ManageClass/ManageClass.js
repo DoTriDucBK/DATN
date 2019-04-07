@@ -3,44 +3,50 @@ import './ManageClass.css';
 import ClassInfoAPI from '../../API/ClassInfoAPI';
 import ClassItem from '../ClassItem/ClassItem';
 import ClassElement from '../ClassItem/ClassElement';
+import { reactLocalStorage } from "reactjs-localstorage";
 class ManageClass extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state={
-            idUser:0,
-            idTutor:0,
-            listClass:[]
+        this.state = {
+            idTutor: parseInt(this.props.location.state.idTutor),
+            listClass: [],
+            idUser: reactLocalStorage.getObject("user.info").idUser
         }
     }
-    async componentDidMount(){
-            let value = await ClassInfoAPI.getClassByIdUser(this.props.location.state.id_User);
-            this.setState({
-                listClass: value.data,
-                idUser:parseInt(this.props.location.state.id_User),
-            idTutor:parseInt(this.props.location.state.idTutor)
-            });
+    async componentDidMount() {
+        let value = await ClassInfoAPI.getClassByIdUser(this.state.idUser);
+        this.setState({
+            listClass: value.data,
+        });
     }
     onClick = () => {
         console.log(this.state);
-        
+
     }
     showClassInfo = () => {
+        console.log("ssssssssssssssssssssssssss", this.state.listClass)
         const listClass = this.state.listClass.map((item, index) =>
             <div className="result-element-class" key={index}>
                 <ClassElement description={item.description}
+                    idClass={item.idClass}
                     detailClass={item.detailClass}
                     nameSubject={item.nameSubject}
                     city={item.nameCity}
                     typeMethod={item.typeMethod}
                     numberDay={item.numberDay}
                     fee={item.fee}
-                    status={item.status} 
-                    idTutor={this.state.idTutor}/>
+                    status={item.status}
+                    idTutor={this.state.idTutor} />
             </div>
         );
         return listClass;
     }
     render() {
+        const { listClass } = this.state;
+        console.log()
+        if (listClass.length == 0)
+            return <div></div>
+
         return (
             <div className="manage-class-container">
                 <div className="manage-class-title">

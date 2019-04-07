@@ -127,3 +127,24 @@ button.button-offer{
 button.button-offer:hover{
     transform: scale(1.05);
 }
+div.info-profile-tutor-custom{
+    width: 90%;
+    height: 100%;
+    margin-left: 10px;
+    background-color: red;
+}
+div.user-dialog-custom{
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+div.birthday-dialog-custom{
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+div.tutor-offer-custom{
+    width: 390px;
+    height: 60px;
+    /* overflow: auto; */
+}

@@ -3,6 +3,8 @@ import './ListClass.css';
 import ClassItem from '../../Components/ClassItem/ClassItem';
 import ClassInfoAPI from '../../API/ClassInfoAPI';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { reactLocalStorage } from "reactjs-localstorage";
+
 class ListClass extends Component {
     constructor(props) {
         super(props);
@@ -14,8 +16,16 @@ class ListClass extends Component {
             doubleClass:"",
             method:"",
             activePage: 1,
-            classPerPage: 4
+            classPerPage: 4,
+            nameTutor: reactLocalStorage.getObject("tutor.login.info").userNameTutor,
+            modal: false
         }
+        this.toggle = this.toggle.bind(this);
+    }
+    toggle() {
+        this.setState(prevState => ({
+            modal: !prevState.modal
+        }));
     }
     handlePageChange = (e) => {
 
@@ -102,15 +112,19 @@ class ListClass extends Component {
         const currentClass = classInfo.slice(indexOfFirstClass, indexOfLastClass);
 
         const renderTodos = currentClass.map((item,index) => {
-            return <div className="result-item-class" key={index}>
-            <ClassItem description={item.description}
+            return <div className="result-item-class" key={index}  > 
+            <ClassItem
+            description={item.description}
+                idClass={item.idClass}
+                idUser={item.idUser}
                 detailClass={item.detailClass}
                 nameSubject={item.nameSubject}
                 city={item.nameCity}
                 typeMethod={item.typeMethod}
                 numberDay={item.numberDay}
                 fee={item.fee} 
-                status={item.status}/>
+                status={item.status}
+                nameTutor={this.state.nameTutor}/>
         </div>
         });
         // Logic for displaying page numbers
@@ -288,6 +302,7 @@ class ListClass extends Component {
                         </div>
                     </div>
                 </div>
+                
             </div>
         );
     }

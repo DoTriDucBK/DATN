@@ -41,11 +41,9 @@ class TutorItem extends Component {
         if (this.state.redirectPersonalPage){
             return <Redirect to={{
                 pathname: '/personal-page',
-                state: { subjectTutor: [this.state.subjectTutor],
-                     addTutor: [this.state.addTutor],
-                    nameTutor: [this.state.nameTutor],
-                fee: [this.state.fee], 
-                birthday:[this.state.birthday]}
+                state: {
+                idTutor:[this.state.idTutor]
+            }
             }}>
             </Redirect>
         }
@@ -53,7 +51,6 @@ class TutorItem extends Component {
             return <Redirect to={{
                 pathname:"/class-user",
                 state:{
-                    id_User:[idUser],
                     idTutor:[this.state.idTutor]
                 }
             }}>

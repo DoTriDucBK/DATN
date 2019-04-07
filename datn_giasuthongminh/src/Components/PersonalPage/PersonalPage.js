@@ -1,53 +1,59 @@
 import React, { Component } from 'react';
 import './PersonalPage.css';
 import MyUtils from '../../utils/MyUtils';
+import TutorAPI from '../../API/TutorAPI'
 class PersonalPage extends Component {
     constructor(props){
         super(props);
         this.state = {
-            subject:"",
-            address:"",
-            fee:"",
-            name:"",
-            birthday:""
+            idTutor:this.props.location.state.idTutor,
+            tutor:[],
+            methodTeaching:""
         }
     }
-    componentDidMount(){
+    async componentDidMount(){
+        let listTutor = await TutorAPI.getTutorById(parseInt(this.props.location.state.idTutor));
         this.setState({
-            subject : this.props.location.state.subjectTutor,
-            address : this.props.location.state.addTutor,
-            fee: this.props.location.state.fee,
-            name: this.props.location.state.nameTutor,
-            birthday:this.props.location.state.birthday
+            tutor: listTutor.data
         })
-        
-        
+        if(listTutor.data[0].methodTeaching === "0"){
+            this.setState({methodTeaching:"Online"})
+        }else if(listTutor.data[0].methodTeaching === "1"){
+            this.setState({methodTeaching:"Offline"})
+        }else if (listTutor.data[0].methodTeaching === "2"){
+            this.setState({methodTeaching:"Cả Online và Offline"})
+        }
+        console.log(this.state)
     }
     render() {
+        var {tutor} = this.state;
+        if (tutor.length === 0) {
+            return <div></div>
+        }
         return (
             <div className="personal-container">
-<div className="main-personal">
+           <div className="main-personal">
                 <div className="left-personal">
                     <div className="img-tutor">
                     </div>
                     <div className="infoTutor">
                         <div className="nameTutor">
-                            <p><b>{this.state.name}</b></p>
+                            <p><b>{tutor[0].nameTutor}</b></p>
                         </div>
                         <div className="birthdayTutor">
-                            <p>Ngày sinh: {this.state.birthday}</p>
+                            <p>Ngày sinh:&nbsp;{tutor[0].birthdayTutor}</p>
                         </div>
                         <div className="addressTutor">
-                            <p> <i className="fas fa-map-marker-alt"></i>&nbsp;&nbsp;{this.state.address}</p>
+                            <p> <i className="fas fa-map-marker-alt"></i>&nbsp;&nbsp;{tutor[0].nameCity}</p>
                         </div>
                         <div className="subjectTutor">
-                            <p><i className="fas fa-book-reader"></i>&nbsp;&nbsp;{this.state.subject}</p>
+                            <p><i className="fas fa-book-reader"></i>&nbsp;&nbsp; {tutor[0].nameSubject}</p>
                         </div>
                         <div className="feeTutor">
-                            <p><i className="fas fa-hand-holding-usd"></i>&nbsp;&nbsp;Học phí: {MyUtils.currencyFormat(this.state.fee)}</p>
+                            <p><i className="fas fa-hand-holding-usd"></i>&nbsp;&nbsp;Học phí:&nbsp;{MyUtils.currencyFormat(tutor[0].fee)}</p>
                         </div>
                         <div className="methodTutor">
-                            <p><i className="fas fa-address-card"></i>&nbsp;&nbsp;Hình thức dạy: Offline</p>
+                            <p><i className="fas fa-address-card"></i>&nbsp;&nbsp;Hình thức dạy: {this.state.methodTeaching}</p>
                         </div>
                     </div>
                 </div>
@@ -65,25 +71,29 @@ class PersonalPage extends Component {
                     </div>
                     <div className="ttc">
                         <div className="ttc1">
-                            <p><i className="fas fa-user"></i>&nbsp;Họ và tên:&nbsp;<b>{this.state.name}</b></p>
-                        </div>
-                        {/* <div className="ttc2">
-                            <p><i className="fas fa-phone-square"></i>&nbsp;Số điện thoại:&nbsp;<b>0965143540</b></p>
+                            <p><i className="fas fa-user"></i>&nbsp;Họ và tên:&nbsp;<b> {tutor[0].nameTutor}</b></p>
                         </div>
                         <div className="ttc2">
-                            <p><i className="far fa-envelope"></i>&nbsp;Email:&nbsp;<b>dotriduc26071996@gmail.com</b></p>
-                        </div> */}
-                        <div className="ttc2">
-                            <p><i className="fas fa-map-marker-alt"></i>&nbsp;Quê quán:&nbsp;<b>Hiệp Hòa, Vũ Thư, Thái Bình</b></p>
+                            <p><i className="fas fa-phone-square"></i>&nbsp;Số điện thoại:&nbsp;<b>{tutor[0].telTutor}</b></p>
                         </div>
                         <div className="ttc2">
-                            <p><i className="fas fa-address-card"></i>&nbsp;Nghề nghiệp hiện tại:&nbsp;<b>Sinh viên năm 3</b></p>
+                            <p><i className="far fa-envelope"></i>&nbsp;Email:&nbsp;<b>{tutor[0].emailTutor}</b></p>
+                            
+                        </div>
+                        <div className="ttc2">
+                            <p><i className="fas fa-map-marker-alt"></i>&nbsp;Địa chỉ hiện nay:&nbsp;<b>{tutor[0].nameAdress}</b></p>
+        
+                        </div>
+                        <div className="ttc2">
+                            <p><i className="fas fa-address-card"></i>&nbsp;Nghề nghiệp hiện tại:&nbsp;<b> {tutor[0].job}</b></p>
+                           
                         </div>
                         <div className="ttc2">
                             <p><i className="fas fa-map-marked-alt"></i>&nbsp;Đơn vị công tác:&nbsp;<b>Trường Đại học Bách Khoa Hà Nội</b></p>
                         </div>
                         <div className="ttc2">
-                            <p><i className="fas fa-globe"></i>&nbsp;Hình thức dạy học:&nbsp;<b>Online</b></p>
+                            <p><i className="fas fa-globe"></i>&nbsp;Hình thức dạy học:&nbsp;<b>{this.state.methodTeaching}</b></p>
+                            
                         </div>
                     </div>
                     <div className="dangkilichday">

@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import './ManageClassOffer.css';
 import ClassElement from '../ClassItem/ClassElement';
+import ClassElementTutor from '../ClassItem/ClassElementTutor';
 class ManageClassOffer extends Component {
+    constructor(props){
+        super(props);
+        this.state= {
+            idTutor: this.props.location.state.idTutor
+        }
+    }
+    async componentDidMount(){
+        
+    }
     render() {
         return (
             <div className="manage-class-container">
@@ -39,13 +49,13 @@ class ManageClassOffer extends Component {
                     </div>
                 </div>
                 <div className="result-element-class">
-                    <ClassElement />
+                    <ClassElementTutor />
                 </div>
                 <div className="result-element-class">
-                    <ClassElement />
+                    <ClassElementTutor />
                 </div>
                 <div className="result-element-class">
-                    <ClassElement />
+                    <ClassElementTutor />
                 </div>
             </div>
 

@@ -8,6 +8,9 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import TutorAPI from '../../API/TutorAPI';
+import ClassUserAPI from '../../API/ClassUserAPI';
+import { reactLocalStorage } from "reactjs-localstorage";
+import { Redirect } from 'react-router-dom';
 class ClassElement extends Component {
     constructor(props) {
         super(props);
@@ -15,10 +18,13 @@ class ClassElement extends Component {
             status: "",
             open: false,
             idTutor: 0,
-            tutor: []
+            tutor: [],
+            idUser: reactLocalStorage.getObject("user.info").idUser,
+            idClass: this.props.idClass,
+            redirectManageInvitation: false
         }
     }
-    componentDidMount() {
+    async componentDidMount() {
         var s = parseInt(this.props.status);
         if (s === 0) {
             this.setState({ status: "Còn lớp" })
@@ -27,8 +33,12 @@ class ClassElement extends Component {
         } else if (s === 2) {
             this.setState({ status: "Đang yêu cầu" })
         }
+        var listTutor = await TutorAPI.getTutorById(parseInt(this.props.idTutor));
+
+        console.log(listTutor)
         this.setState({
-            idTutor: this.props.idTutor
+            idTutor: this.props.idTutor,
+            tutor: listTutor,
         })
 
 
@@ -36,15 +46,51 @@ class ClassElement extends Component {
     handleClose = () => {
         this.setState({ open: false });
     };
-    onClickOfferTutor = async () => {
-        var listTutor = await TutorAPI.getTutorById(parseInt(this.state.idTutor));
+    handleYes = () => {
+        var data = {
+            idUser: this.state.idUser,
+            idTutor: this.state.idTutor,
+            idClass: this.state.idClass,
+            status: 2,
+        }
+        // console.log("1111111111  " , data);
+        var classUser = ClassUserAPI.createClassUser(data).then(result => {
+            if (result && result.code === "success") {
+                classUser = result.data;
+            } else if (result.code === "error") {
+                alert(result.message)
+            }
+        })
+            .catch(err => console.log(err));
         this.setState({
-            tutor: listTutor,
+            open: false,
+            redirectManageInvitation: true
+        });
+    }
+    onClickOfferTutor = () => {
+
+        this.setState({
+
             open: true
         })
-        console.log(this.state)
+
     }
     render() {
+        console.log(this.state.tutor)
+        const { tutor, redirectManageInvitation } = this.state;
+        if (redirectManageInvitation) {
+            return <Redirect to={{
+                pathname:"/manage-invitation",
+                state:{
+                    idUser:[this.state.idUser]
+                }
+            }}>
+
+            </Redirect>
+        }
+        if (!tutor || tutor.length == 0) {
+            return <div></div>
+        }
         return (
             <div className="classItem-con">
                 <div className="img-logoBK">
@@ -98,18 +144,22 @@ class ClassElement extends Component {
                             <div className="info-profile-tutor">
                                 <div className="user-birthday">
                                     <div className="user-dialog">
-                                        <p><label className="dialog-text"><i className="fas fa-user"></i></label> &nbsp;{this.state.tutor.value.data.nameTutor}</p>
+                                        <p><label className="dialog-text"><i className="fas fa-user"></i></label> &nbsp;{this.state.tutor.data[0].nameTutor}</p>
+
                                     </div>
                                     <div className="birthday-dialog">
-                                        <p><label className="dialog-text"><i className="fas fa-birthday-cake"></i></label>&nbsp;{this.state.tutor.value.data.birthdayTutor}</p>
+                                        <p><label className="dialog-text"><i className="fas fa-birthday-cake"></i></label>&nbsp;{this.state.tutor.data[0].birthdayTutor}</p>
+
                                     </div>
                                 </div>
                                 <div className="user-birthday">
                                     <div className="user-dialog">
-                                        <p><label className="dialog-text"><i className="fas fa-map-marker-alt"></i></label>&nbsp;{this.state.tutor.value.data.nameCity}</p>
+                                        <p><label className="dialog-text"><i className="fas fa-map-marker-alt"></i></label>&nbsp;{this.state.tutor.data[0].nameCity}</p>
+
                                     </div>
                                     <div className="birthday-dialog">
-                                        <p><label className="dialog-text"><i className="fas fa-phone-square"></i></label>&nbsp;{this.state.tutor.value.data.telTutor}</p>
+                                        <p><label className="dialog-text"><i className="fas fa-phone-square"></i></label>&nbsp;{this.state.tutor.data[0].telTutor}</p>
+
                                     </div>
                                 </div>
                             </div>
@@ -119,7 +169,7 @@ class ClassElement extends Component {
                         <Button onClick={this.handleClose} color="primary">
                             Không
             </Button>
-                        <Button onClick={this.handleClose} color="primary" autoFocus>
+                        <Button onClick={this.handleYes} color="primary" autoFocus>
                             Có
             </Button>
                     </DialogActions>

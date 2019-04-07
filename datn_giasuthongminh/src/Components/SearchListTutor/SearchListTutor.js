@@ -51,11 +51,11 @@ class SearchListTutor extends Component {
         // console.log(this.state.subject);
     }
     async componentDidMount() {
-        var sub = this.state.subject, tutors;
+        var sub = this.state.subject;
         if (sub) await TutorAPI.getTutorBySubject(sub).then(
             listTutor => {
                 if (listTutor && listTutor.code === "success") {
-                    tutors = listTutor.data
+                    // tutors = listTutor.data
                     this.setState({ listTutor: listTutor.data })
                 } else if (listTutor && listTutor.code === "error") {
                     alert(listTutor.message)
@@ -67,18 +67,15 @@ class SearchListTutor extends Component {
     show_tutor = () => {
         const listTutor = this.state.listTutor.map((item) =>
             <div className="col col-md-3 row1" key={item.idTutor}>
-                <TutorItem key={item.idTutor} name={item.nameTutor} address={item.addressTutor} subject={item.nameSubject} fee={item.fee} detail={item.infoTutor} />
+                <TutorItem key={item.idTutor} name={item.nameTutor}
+                     address={item.addressTutor} subject= {item.nameSubject}
+                     fee={item.fee} detail={item.infoTutor}
+                     birthday={item.birthdayTutor} idTutor={item.idTutor}/>
             </div>
         );
         return listTutor;
+        ;
     }
-    
-    // checkActive = (e) => {
-    //     var num = e.target.value;
-    //     if(this.state.activePage === num){
-            
-    //     }
-    // }
     // Hàm tìm kiếm tutor
     searchTutor = async () => {
         if (this.state.methodTeaching === "Online") {
@@ -106,6 +103,7 @@ class SearchListTutor extends Component {
             }
         ).catch(err => console.log(err)
         )
+        console.log(this.state.listTutor)
     }
     render() {
         const { listTutor, activePage, tutorPerPage } = this.state;
@@ -117,7 +115,7 @@ class SearchListTutor extends Component {
 
         const renderTodos = currentTutor.map((item) => {
             return <div className="col col-md-3 row1" key={item.idTutor}>
-                <TutorItem key={item.idTutor} name={item.nameTutor} address={item.addressTutor} subject={item.nameSubject} fee={item.fee} detail={item.infoTutor} />
+                <TutorItem key={item.idTutor} idTutor={item.idTutor} name={item.nameTutor} address={item.addressTutor} subject={item.nameSubject} fee={item.fee} detail={item.infoTutor} />
             </div>;
         });
         // Logic for displaying page numbers

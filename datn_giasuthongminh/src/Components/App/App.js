@@ -20,12 +20,23 @@ import ManageInvitation from '../ManagePersonalInfo/ManageInvitation';
 import TutorProfile from '../TutorProfile/TutorProfile';
 import DetailClassOffer from '../DetailClassOffer/DetailClassOffer';
 import ManageClass from '../ManageClass/ManageClass';
+import DetailClass from '../DetailClass/DetailClass';
+import { reactLocalStorage } from 'reactjs-localstorage';
 class App extends Component {
 	constructor(props) {
 		super(props)
 		this.state = ({
-			indexHome: 0
+			indexHome: 0,
+			
 		})
+	
+	}
+	componentDidMount(){
+		var user = reactLocalStorage.getObject("user.info");
+		if(!user){
+			console.log("aa");
+			reactLocalStorage.set("home.is_login", false)
+		}
 	}
 	render() {
 		return (
@@ -51,8 +62,8 @@ class App extends Component {
 						<Route path="/class-element" component={ClassElement}/>
 						<Route path="/manage-invitation" component={ManageInvitation}/>
 						<Route path="/tutor-profile" component={TutorProfile}/>
-						<Route path="/detail-class" component={DetailClassOffer} />
 						<Route path="/class-user" component={ManageClass}/>
+						<Route path="/detail-class" component={DetailClass}/>
 					</main>
 					<Footer />
 				</div>

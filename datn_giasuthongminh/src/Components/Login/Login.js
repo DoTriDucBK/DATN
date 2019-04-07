@@ -4,6 +4,7 @@ import UserApi from '../../API/UserAPI';
 import { reactLocalStorage } from "reactjs-localstorage";
 import { password, required, emailAndPhone } from '../../utils/Validate';
 import { Redirect } from 'react-router';
+import TutorLoginApi from '../../API/TutorLoginAPI';
 
 // import {password, required, emailAndPhone} from '../../utils/Validate';
 class Login extends Component {
@@ -18,10 +19,11 @@ class Login extends Component {
                 value: "",
                 error: ""
             },
-            message:"",
+            message: "",
             isClick: false,
             redirectSignUp: false,
-            redirectHome: false
+            redirectHome: false,
+            is_tutor: ""
         }
 
     }
@@ -31,22 +33,46 @@ class Login extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault();
-        var { usernameInput, passwordInput } = this.state;
+        var { usernameInput, passwordInput, is_tutor } = this.state;
         var user = null;
+        if (is_tutor === "user") {
+            var result = await UserApi.login({
+                userName: usernameInput.value,
+                password: passwordInput.value
+            })
+            if (result && result.message)
+                this.setState({ message: result.message })
+            else if (result && result.data) {
+                user = result.data;
+                reactLocalStorage.setObject("user.info", user);
+                reactLocalStorage.set("home.is_login", true);
+                this.props.handleLogin(user, true)
+            } else alert("Lỗi kết nối mạng");
 
-        var result = await UserApi.login({ 
-            userName: usernameInput.value, 
-            password: passwordInput.value })
-        if (result && result.message)
-            this.setState({ message: result.message })
-        else if (result && result.data) {
-            user = result.data;
-            reactLocalStorage.setObject("user.info", user);
-        } else alert("Lỗi kết nối mạng")
-        reactLocalStorage.set("home.is_login", true);
-        this.setState({
-            redirectHome: true, 
-        })
+            this.setState({
+                redirectHome: true,
+            })
+            this.props.toggle();
+        }
+        else if (is_tutor === "tutor") {
+            var result = await TutorLoginApi.login({
+                userNameTutor: usernameInput.value,
+                passwordTutor: passwordInput.value
+            })
+            if (result && result.message)
+                this.setState({ message: result.message })
+            else if (result && result.data) {
+                user = result.data;
+                reactLocalStorage.setObject("tutor.login.info", user);
+                reactLocalStorage.set("home.is_login_tutor", true);
+                this.props.handleLogin(user, true)
+            } else alert("Lỗi kết nối mạng");
+
+            this.setState({
+                redirectHome: true,
+            })
+            this.props.toggle();
+        }
     };
 
     onChangeUsername = (e) => {
@@ -66,7 +92,12 @@ class Login extends Component {
         isClick = this.check({ usernameInput, passwordInput });
         this.setState({ usernameInput, passwordInput, isClick, message: "" })
     }
-
+    handleChangeInputTextForm = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+        console.log(this.state)
+    }
     check = (state) => {
         if (!state || (!state.usernameInput) || (!state.passwordInput)) return false;
         if ((!state.usernameInput.value) || (state.usernameInput.value && state.usernameInput.error)) return false;
@@ -75,15 +106,15 @@ class Login extends Component {
     }
 
     render() {
-        if(this.state.redirectSignUp){
-            return <Redirect push to ={"/signin"} />
+        if (this.state.redirectSignUp) {
+            return <Redirect push to={"/signin"} />
         }
-        if(this.state.redirectHome){
+        if (this.state.redirectHome) {
             return <Redirect push to={"/"} />
         }
         return (
             <div className="login-con">
-                <div className="login-title"> 
+                <div className="login-title">
                     <p><b>Đăng nhập</b></p>
                 </div>
                 <div className="login-username">
@@ -100,6 +131,15 @@ class Login extends Component {
                         <p className="login-username">Password</p>
                     </div>
                     <input type="password" placeholder="Mật khẩu" value={this.state.passwordInput.value} onChange={this.onChangePassword}></input>
+                </div>
+                <div className="is_tutor">
+                    <div className="is_tutor_left">
+                        <label className="is_tutor">Bạn là: </label>
+                    </div>
+                    <div className="is_tutor_right">
+                        <input type="radio" name="is_tutor" value="user" className="is_tutor" checked={this.state.is_tutor === "user"} onChange={this.handleChangeInputTextForm} /> Học viên
+                        <input type="radio" name="is_tutor" value="tutor" className="is_tutor" checked={this.state.is_tutor === "tutor"} onChange={this.handleChangeInputTextForm} /> Gia sư
+                    </div>
                 </div>
                 <div className="login-btn">
                     <button className="btn-login" onClick={this.handleSubmit}>Đăng nhập</button>

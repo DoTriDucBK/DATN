@@ -15,6 +15,10 @@ const ClassInfoApi = {
         let result = await MyService.getRequestData("/class-info/class-id", { "idUser": id });
         return result
     },
+    getClassByIdClass: async (id) => {
+        let result = await MyService.getRequestData("/class-info/class-idClass", { "idClass": id });
+        return result
+    },
     createClassInfo: async (data) => {
         console.log(data, "??????????????")
         var result = null;

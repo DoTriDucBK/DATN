@@ -1,6 +1,6 @@
 div.login-con{
     width: 450px;
-    height: 380px;
+    height: 400px;
     margin: auto;
     margin-top: 100px;
     border-radius: 5px;
@@ -80,4 +80,28 @@ div.log-sign p{
 }
 div.log-sign label:hover{
     color: #0f9298;
+}
+div.is_tutor{
+    width: 90%;
+    height: 40px;
+    margin: auto;
+    margin-top: 12px;
+}
+div.is_tutor_left{
+    width: 15%;
+    height: 100%;
+    float: left;
+}
+label.is_tutor{
+    margin-left: 5px;
+    margin-top: 5px;
+}
+div.is_tutor_right{
+    width: 80%;
+    height: 100%;
+    float: left;
+}
+input.is_tutor{
+    margin-left: 20px;
+    margin-top: 10px;
 }

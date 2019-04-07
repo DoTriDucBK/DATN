@@ -9,6 +9,7 @@ import '../css/ModalCustome.css';
 import InfoMess from './InfoMess';
 import { reactLocalStorage } from "reactjs-localstorage";
 import UserApi from '../../API/UserAPI';
+import TutorLoginApi from '../../API/TutorLoginAPI';
 class Nav extends Component {
     constructor(props) {
         super(props);
@@ -21,11 +22,18 @@ class Nav extends Component {
             textSearch: "",
             modal: false,
             modalSignin: false,
-            modalErr: false
+            modalErr: false,
+            userinfo: reactLocalStorage.getObject("tutor.login.info"),
+            is_login: false,
+            is_login_tutor:false,
+            redirectManageClassOffer:false
         }
         this.toggle = this.toggle.bind(this);
         this.toggleSignin = this.toggleSignin.bind(this);
         this.toggleErr = this.toggleErr.bind(this);
+    }
+    componentDidMount() {
+        // this.setState({ is_login: reactLocalStorage.get("home.is_login") })
     }
     toggle() {
         this.setState(prevState => ({
@@ -51,6 +59,9 @@ class Nav extends Component {
         })
 
     };
+    handleLogin = (userinfo, is_login) => {
+        this.setState({ userinfo: userinfo, is_login: is_login })
+    }
     // Bắt sự kiện cho button search
     // searchTutor = (e) => {
     //     e.preventDefault();
@@ -73,37 +84,55 @@ class Nav extends Component {
     redirectSearchTutor = () => {
         this.setState({ redirectSearchTutor: true });
     }
+    redirectManageClassOffer = () => {
+        this.setState({redirectManageClassOffer:true});
+    }
     alertInfo = () => {
         alert("Nhập dữ liệu tìm kiếm đi ĐỒ NGỐC! Ahihi");
     }
     handleLogout = async () => {
         var result = await UserApi.logout();
         console.log(result)
-        if (result){
-            reactLocalStorage.setObject("user.info", null)
+        if (result) {
+            reactLocalStorage.setObject("user.info", null);
+            reactLocalStorage.setObject("home.is_login", false);
+            this.setState({
+                userinfo: null,
+                is_login: false
+            })
         } else alert("Lỗi kết nối mạng")
         // reactLocalStorage.set("home.is_login", true);
         // this.setState({
         //     redirectHome: true, 
         // })
+        var result = await TutorLoginApi.logout();
+        if(result) {
+            reactLocalStorage.setObject("tutor.login.info", null);
+            reactLocalStorage.setObject("home.is_login_tutor", false);
+            this.setState({
+                userinfo:null,
+                is_login:false
+            })
+        }else alert("Lỗi kết nối mạng")
     }
     render() {
-        var userInfo = reactLocalStorage.getObject("user.info", null);
-        var user_name = userInfo ? userInfo.userName : "";
-        var is_login = reactLocalStorage.get("home.is_login");
-        console.log(user_name);
+        var user_name = this.state.userinfo ? this.state.userinfo.userName : "";
+        var tutor_name = this.state.userinfo ? this.state.userinfo.userNameTutor:"";
+        console.log(this.state.is_login);
         if (this.state.redirectLogin) {
             return <Redirect push to="/login" />;
         } else if (this.state.redirectHome) {
             return <Redirect push to="/" />;
         } else if (this.state.redirectListClass) {
             return <Redirect push to="/listclass" />;
+        } else if (this.state.redirectManageClassOffer){
+            return <Redirect push to="/manage-offer"/>
         }
         // else if(this.state.redirectSearchTutor){
         //     var textSearch = this.state.textSearch;
         //     return <Redirect  to={"/searchTutor/" + textSearch + ""}/>
         // }
-        return (
+        return ( 
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light nav-header">
                     <a className="navbar-brand" href="#">
@@ -137,50 +166,50 @@ class Nav extends Component {
                                 <Link to="/guide" className="nav-link">Xem hướng dẫn</Link>
                             </li>
                             {
-                                is_login?
-                                <div>
-                                <li className="nav-item li-item-user ">
-                                <div className="profile-user">
-                                    <div className="img-profile">
+                                this.state.is_login ?
+                                    <div>
+                                        <li className="nav-item li-item-user ">
+                                            <div className="profile-user">
+                                                <div className="img-profile">
 
+                                                </div>
+                                                <div className="user-profile">
+                                                    <p className="user-profile">{user_name}{tutor_name}</p>
+
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li className="nav-item nav-item2 dropdown">
+                                            <label className="menu-dropdown dropbtn"><i className="fas fa-bars"></i></label>
+                                            <div className="dropdown-content">
+                                                <ul className="dropdown-content-info">
+                                                    <li className="dropdown-item-title1">Chức năng gia sư</li>
+                                                    <li className="dropdown-content-item"><Link to="/listclass"> <label><i className="fas fa-school"></i>&nbsp;&nbsp;Xem danh sách lớp học</label></Link></li>
+                                                    <li className="dropdown-content-item"><Link to="/manage-offer"><label><i className="fas fa-graduation-cap"></i>&nbsp;Các đề nghị dạy đã gửi</label></Link></li>
+                                                    <li className="dropdown-item-title">Chức năng học viên</li>
+                                                    <li className="dropdown-content-item"> <label><i className="fas fa-tasks"></i>&nbsp;&nbsp;Quản lý các yêu cầu</label></li>
+                                                    <li className="dropdown-content-item"> <label><i className="fas fa-plus-circle"></i>&nbsp;Đăng yêu cầu mới</label></li>
+                                                    <li className="dropdown-item-title">Chức năng cá nhân</li>
+                                                    <li className="dropdown-content-item"> <label><i className="fas fa-tools"></i>&nbsp;&nbsp;Sửa thông tin cá nhân</label></li>
+                                                    <li className="dropdown-content-item"> <label><i className="fas fa-unlock-alt"></i>&nbsp;Đổi mật khẩu</label></li>
+                                                    <li className="dropdown-content-item" onClick={this.handleLogout}> <label><i className="fas fa-sign-out-alt"></i>&nbsp;Đăng xuất</label></li>
+                                                </ul>
+
+                                            </div>
+                                        </li>
                                     </div>
-                                    <div className="user-profile">
-                                        <p className="user-profile">{user_name}</p>
-
+                                    :
+                                    <div className="login-logout">
+                                        <li className="nav-item nav-item-login" onClick={this.toggle}>
+                                            <a className="nav-link ">Đăng nhập</a>
+                                        </li>
+                                        <li className="nav-item nav-item-signin" onClick={this.toggleSignin}>
+                                            <button type="button" className="nav-btn-dangki">Đăng ký</button>
+                                        </li>
                                     </div>
-                                </div>
-                            </li>
-                            <li className="nav-item nav-item2 dropdown">
-                                <label className="menu-dropdown dropbtn"><i className="fas fa-bars"></i></label>
-                                <div className="dropdown-content">
-                                <ul className="dropdown-content-info">
-                                    <li className="dropdown-item-title1">Chức năng gia sư</li>
-                                    <li className="dropdown-content-item"> <label><i className="fas fa-school"></i>&nbsp;&nbsp;Xem danh sách lớp học</label></li>
-                                    <li className="dropdown-content-item"> <label><i className="fas fa-graduation-cap"></i>&nbsp;Các đề nghị dạy đã gửi</label></li>
-                                    <li className="dropdown-item-title">Chức năng học viên</li>
-                                    <li className="dropdown-content-item"> <label><i className="fas fa-tasks"></i>&nbsp;&nbsp;Quản lý các yêu cầu</label></li>
-                                    <li className="dropdown-content-item"> <label><i className="fas fa-plus-circle"></i>&nbsp;Đăng yêu cầu mới</label></li>
-                                    <li className="dropdown-item-title">Chức năng cá nhân</li>
-                                    <li className="dropdown-content-item"> <label><i className="fas fa-tools"></i>&nbsp;&nbsp;Sửa thông tin cá nhân</label></li>
-                                    <li className="dropdown-content-item"> <label><i className="fas fa-unlock-alt"></i>&nbsp;Đổi mật khẩu</label></li>
-                                    <li className="dropdown-content-item" onClick={this.handleLogout}> <label><i className="fas fa-sign-out-alt"></i>&nbsp;Đăng xuất</label></li>
-                                </ul>
-                                    
-                                </div>
-                            </li>
-                            </div>
-                             : 
-                             <div className="login-logout"> 
-                                <li className="nav-item nav-item-login" onClick={this.toggle}>
-                            <a className="nav-link ">Đăng nhập</a>
-                        </li>
-                        <li className="nav-item nav-item-signin" onClick={this.toggleSignin}>
-                            <button type="button" className="nav-btn-dangki">Đăng ký</button>
-                        </li>
-                         </div> 
 
-                             } 
-                            
+                            }
+
                             {/*  */}
                         </ul>
 
@@ -189,14 +218,14 @@ class Nav extends Component {
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
 
                     <ModalBody>
-                        <Login />
+                        <Login toggle={this.toggle} handleLogin={this.handleLogin} />
                     </ModalBody>
 
                 </Modal>
                 <Modal isOpen={this.state.modalSignin} toggle={this.toggleSignin} className={this.props.className}>
 
                     <ModalBody>
-                        <Signin />
+                        <Signin toggleSignin = {this.toggleSignin}/>
                     </ModalBody>
 
                 </Modal>

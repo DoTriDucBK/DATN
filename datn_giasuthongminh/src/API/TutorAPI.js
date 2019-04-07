@@ -19,6 +19,10 @@ const TutorApi = {
         let result = await MyService.getRequestData("/tutor/tutor-id", { "idTutor": id });
         return result
     },
+    getTutorByName: async (name) => {
+        let result = await MyService.getRequestData("/tutor/tutor-name", { "nameTutor": name });
+        return result
+    },
     searchTutor: async (options) => {
         options= MyUtils.clearBlank(options);
         let result = await MyService.getRequestData("/tutor/search-tutor", options);

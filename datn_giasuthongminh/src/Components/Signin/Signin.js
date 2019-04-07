@@ -56,6 +56,7 @@ class Signin extends Component {
         this.setState({
             redirectHome: true
         })
+        this.props.toggleSignin();
     };
 
     onChangeFullName = (e) => {

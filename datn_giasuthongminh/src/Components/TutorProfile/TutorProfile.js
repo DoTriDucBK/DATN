@@ -1,37 +1,132 @@
 import React, { Component } from 'react';
 import './TutorProfile.css';
 import TutorApi from '../../API/TutorAPI';
+import {reactLocalStorage} from 'reactjs-localstorage'
 class TutorProfile extends Component {
     constructor(props){
         super(props);
         this.state = {
-            nameTutor:"",
+            nameTutor: reactLocalStorage.getObject("tutor.login.info").userNameTutor,
+            tutor:[],
+            birthdayTutor:"",
+            telTutor:"",
             emailTutor:"",
-            telTutor:""
+            nameCity:"",
+            nameAdress:"",
+            jobTutor:"",
+            infoTutor:"",
+            fee:"",
+            nameSubject:"",
+            methodTeaching: new Set(),
+            typeMethod:"",
+            idTutor:0
         }
     }
-    componentDidMount(){
+    async componentDidMount(){
+        let value = await TutorApi.getTutorByName(this.state.nameTutor);
         this.setState({
-            nameTutor : this.props.location.state.nameTutor,
-            emailTutor : this.props.location.state.emailTutor,
-            telTutor: this.props.location.state.telTutor
+            tutor: value.data,
+            nameSubject:value.data[0].nameSubject,
+            nameTutor:value.data[0].nameTutor,
+            birthdayTutor:value.data[0].birthdayTutor,
+            telTutor:value.data[0].telTutor,
+            emailTutor:value.data[0].emailTutor,
+            infoTutor:value.data[0].infoTutor,
+            typeMethod:value.data[0].methodTeaching,
+            nameCity:value.data[0].nameCity,
+            nameAdress:value.data[0].nameAdress,
+            fee:value.data[0].fee,
+            jobTutor:value.data[0].jobTutor,
+            idTutor:value.data[0].idTutor
         }) 
+        if(value.data[0].methodTeaching === "0"){
+            this.setState({
+                methodTeaching: this.checkedCheckboxMethod.add("Offline")
+            })
+        }else if(value.data[0].methodTeaching === "1"){
+            this.setState({
+                methodTeaching: this.checkedCheckboxMethod.add("Online")
+            })
+        }else if(value.data[0].methodTeaching === "2"){
+            this.setState({
+                methodTeaching: new Set (["Online", "Offline"])
+            })
+        }
+        console.log(this.state.methodTeaching)
     }
+    handleChangeInputTextForm = (e) => {
+        this.setState({
+            [e.target.name]:e.target.value
+        });
+        console.log(this.state)
+    }
+    // Tạo mảng chứa phương thức học
+    componentWillMount () {
+        this.checkedCheckboxMethod = new Set();
+    }
+    defaultChecked = () => {
+        
+    }
+    // Kiểm tra xem phương thức học đã có trong Set chưa?
+    checkMethodInSet = (method) => {
+        
+        if(this.checkedCheckboxMethod.has(method)){
+            this.checkedCheckboxMethod.delete(method);
+        }else{
+            this.checkedCheckboxMethod.add(method);
+        }
+        this.setState({
+            methodTeaching: this.checkedCheckboxMethod
+        });
+        // Lưu hình thức học vào biến typeMethod
+        if(this.state.methodTeaching.has("Online") && this.state.methodTeaching.has("Offline")){
+            this.setState({typeMethod:2})
+        }else if(this.state.methodTeaching.has("Online")){
+            this.setState({typeMethod:0})
+        }else if(this.state.methodTeaching.has("Offline")){
+            this.setState({typeMethod:1})
+        }
+    }
+    checkNullSelect = (method) => {
+        if(this.state.methodTeaching.has(method)){
+            return true
+        } else {
+            return false
+        }
+    }
+
     handleSubmit = async (e) => {
         e.preventDefault();
-        let tutor;
-        // this.setState({ isSending: 1, redirectComplete:true })
-        await TutorApi.createTutor()
-            .then(result => {
-                if (result && result.code === "success") {
-                    tutor = result.data;
-                } else if (result.code === "error") {
-                    alert(result.message)
-                }
-            })
-            .catch(err => console.log(err));
+        var data = {
+            idTutor:this.state.idTutor,
+            nameTutor:this.state.nameTutor,
+            telTutor:this.state.telTutor,
+            emailTutor:this.state.emailTutor,
+            nameCity:this.state.nameCity,
+            nameAdress:this.state.nameAdress,
+            methodTeaching:this.state.typeMethod,
+            fee:this.state.fee,
+            nameSubject:this.state.nameSubject,
+            jobTutor:this.state.jobTutor,
+            infoTutor:this.state.infoTutor,
+            birthdayTutor:this.state.birthdayTutor,
+            addressTutor:this.state.nameCity
+        }
+        // console.log("1111111111  " , data);
+        var tutor = await TutorApi.editTutor(data).then(result => {
+            if (result && result.code === "success") {
+                tutor = result.data;
+            } else if (result.code === "error") {
+                alert(result.message)
+            }
+        })
+        .catch(err => console.log(err));
     };
     render() {
+        var {tutor} = this.state;
+        if(tutor.length === 0){
+            return <div></div>
+        }
         return (
             <div className="tutor-profile-con">
                 <div className="tutor-profile-container">
@@ -52,7 +147,8 @@ class TutorProfile extends Component {
                                 <p className="value-title1">Họ tên đầy đủ</p>
                             </div>
                             <div className="value-title2">
-                                <input className="value-title2" placeholder="Nhập họ tên" defaultValue={this.state.nameTutor}></input>
+                                <input className="value-title2" name="nameTutor" placeholder="Nhập họ tên" defaultValue={this.state.nameTutor}
+                                    onChange={this.handleChangeInputTextForm}></input>
                             </div>
                         </div>
                         <div className="value1-tutor-right">
@@ -60,7 +156,8 @@ class TutorProfile extends Component {
                                 <p className="value-title1">Ngày sinh</p>
                             </div>
                             <div className="value-title2">
-                                <input className="value-title2" placeholder="Nhập ngày sinh"></input>
+                                <input className="value-title2" name="birthdayTutor" placeholder="Nhập ngày sinh"
+                                 onChange={this.handleChangeInputTextForm} defaultValue={this.state.birthdayTutor} ></input>
                             </div>
                         </div>
                     </div>
@@ -70,7 +167,8 @@ class TutorProfile extends Component {
                                 <p className="value-title1">Số điện thoại</p>
                             </div>
                             <div className="value-title2">
-                                <input className="value-title2" placeholder="Nhập số điện thoại" defaultValue={this.state.telTutor}></input>
+                                <input className="value-title2" name="telTutor" placeholder="Nhập số điện thoại"
+                                onChange={this.handleChangeInputTextForm} defaultValue={this.state.telTutor} ></input>
                             </div>
                         </div>
                         <div className="value1-tutor-right">
@@ -78,7 +176,8 @@ class TutorProfile extends Component {
                                 <p className="value-title1">Email</p>
                             </div>
                             <div className="value-title2">
-                                <input className="value-title2" placeholder="Nhập email" defaultValue={this.state.emailTutor}></input>
+                                <input className="value-title2" name="emailTutor" placeholder="Nhập email"
+                                onChange={this.handleChangeInputTextForm} defaultValue={this.state.emailTutor}></input>
                             </div>
                         </div>
                     </div>
@@ -88,74 +187,74 @@ class TutorProfile extends Component {
                                 <p className="value-title1">Địa chỉ (tỉnh thành)</p>
                             </div>
                             <div className="value-title2">
-                                <select required="" className="value-title2">
+                                <select required="" name="nameCity" className="value-title2" value={this.state.nameCity} onChange={this.handleChangeInputTextForm}>
                                     <option value hidden className="opt-search">Tỉnh thành</option>
                                     <optgroup label="Địa điểm phổ biến">
-                                        <option value="1">Hà Nội</option>
-                                        <option value="2">TP. Hồ Chí Minh</option>
-                                        <option value="3">Hải Phòng</option>
-                                        <option value="4">Đà Nẵng</option>
+                                        <option value="Hà Nội">Hà Nội</option>
+                                        <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
+                                        <option value="Hải Phòng">Hải Phòng</option>
+                                        <option value="Đà Nẵng">Đà Nẵng</option>
                                     </optgroup>
                                     <optgroup label="Tỉnh thành khác">
-                                        <option value="5">An Giang</option>
-                                        <option value="6">Bắc Giang</option>
-                                        <option value="7">Bắc Kạn</option>
-                                        <option value="8">Bạc Liêu</option>
-                                        <option value="9">Bắc Ninh</option>
-                                        <option value="10">Bến Tre</option>
-                                        <option value="11">Bình Định</option>
-                                        <option value="12">Bình Dương</option>
-                                        <option value="13">Bình Phước</option>
-                                        <option value="14">Bình Thuận</option>
-                                        <option value="15">Cà Mau</option>
-                                        <option value="16">Cao Bằng</option>
-                                        <option value="17">Cần Thơ</option>
-                                        <option value="18">Đắk Lắk</option>
-                                        <option value="19">Đắc Nông</option>
-                                        <option value="20">Điện Biên</option>
-                                        <option value="21">Đồng Nai</option>
-                                        <option value="22">Đồng Tháp</option>
-                                        <option value="23">Gia Lai</option>
-                                        <option value="24">Hà Giang</option>
-                                        <option value="25">Hà Nam</option>
-                                        <option value="26">Hà Tĩnh</option>
-                                        <option value="27">Hải Dương</option>
-                                        <option value="28">Hậu Giang</option>
-                                        <option value="29">Hòa Bình</option>
-                                        <option value="30">Hưng Yên</option>
-                                        <option value="31">Khánh Hòa</option>
-                                        <option value="32">Kiên Giang</option>
-                                        <option value="33">Kon Tum</option>
-                                        <option value="34">Lai Châu</option>
-                                        <option value="35">Lâm Đồng</option>
-                                        <option value="36">Lạng Sơn</option>
-                                        <option value="37">Lào Cai</option>
-                                        <option value="38">Long An</option>
-                                        <option value="39">Nam Định</option>
-                                        <option value="40">Nghệ An</option>
-                                        <option value="41">Ninh Bình</option>
-                                        <option value="42">Ninh Thuận</option>
-                                        <option value="43">Phú Thọ</option>
-                                        <option value="44">Quảng Bình</option>
-                                        <option value="45">Quảng Nam</option>
-                                        <option value="46">Quảng Ngãi</option>
-                                        <option value="47">Quảng Ninh</option>
-                                        <option value="48">Quảng Trị</option>
-                                        <option value="49">Sóc Trăng</option>
-                                        <option value="50">Sơn La</option>
-                                        <option value="51">Tây Ninh</option>
-                                        <option value="52">Thái Bình</option>
-                                        <option value="53">Thái Nguyên</option>
-                                        <option value="54">Thanh Hóa</option>
-                                        <option value="55">Thừa Thiên Huế</option>
-                                        <option value="56">Tiền Giang</option>
-                                        <option value="57">Trà Vinh</option>
-                                        <option value="58">Tuyên Quang</option>
-                                        <option value="59">Vĩnh Long</option>
-                                        <option value="60">Vĩnh Phúc</option>
-                                        <option value="61">Yên Bái</option>
-                                        <option value="62">Phú Yên</option>
-                                        <option value="63">Vũng Tàu</option>
+                                        <option value="An Giang">An Giang</option>
+                                        <option value="Bắc Giang">Bắc Giang</option>
+                                        <option value="Bắc Kạn">Bắc Kạn</option>
+                                        <option value="Bạc Liêu">Bạc Liêu</option>
+                                        <option value="Bắc Ninh">Bắc Ninh</option>
+                                        <option value="Bến Tre">Bến Tre</option>
+                                        <option value="Bình Định">Bình Định</option>
+                                        <option value="Bình Dương">Bình Dương</option>
+                                        <option value="Bình Phước">Bình Phước</option>
+                                        <option value="Bình Thuận">Bình Thuận</option>
+                                        <option value="Cà Mau">Cà Mau</option>
+                                        <option value="Cao Bằng">Cao Bằng</option>
+                                        <option value="Cần Thơ">Cần Thơ</option>
+                                        <option value="Đắk Lắk">Đắk Lắk</option>
+                                        <option value="Đắc Nông">Đắc Nông</option>
+                                        <option value="Điện Biên">Điện Biên</option>
+                                        <option value="Đồng Nai">Đồng Nai</option>
+                                        <option value="Đồng Tháp">Đồng Tháp</option>
+                                        <option value="Gia Lai">Gia Lai</option>
+                                        <option value="Hà Giang">Hà Giang</option>
+                                        <option value="Hà Nam">Hà Nam</option>
+                                        <option value="Hà Tĩnh">Hà Tĩnh</option>
+                                        <option value="Hải Dương">Hải Dương</option>
+                                        <option value="Hậu Giang">Hậu Giang</option>
+                                        <option value="Hòa Bình">Hòa Bình</option>
+                                        <option value="Hưng Yên">Hưng Yên</option>
+                                        <option value="Khánh Hòa">Khánh Hòa</option>
+                                        <option value="Kiên Giang">Kiên Giang</option>
+                                        <option value="Kon Tum">Kon Tum</option>
+                                        <option value="Lai Châu">Lai Châu</option>
+                                        <option value="Lâm Đồng">Lâm Đồng</option>
+                                        <option value="Lạng Sơn">Lạng Sơn</option>
+                                        <option value="Lào Cai">Lào Cai</option>
+                                        <option value="Long An">Long An</option>
+                                        <option value="Nam Định">Nam Định</option>
+                                        <option value="Nghệ An">Nghệ An</option>
+                                        <option value="Ninh Bình">Ninh Bình</option>
+                                        <option value="Ninh Thuận">Ninh Thuận</option>
+                                        <option value="Phú Thọ">Phú Thọ</option>
+                                        <option value="Quảng Bình">Quảng Bình</option>
+                                        <option value="Quảng Nam">Quảng Nam</option>
+                                        <option value="Quảng Ngãi">Quảng Ngãi</option>
+                                        <option value="Quảng Ninh">Quảng Ninh</option>
+                                        <option value="Quảng Trị">Quảng Trị</option>
+                                        <option value="Sóc Trăng">Sóc Trăng</option>
+                                        <option value="Sơn La">Sơn La</option>
+                                        <option value="Tây Ninh">Tây Ninh</option>
+                                        <option value="Thái Bình">Thái Bình</option>
+                                        <option value="Thái Nguyên">Thái Nguyên</option>
+                                        <option value="Thanh Hóa">Thanh Hóa</option>
+                                        <option value="Thừa Thiên Huế">Thừa Thiên Huế</option>
+                                        <option value="Tiền Giang">Tiền Giang</option>
+                                        <option value="Trà Vinh">Trà Vinh</option>
+                                        <option value="Tuyên Quang">Tuyên Quang</option>
+                                        <option value="Vĩnh Long">Vĩnh Long</option>
+                                        <option value="Vĩnh Phúc">Vĩnh Phúc</option>
+                                        <option value="Yên Bái">Yên Bái</option>
+                                        <option value="Phú Yên">Phú Yên</option>
+                                        <option value="Vũng Tàu">Vũng Tàu</option>
                                     </optgroup>
                                 </select>
                             </div>
@@ -165,7 +264,8 @@ class TutorProfile extends Component {
                                 <p className="value-title1">Địa chỉ cụ thể</p>
                             </div>
                             <div className="value-title2">
-                                <input className="value-title2" placeholder="Nhập địa chỉ"></input>
+                                <input className="value-title2" name="nameAdress" placeholder="Nhập địa chỉ" 
+                                onChange={this.handleChangeInputTextForm} defaultValue={this.state.nameAdress}></input>
                             </div>
                         </div>
                     </div>
@@ -174,7 +274,8 @@ class TutorProfile extends Component {
                             <p className="profile-detail-title">Mô tả bản thân, kinh nghiệm </p>
                         </div>
                         <div className="profile-detail-value">
-                            <textarea className="profile-detail-value" />
+                            <textarea className="profile-detail-value" name="infoTutor"
+                            onChange={this.handleChangeInputTextForm} defaultValue={this.state.infoTutor} />
                         </div>
                     </div>
                     <div className="title-tutor-profile2">
@@ -191,14 +292,12 @@ class TutorProfile extends Component {
                                 <p className="value-title1">Bạn đang là?</p>
                             </div>
                             <div className="value-title2">
-                                <select required="" className="value-title2">
+                                <select required="" name="jobTutor"className="value-title2" value={this.state.jobTutor} onChange={this.handleChangeInputTextForm}>
                                     <option value hidden className="opt-search">Lựa chọn nghề nghiệp</option>
-                                    <option value="1">Sinh viên</option>
-                                    <option value="2">Giáo viên cấp 1</option>
-                                    <option value="3">Giáo viên cấp 2</option>
-                                    <option value="4">Giáo viên cấp 3</option>
-                                    <option value="5">Giảng viên</option>
-                                    <option value="6">Chuyên viên</option>
+                                    <option value="Sinh viên">Sinh viên</option>
+                                    <option value="Giáo viên">Giáo viên</option>
+                                    <option value="Giảng viên">Giảng viên</option>
+                                    <option value="Chuyên viên">Chuyên viên</option>
                                 </select>
                             </div>
                         </div>
@@ -207,7 +306,8 @@ class TutorProfile extends Component {
                                 <p className="value-title1">Học phí một giờ</p>
                             </div>
                             <div className="value-title2">
-                                <input className="value-title2" placeholder="Ví dụ: 200000"></input>
+                                <input className="value-title2" name="fee" placeholder="Ví dụ: 200000"
+                                onChange={this.handleChangeInputTextForm} defaultValue={this.state.fee}></input>
                             </div>
                         </div>
                     </div>
@@ -216,9 +316,10 @@ class TutorProfile extends Component {
                             <div className="value-title1">
                                 <p className="value-title1">Hình thức dạy</p>
                             </div>
-                            <div className="value-title2">
-                                <input type="checkbox" name="methodTeaching" value="Online" className="valueTitle" /><label className="valueTitle">Online</label>
-                                <input type="checkbox" name="methodTeaching" value="Offline" className="valueTitle1" /><label className="valueTitle">Offline(Tại nhà)</label>
+                            {/* checked={() => this.checkNullSelect("Online")} */}
+                            <div className="value-title2" >
+                                <input type="checkbox" name="methodTeaching" value="Online" className="valueTitle"  onChange={()=>this.checkMethodInSet("Online")} checked={this.state.methodTeaching.has("Online")} /><label className="valueTitle">Online</label>
+                                <input type="checkbox" name="methodTeaching" value="Offline" className="valueTitle1"  onChange={()=>this.checkMethodInSet("Offline")} checked={this.state.methodTeaching.has("Offline")} /><label className="valueTitle">Offline(Tại nhà)</label>
                             </div>
                         </div>
                         <div className="value1-tutor-right">
@@ -226,7 +327,7 @@ class TutorProfile extends Component {
                                 <p className="value-title1">Môn học đăng kí dạy</p>
                             </div>
                             <div className="value-title2">
-                                <select name="subject" required="" className="value-title2" >
+                                <select name="nameSubject" required="" className="value-title2" onChange={this.handleChangeInputTextForm} value={this.state.nameSubject}>
                                     <option value hidden className="opt1">Lựa chọn môn học</option>
                                     <optgroup label="Môn học phổ thông">
                                         <option value="Toán">Toán</option>
@@ -444,7 +545,7 @@ class TutorProfile extends Component {
                 </div>
             </div>
         );
-    }
+    } 
 }
 
 export default TutorProfile;

@@ -28,25 +28,9 @@ const TutorApi = {
         let result = await MyService.getRequestData("/tutor/search-tutor", options);
         return result
     },
-    createTutor: async () => {
-        var options = {
-            idTutor: 9,
-            nameTutor: "Dương Ngọc Hưng",
-            emailTutor:"duongngochung@gmail.com",
-            telTutor:"09768378463",
-            jobTutor:"Sinh viên năm 2",
-            addressTutor:"Yên Mô, Ninh Bình",
-            fee:"200000",
-            birthdayTutor:"12-03-1999",
-            idCity:9,
-            nameCity:"Ninh Bình",
-            nameAdress:"Tạ Quang Bửu",
-            infoTutor:"Béo bụng",
-            nameSubject:"Sinh học"
-        };
+    createTutor: async (data) => {
         var tutor = null;
-        
-        await MyService.postRequestData("/tutor", options)
+        await MyService.postRequestData("/tutor", data)
             .then(result => {
                 console.log(result);
                 tutor = result;
@@ -54,8 +38,18 @@ const TutorApi = {
             .catch(err => console.log(err));
 
         console.log(tutor)
-        return tutor
-
+        return tutor;
+    },
+    editTutor: async ( data) =>{
+        var tutor = null;
+        await MyService.postRequestData("/tutor/edit-tutor",data)
+            .then(result => {
+                console.log(result);
+                tutor = result;
+            })
+            .catch(err => console.log(err));
+        console.log(tutor)
+        return tutor;
     }
 }
 export default TutorApi;

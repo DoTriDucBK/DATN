@@ -33,7 +33,8 @@ class App extends Component {
 	}
 	componentDidMount(){
 		var user = reactLocalStorage.getObject("user.info");
-		if(!user){
+		var tutor = reactLocalStorage.getObject("tutor.login.info");
+		if(!user || !tutor){
 			console.log("aa");
 			reactLocalStorage.set("home.is_login", false)
 		}

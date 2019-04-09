@@ -92,7 +92,7 @@ class ClassItem extends Component {
             </Redirect>
         }
         return (
-            <div className="classItem-con" onClick={this.toggle}>
+            <div className="classItem-con">
                 <div className="img-logoBK">
 
                 </div>
@@ -119,7 +119,8 @@ class ClassItem extends Component {
                     </div>
                 </div>
                 <div className="class-fee">
-                    <div className="value-fee"><b>{MyUtils.currencyFormat(MyUtils.calculateFee(this.props.fee, this.props.numberDay))}</b>đ/1 tháng</div>
+                    <div className="value-fee"><b className="value-fee">{MyUtils.currencyFormat(this.props.fee)}đ</b></div>
+                    <div className="view-detail"><p className="view-detail"  onClick={this.toggle}><u><i>Xem chi tiết lớp</i></u></p></div>
                 </div>
                 <div className="class-offer">
                     <div className="fee-offer">

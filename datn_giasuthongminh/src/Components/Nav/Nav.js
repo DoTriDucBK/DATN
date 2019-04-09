@@ -33,7 +33,7 @@ class Nav extends Component {
         this.toggleErr = this.toggleErr.bind(this);
     }
     componentDidMount() {
-        // this.setState({ is_login: reactLocalStorage.get("home.is_login") })
+        this.setState({ is_login: reactLocalStorage.get("home.is_login") })
     }
     toggle() {
         this.setState(prevState => ({
@@ -186,11 +186,11 @@ class Nav extends Component {
                                                     <li className="dropdown-item-title1">Chức năng gia sư</li>
                                                     <li className="dropdown-content-item"><Link to="/listclass"> <label><i className="fas fa-school"></i>&nbsp;&nbsp;Xem danh sách lớp học</label></Link></li>
                                                     <li className="dropdown-content-item"><Link to="/manage-offer"><label><i className="fas fa-graduation-cap"></i>&nbsp;Các đề nghị dạy đã gửi</label></Link></li>
+                                                    <li className="dropdown-content-item"> <Link to = "/tutor-profile"><label><i className="fas fa-tools"></i>&nbsp;&nbsp;Cập nhật hồ sơ gia sư</label></Link></li>
                                                     <li className="dropdown-item-title">Chức năng học viên</li>
                                                     <li className="dropdown-content-item"> <label><i className="fas fa-tasks"></i>&nbsp;&nbsp;Quản lý các yêu cầu</label></li>
                                                     <li className="dropdown-content-item"> <label><i className="fas fa-plus-circle"></i>&nbsp;Đăng yêu cầu mới</label></li>
                                                     <li className="dropdown-item-title">Chức năng cá nhân</li>
-                                                    <li className="dropdown-content-item"> <label><i className="fas fa-tools"></i>&nbsp;&nbsp;Sửa thông tin cá nhân</label></li>
                                                     <li className="dropdown-content-item"> <label><i className="fas fa-unlock-alt"></i>&nbsp;Đổi mật khẩu</label></li>
                                                     <li className="dropdown-content-item" onClick={this.handleLogout}> <label><i className="fas fa-sign-out-alt"></i>&nbsp;Đăng xuất</label></li>
                                                 </ul>

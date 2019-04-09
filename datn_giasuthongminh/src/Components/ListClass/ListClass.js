@@ -285,7 +285,7 @@ class ListClass extends Component {
                             <p className="title-class-offer2">Nội dung lớp học</p>
                         </div>
                         <div className="title-class-offer3">
-                            <p className="title-class-offer3">Học phí đề nghị</p>
+                            <p className="title-class-offer3">Học phí 1 buổi</p>
                         </div>
                         <div className="title-class-offer4">
                             <p className="title-class-offer4">Trạng thái</p>

@@ -12,12 +12,11 @@ class ListClass extends Component {
             classInfo: [],
             city:"",
             subject:"",
-            fee:"",
+            status:"",
             doubleClass:"",
             method:"",
             activePage: 1,
             classPerPage: 4,
-            nameTutor: reactLocalStorage.getObject("tutor.login.info").userNameTutor,
             modal: false
         }
         this.toggle = this.toggle.bind(this);
@@ -77,16 +76,18 @@ class ListClass extends Component {
     // }
     searchClass = async () => {
         if(this.state.methodTeaching==="Online"){
-            this.setState({typeMethod:"0"})
+            this.setState({typeMethod:"Online"})
         }else if(this.state.methodTeaching ==="Offline"){
-            this.setState({typeMethod:"1"})
+            this.setState({typeMethod:"Offline"})
         }else if(this.state.methodTeaching ==="both"){
-            this.setState({typeMethod:"2"})
+            this.setState({typeMethod:"Cả Online và Offline"})
         }
         var options={
             nameSubject : this.state.subject,
             nameCity: this.state.city,
-            typeMethod:this.state.method
+            typeMethod:this.state.method,
+            status:this.state.status,
+            shareClass:this.state.doubleClass
             // jobTutor:this.state.jobTutor
 
         }
@@ -264,12 +265,11 @@ class ListClass extends Component {
                                 <option value="Có">Có</option>
                                 <option value="Không">Không</option>
                             </select>
-                            <select required="" className="select-searchClass" name="fee" onChange={this.handleChangeSearch}>
-                                <option value="" className="opt-searchClass">&nbsp;--Mức giá một buổi--</option>
-                                <option value="1">Dưới 100000</option>
-                                <option value="2">Từ 100000 - 200000</option>
-                                <option value="3">Từ 200000 - 300000</option>
-                                <option value="4">Trên 300000</option>
+                            <select required="" className="select-searchClass" name="status" onChange={this.handleChangeSearch}>
+                                <option value="" className="opt-searchClass">&nbsp;--Trạng thái--</option>
+                                <option value="Chưa nhận lớp">Chưa nhận lớp</option>
+                                <option value="Đã nhận lớp">Đã nhận lớp</option>
+                                <option value="Đang yêu cầu">Đang yêu cầu</option>
                             </select>
                             <button className="search-title-btnClass" onClick={this.searchClass}> <i className="fas fa-search"></i> &nbsp;Tìm kiếm</button>
                         </div>

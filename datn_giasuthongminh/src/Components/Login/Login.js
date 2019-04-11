@@ -23,7 +23,7 @@ class Login extends Component {
             isClick: false,
             redirectSignUp: false,
             redirectHome: false,
-            is_tutor: ""
+            type: ""
         }
 
     }
@@ -33,12 +33,12 @@ class Login extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault();
-        var { usernameInput, passwordInput, is_tutor } = this.state;
+        var { usernameInput, passwordInput, type } = this.state;
         var user = null;
-        if (is_tutor === "user") {
             var result = await UserApi.login({
                 userName: usernameInput.value,
-                password: passwordInput.value
+                password: passwordInput.value,
+                type: parseInt(type)
             })
             if (result && result.message)
                 this.setState({ message: result.message })
@@ -53,26 +53,6 @@ class Login extends Component {
                 redirectHome: true,
             })
             this.props.toggle();
-        }
-        else if (is_tutor === "tutor") {
-            var result = await TutorLoginApi.login({
-                userNameTutor: usernameInput.value,
-                passwordTutor: passwordInput.value
-            })
-            if (result && result.message)
-                this.setState({ message: result.message })
-            else if (result && result.data) {
-                user = result.data;
-                reactLocalStorage.setObject("tutor.login.info", user);
-                reactLocalStorage.set("home.is_login_tutor", true);
-                this.props.handleLogin(user, true)
-            } else alert("Lỗi kết nối mạng");
-
-            this.setState({
-                redirectHome: true,
-            })
-            this.props.toggle();
-        }
     };
 
     onChangeUsername = (e) => {
@@ -137,8 +117,8 @@ class Login extends Component {
                         <label className="is_tutor">Bạn là: </label>
                     </div>
                     <div className="is_tutor_right">
-                        <input type="radio" name="is_tutor" value="user" className="is_tutor" checked={this.state.is_tutor === "user"} onChange={this.handleChangeInputTextForm} /> Học viên
-                        <input type="radio" name="is_tutor" value="tutor" className="is_tutor" checked={this.state.is_tutor === "tutor"} onChange={this.handleChangeInputTextForm} /> Gia sư
+                        <input type="radio" name="type" value="2" className="is_tutor" checked={this.state.type === "2"} onChange={this.handleChangeInputTextForm} /> Học viên
+                        <input type="radio" name="type" value="1" className="is_tutor" checked={this.state.type === "1"} onChange={this.handleChangeInputTextForm} /> Gia sư
                     </div>
                 </div>
                 <div className="login-btn">

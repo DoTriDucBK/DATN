@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './PostNews.css';
 import {Redirect} from 'react-router';
+import { reactLocalStorage } from 'reactjs-localstorage';
 
 class PostNews extends Component {
     constructor(props){

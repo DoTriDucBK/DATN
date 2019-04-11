@@ -61,7 +61,7 @@ class DetailClass extends Component {
                 </div>
                 <div className="info-detail">
                     <div className="info-detail-left">
-                        <p className="info-detail-value"><label className="info-detail-value"><i className="fab fa-accusoft"></i> &nbsp;Trạng thái:</label>&nbsp;{classInfo[0].status === 0?"Còn lớp":classInfo[0].status === 1?"Hết lớp":"Đang yêu cầu"}</p>
+                        <p className="info-detail-value"><label className="info-detail-value"><i className="fab fa-accusoft"></i> &nbsp;Trạng thái:</label>&nbsp;{classInfo[0].status}</p>
                     </div>
                     <div className="info-detail-right">
                         <p className="info-detail-value"><label className="info-detail-value"><i className="fas fa-toggle-off"></i> &nbsp;Học ghép:</label>&nbsp;{classInfo[0].shareClass}</p>

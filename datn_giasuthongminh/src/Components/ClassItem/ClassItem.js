@@ -19,7 +19,6 @@ class ClassItem extends Component {
         super(props);
         this.state = {
             redirectDetailClass:false,
-            status: "",
             nameTutor:this.props.nameTutor,
             tutor:[],
             open:false,
@@ -66,14 +65,16 @@ class ClassItem extends Component {
 
     }
     async componentDidMount(){
-        var s= parseInt(this.props.status);
-        if( s === 0){
-            this.setState({status:"Còn lớp"})
-        }else if(s === 1){
-            this.setState({status:"Hết lớp"})
-        }else if (s === 2){
-            this.setState({status:"Đang yêu cầu"})
-        }
+        // var s= parseInt(this.props.status);
+        // console.log(s)
+        // if( s === 0){
+        //     this.setState({status:"Chưa nhận lớp"})
+        // }
+        // else if(s === 1){
+        //     this.setState({status:"Hết lớp"})
+        // }else if (s === 2){
+        //     this.setState({status:"Đang yêu cầu"})
+        // }
         let tutor = await TutorAPI.getTutorByName(this.state.nameTutor);
         this.setState({
             tutor: tutor.data
@@ -122,14 +123,23 @@ class ClassItem extends Component {
                     <div className="value-fee"><b className="value-fee">{MyUtils.currencyFormat(this.props.fee)}đ</b></div>
                     <div className="view-detail"><p className="view-detail"  onClick={this.toggle}><u><i>Xem chi tiết lớp</i></u></p></div>
                 </div>
+                {this.props.status==="Chưa nhận lớp" ?
                 <div className="class-offer">
                     <div className="fee-offer">
-                        <div className="status-offer"><label className="status-offer">{this.state.status}</label></div>
+                        <div className="status-offer"><label className="status-offer">{this.props.status}</label></div>
                     </div>
                     <div className="button-offer">
                         <button className="button-offer" onClick={this.onClickOfferTutor}>Đề nghị dạy</button>
                     </div>
                 </div>
+                :<div className="class-offer">
+                {/* <div className="fee-offer">
+                    <div className="status-offer"><label className="status-offer">{this.state.status}</label></div>
+                </div>
+                <div className="button-offer">
+                    <button className="button-offer" onClick={this.onClickOfferTutor}>Đề nghị dạy</button>
+                </div> */}
+            </div>}
                 <Dialog
                     open={this.state.open}
                     onClose={this.handleClose}

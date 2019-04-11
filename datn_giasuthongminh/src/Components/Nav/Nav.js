@@ -23,9 +23,8 @@ class Nav extends Component {
             modal: false,
             modalSignin: false,
             modalErr: false,
-            userinfo: reactLocalStorage.getObject("tutor.login.info"),
+            userinfo: reactLocalStorage.getObject("user.info"),
             is_login: false,
-            is_login_tutor:false,
             redirectManageClassOffer:false
         }
         this.toggle = this.toggle.bind(this);
@@ -33,7 +32,8 @@ class Nav extends Component {
         this.toggleErr = this.toggleErr.bind(this);
     }
     componentDidMount() {
-        this.setState({ is_login: reactLocalStorage.get("home.is_login") })
+        this.setState({ is_login: false })
+        // reactLocalStorage.get("home.is_login")
     }
     toggle() {
         this.setState(prevState => ({
@@ -61,6 +61,9 @@ class Nav extends Component {
     };
     handleLogin = (userinfo, is_login) => {
         this.setState({ userinfo: userinfo, is_login: is_login })
+    }
+    handleLogin2 = (tutorinfo, is_login) => {
+        this.setState({tutorinfo:tutorinfo, is_login:is_login})
     }
     // Bắt sự kiện cho button search
     // searchTutor = (e) => {
@@ -100,24 +103,14 @@ class Nav extends Component {
                 userinfo: null,
                 is_login: false
             })
-        } else alert("Lỗi kết nối mạng")
+        } else console.log("Lỗi kết nối mạng")
         // reactLocalStorage.set("home.is_login", true);
         // this.setState({
         //     redirectHome: true, 
         // })
-        var result = await TutorLoginApi.logout();
-        if(result) {
-            reactLocalStorage.setObject("tutor.login.info", null);
-            reactLocalStorage.setObject("home.is_login_tutor", false);
-            this.setState({
-                userinfo:null,
-                is_login:false
-            })
-        }else alert("Lỗi kết nối mạng")
     }
     render() {
         var user_name = this.state.userinfo ? this.state.userinfo.userName : "";
-        var tutor_name = this.state.userinfo ? this.state.userinfo.userNameTutor:"";
         console.log(this.state.is_login);
         if (this.state.redirectLogin) {
             return <Redirect push to="/login" />;
@@ -174,7 +167,7 @@ class Nav extends Component {
 
                                                 </div>
                                                 <div className="user-profile">
-                                                    <p className="user-profile">{user_name}{tutor_name}</p>
+                                                    <p className="user-profile">{user_name}</p>
 
                                                 </div>
                                             </div>
@@ -218,7 +211,7 @@ class Nav extends Component {
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
 
                     <ModalBody>
-                        <Login toggle={this.toggle} handleLogin={this.handleLogin} />
+                        <Login toggle={this.toggle} handleLogin={this.handleLogin} handleLogin2 = {this.handleLogin2}/>
                     </ModalBody>
 
                 </Modal>

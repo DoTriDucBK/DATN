@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './SigninTutor.css';
 import { Redirect } from 'react-router';
-import TutorLoginApi from '../../API/TutorLoginAPI';
 import { reactLocalStorage } from "reactjs-localstorage";
 import { email, password, required, phone, confirmPassword } from '../../utils/Validate';
+import UserApi from '../../API/UserAPI';
+import TutorLoginApi from '../../API/TutorLoginAPI'
 class SigninTutor extends Component {
     constructor(props) {
         super(props)
@@ -40,20 +41,20 @@ class SigninTutor extends Component {
 
         var { tutorInfo } = this.state;
         var data = {
-            userNameTutor: tutorInfo.tutor_acc_fullname.value,
-            telUserTutor: tutorInfo.tutor_acc_phon.value,
-            emailUserTutor: tutorInfo.tutor_acc_emai.value,
-            passwordTutor: tutorInfo.tutor_acc_pass.value
+            userName: tutorInfo.tutor_acc_fullname.value,
+            telUser: tutorInfo.tutor_acc_phon.value,
+            emailUser: tutorInfo.tutor_acc_emai.value,
+            password: tutorInfo.tutor_acc_pass.value,
+            type:1
         }
         console.log("1111111111  " , data);
-        var result = await TutorLoginApi.register(data);
-        console.log(result.data);
+        var result = await UserApi.register(data);
         if (!result) alert("Lỗi kết nối mạng")
         if (result && result.code === "error") this.setState({ message: result.message })
         else if (result && result.data) {
             reactLocalStorage.setObject("tutor.login.info", result.data)
         }
-        // console.log(result.data);
+        console.log(result.data);
         this.setState({
             redirectHome: true
         })

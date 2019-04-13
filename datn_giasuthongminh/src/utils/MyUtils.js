@@ -17,6 +17,9 @@ const MyUtils = {
             }
         }
         return obj;
+    },
+    calculateStar: function (rating,oldStar,timesVote){
+        return (rating + oldStar * timesVote)/(timesVote +1);
     }
 
 }

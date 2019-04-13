@@ -15,6 +15,10 @@ const ClassUserApi = {
         let result = await MyService.getRequestData("/class-user/class-id", { "idUser": id });
         return result
     },
+    getClassByIdClass: async (id) => {
+        let result = await MyService.getRequestData("/class-user/class-idClass", { "idClass": id });
+        return result
+    },
     createClassUser: async (data) => {
         console.log(data, "??????????????")
         var result = null;
@@ -26,6 +30,17 @@ const ClassUserApi = {
         }
         return result
 
+    },
+    editClassUser: async ( data) =>{
+        var classUser = null;
+        await MyService.postRequestData("/class-user/edit-classUser",data)
+            .then(result => {
+                console.log(result);
+                classUser = result;
+            })
+            .catch(err => console.log(err));
+        console.log(classUser)
+        return classUser;
     }
 }
 export default ClassUserApi;

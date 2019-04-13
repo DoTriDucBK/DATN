@@ -22,6 +22,7 @@ import DetailClassOffer from '../DetailClassOffer/DetailClassOffer';
 import ManageClass from '../ManageClass/ManageClass';
 import DetailClass from '../DetailClass/DetailClass';
 import { reactLocalStorage } from 'reactjs-localstorage';
+import ManageClassOfUser from '../ManageClass/ManageClassOfUser';
 class App extends Component {
 	constructor(props) {
 		super(props)
@@ -65,6 +66,7 @@ class App extends Component {
 						<Route path="/tutor-profile" component={TutorProfile}/>
 						<Route path="/class-user" component={ManageClass}/>
 						<Route path="/detail-class" component={DetailClass}/>
+						<Route path="/manage-class-of-user" component={ManageClassOfUser}/>
 					</main>
 					<Footer />
 				</div>

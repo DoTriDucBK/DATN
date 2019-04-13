@@ -1,35 +1,37 @@
 import React, { Component } from 'react';
 import './TutorItem.css';
-import {Redirect} from 'react-router';
+import { Redirect } from 'react-router';
 import MyUtil from '../../utils/MyUtils';
 import { reactLocalStorage } from "reactjs-localstorage";
+import StarRatings from 'react-star-ratings';
 class TutorItem extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             redirectPersonalPage: false,
-            nameTutor:"",
-            addTutor:"",
-            subjectTutor:"",
-            fee:"",
-            redirectListClassUser:false,
-            idTutor:[this.props.idTutor]
+            nameTutor: "",
+            addTutor: "",
+            subjectTutor: "",
+            fee: "",
+            redirectListClassUser: false,
+            idTutor: [this.props.idTutor],
+            star:[this.props.star]
         }
     }
-    redirectPersonalPage = () =>{
-        this.setState ({
-            redirectPersonalPage:true,
+    redirectPersonalPage = () => {
+        this.setState({
+            redirectPersonalPage: true,
             nameTutor: [this.props.name],
             addTutor: [this.props.address],
-            fee:[this.props.fee],
-            subjectTutor:[this.props.subject],
-            birthday:[this.props.birthday],
-            idTutor:[this.props.idTutor]
+            fee: [this.props.fee],
+            subjectTutor: [this.props.subject],
+            birthday: [this.props.birthday],
+            idTutor: [this.props.idTutor]
         });
     }
     redirectListClassUser = () => {
         this.setState({
-            redirectListClassUser:true
+            redirectListClassUser: true
         })
     }
     render() {
@@ -37,21 +39,21 @@ class TutorItem extends Component {
         var idUser = userInfo ? userInfo.idUser : "";
         // var is_login = reactLocalStorage.get("home.is_login");
         console.log(idUser);
-        
-        if (this.state.redirectPersonalPage){
+
+        if (this.state.redirectPersonalPage) {
             return <Redirect to={{
                 pathname: '/personal-page',
                 state: {
-                idTutor:[this.state.idTutor]
-            }
+                    idTutor: [this.state.idTutor]
+                }
             }}>
             </Redirect>
         }
-        if(this.state.redirectListClassUser){
+        if (this.state.redirectListClassUser) {
             return <Redirect to={{
-                pathname:"/class-user",
-                state:{
-                    idTutor:[this.state.idTutor]
+                pathname: "/class-user",
+                state: {
+                    idTutor: [this.state.idTutor]
                 }
             }}>
 
@@ -67,7 +69,7 @@ class TutorItem extends Component {
                         <p><b>{this.props.name}</b></p>
                     </div>
                     <div className="address">
-                     <p> <i className="fas fa-map-marker-alt"></i>&nbsp;&nbsp;{this.props.address}</p>
+                        <p> <i className="fas fa-map-marker-alt"></i>&nbsp;&nbsp;{this.props.address}</p>
                     </div>
                     <div className="subject">
                         <p><i className="fas fa-book-reader"></i>&nbsp;&nbsp;{this.props.subject}</p>
@@ -78,6 +80,16 @@ class TutorItem extends Component {
                     <div className="addInfo">
                         <p><i className="fas fa-info-circle"></i>&nbsp;&nbsp;{this.props.detail}</p>
                     </div>
+                    {/* <br/> */}
+                    <div className="star-rating">
+                    <StarRatings
+        rating={this.props.star}
+        starDimension="25px"
+        starRatedColor="yellow"
+        // starSpacing="5px"
+      />
+                    </div>
+                    
                     <div className="btn">
                         <button className="btn btn1" onClick={this.redirectPersonalPage}>Xem chi tiết</button>&nbsp;&nbsp;
                         <button className="btn btn2" onClick={this.redirectListClassUser}>Mời dạy</button>

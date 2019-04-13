@@ -133,7 +133,20 @@ button.button-offer{
     color: yellow;
     font-size: 18px;
 }
+button.button-vote-tutor{
+    width: 80%;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #f7f7f7;
+    background-color: #069D86;
+    color: yellow;
+    font-size: 18px;
+    margin-top: 60px;
+}
 button.button-offer:hover{
+    transform: scale(1.05);
+}
+button.button-vote-tutor:hover{
     transform: scale(1.05);
 }
 div.info-profile-tutor-custom{

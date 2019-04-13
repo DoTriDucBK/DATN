@@ -15,7 +15,8 @@ class SearchListTutor extends Component {
             typeMethod: "",
             listTutor: [],
             activePage: 1,
-            tutorPerPage: 8
+            tutorPerPage: 8,
+            fee:""
         }
     }
     handlePageChange = (e) => {
@@ -76,19 +77,15 @@ class SearchListTutor extends Component {
         return listTutor;
         ;
     }
+    // searchFee = () => {
+    //     if(this.state.fee )
+    // }
     // Hàm tìm kiếm tutor
     searchTutor = async () => {
-        if (this.state.methodTeaching === "Online") {
-            this.setState({ typeMethod: "0" })
-        } else if (this.state.methodTeaching === "Offline") {
-            this.setState({ typeMethod: "1" })
-        } else if (this.state.methodTeaching === "both") {
-            this.setState({ typeMethod: "2" })
-        }
         var options = {
             nameSubject: this.state.subject,
             addressTutor: this.state.addressTutor,
-            methodTeaching: this.state.typeMethod,
+            methodTeaching: this.state.methodTeaching,
             jobTutor: this.state.jobTutor
         }
 
@@ -246,15 +243,17 @@ class SearchListTutor extends Component {
                         </select>
                         <select required="" className="select-search" name="methodTeaching" onChange={this.handleChangeInputTextForm}>
                             <option value="" className="opt-search">&nbsp;&nbsp;&nbsp;--Hình thức dạy--</option>
-                            <option value="Online">Online</option>
-                            <option value="Offline">Offline (Tại nhà)</option>
-                            <option value="both">Cả 2 hình thức</option>
+                            <option value="0">Online</option>
+                            <option value="1">Offline (Tại nhà)</option>
+                            <option value="2">Cả 2 hình thức</option>
                         </select>
-                        <select required="" className="select-search">
-                            <option value="" className="opt-search">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--Giới tính--</option>
-                            <option value="1">Nam</option>
-                            <option value="2">Nữ</option>
-                        </select>
+                        {/* <select required="" className="select-search" name="fee" onChange={this.handleChangeInputTextForm}>
+                            <option value="" className="opt-search">&nbsp;--Học phí 1 buổi--</option>
+                            <option value="1">Dưới 100.000</option>
+                            <option value="2">Từ 100.000 đến 200.000</option>
+                            <option value="3">Từ 200.000 đến 300.000</option>
+                            <option value="4">Trên 300.000</option>
+                        </select> */}
                         <select required="" className="select-search" name="jobTutor" onChange={this.handleChangeInputTextForm}>
                             <option value="" className="opt-search">&nbsp;&nbsp;&nbsp;--Nghề nghiệp--</option>
                             <option value="Sinh viên">Sinh viên</option>

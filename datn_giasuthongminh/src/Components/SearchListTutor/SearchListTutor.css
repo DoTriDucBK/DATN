@@ -47,10 +47,11 @@ div.select-search{
     margin-top: 10px;
 }
 select.select-search{
-    width: 170px;
+    width: 200px;
     height: 100%;
     float: left;
     margin-left: 14px;
+    margin-right: 10px;
 }
 button.search-title-btn{
     width: 150px;

@@ -132,14 +132,8 @@ class ClassItem extends Component {
                         <button className="button-offer" onClick={this.onClickOfferTutor}>Đề nghị dạy</button>
                     </div>
                 </div>
-                :<div className="class-offer">
-                {/* <div className="fee-offer">
-                    <div className="status-offer"><label className="status-offer">{this.state.status}</label></div>
-                </div>
-                <div className="button-offer">
-                    <button className="button-offer" onClick={this.onClickOfferTutor}>Đề nghị dạy</button>
-                </div> */}
-            </div>}
+                :<div className="class-offer"></div>}
+            
                 <Dialog
                     open={this.state.open}
                     onClose={this.handleClose}

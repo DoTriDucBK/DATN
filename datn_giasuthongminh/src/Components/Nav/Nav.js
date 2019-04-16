@@ -9,7 +9,7 @@ import '../css/ModalCustome.css';
 import InfoMess from './InfoMess';
 import { reactLocalStorage } from "reactjs-localstorage";
 import UserApi from '../../API/UserAPI';
-import TutorLoginApi from '../../API/TutorLoginAPI';
+import TutorApi from '../../API/TutorAPI';
 class Nav extends Component {
     constructor(props) {
         super(props);
@@ -164,7 +164,7 @@ class Nav extends Component {
                                         <li className="nav-item li-item-user ">
                                             <div className="profile-user">
                                                 <div className="img-profile">
-
+                                                <img id="show_avatar" alt="ảnh đại diện" className="avatar2" src="https://d1plicc6iqzi9y.cloudfront.net/sites/all/themes/blacasa/images/default/default_user.png" />
                                                 </div>
                                                 <div className="user-profile">
                                                     <p className="user-profile">{user_name}</p>
@@ -181,8 +181,8 @@ class Nav extends Component {
                                                     <li className="dropdown-content-item"><Link to="/manage-offer"><label><i className="fas fa-graduation-cap"></i>&nbsp;Các đề nghị dạy đã gửi</label></Link></li>
                                                     <li className="dropdown-content-item"> <Link to = "/tutor-profile"><label><i className="fas fa-tools"></i>&nbsp;&nbsp;Cập nhật hồ sơ gia sư</label></Link></li>
                                                     <li className="dropdown-item-title">Chức năng học viên</li>
-                                                    <li className="dropdown-content-item"> <label><i className="fas fa-tasks"></i>&nbsp;&nbsp;Quản lý các yêu cầu</label></li>
-                                                    <li className="dropdown-content-item"> <label><i className="fas fa-plus-circle"></i>&nbsp;Đăng yêu cầu mới</label></li>
+                                                    <li className="dropdown-content-item"> <Link to="/manage-invitation"><label><i className="fas fa-tasks"></i>&nbsp;&nbsp;Quản lý các yêu cầu gia sư</label></Link></li>
+                                                    <li className="dropdown-content-item"> <Link to="/manage-class-of-user"><label><i className="fas fa-plus-circle"></i>&nbsp;Danh sách lớp đã đăng</label></Link></li>
                                                     <li className="dropdown-item-title">Chức năng cá nhân</li>
                                                     <li className="dropdown-content-item"> <label><i className="fas fa-unlock-alt"></i>&nbsp;Đổi mật khẩu</label></li>
                                                     <li className="dropdown-content-item" onClick={this.handleLogout}> <label><i className="fas fa-sign-out-alt"></i>&nbsp;Đăng xuất</label></li>

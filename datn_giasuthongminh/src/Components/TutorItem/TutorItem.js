@@ -15,7 +15,7 @@ class TutorItem extends Component {
             fee: "",
             redirectListClassUser: false,
             idTutor: [this.props.idTutor],
-            star:[this.props.star]
+            star:[this.props.star],
         }
     }
     redirectPersonalPage = () => {
@@ -62,7 +62,7 @@ class TutorItem extends Component {
         return (
             <div className="contentTutor">
                 <div className="image-tutor">
-                    {/* <img src="../../images/anhdaidien.png"/> */}
+                <img id="show_avatar" alt="ảnh đại diện" className="avatar" src={this.props.image}/>
                 </div>
                 <div className="infoTutor">
                     <div className="name">

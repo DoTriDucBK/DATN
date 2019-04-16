@@ -158,9 +158,7 @@ div.image-info-tutor{
 div.image-info-tutor1{
     width: 28%;
     height: 100%;
-    margin-right: 3%;
-    margin-left: 2%;
-    float: left;
+    margin: auto;
     background-color: white;
 }
 div.title-image-info-tutor{

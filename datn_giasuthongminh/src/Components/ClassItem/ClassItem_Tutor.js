@@ -33,17 +33,17 @@ class ClassItem_Tutor extends Component {
                 </div>
                 <div className="class-info-tutor">
                     <div className="class-info-tutor1">
-                        <p className="infomation-tutor2"><label className="name-class-tutor"><i className="fas fa-user"></i></label>&nbsp;&nbsp;<b>Đỗ Thị Thúy Hằng</b></p>
+                        <p className="infomation-tutor2"><label className="name-class-tutor"><i className="fas fa-user"></i></label>&nbsp;&nbsp;<b>{this.props.nameTutor}</b></p>
                     </div>
                     <div className="class-info-tutor2">
-                        <p className="infomation-tutor1"><label className="name-class-tutor"><i className="fas fa-calendar-day"></i></label>&nbsp;&nbsp;22/07/1999</p>
+                        <p className="infomation-tutor1"><label className="name-class-tutor"><i className="fas fa-calendar-day"></i></label>&nbsp;&nbsp;{this.props.birthdayTutor}</p>
                     </div>
                     <div className="class-info-tutor2">
-                        <p className="infomation-tutor1"><label className="name-class-tutor"><i className="fas fa-phone-square"></i></label>&nbsp;&nbsp;0965143540</p>
+                        <p className="infomation-tutor1"><label className="name-class-tutor"><i className="fas fa-phone-square"></i></label>&nbsp;&nbsp;{this.props.telTutor}</p>
                     </div>
-                    <div className="class-info-tutor2">
-                        <p className="infomation-tutor1"><label className="name-class-tutor"><i className="fas fa-envelope"></i></label>&nbsp;&nbsp;moonmilk99@gmail.com</p>
-                    </div>
+                    {/* <div className="class-info-tutor2">
+                        <p className="infomation-tutor1"><label className="name-class-tutor"><i className="fas fa-envelope"></i></label>&nbsp;&nbsp;{this.props.emailTutor}</p>
+                    </div> */}
                 </div>
                 <div className="class-offer-tutor">
                     <div className="button-manage-tutor">

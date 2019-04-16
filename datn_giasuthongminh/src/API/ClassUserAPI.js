@@ -41,6 +41,10 @@ const ClassUserApi = {
             .catch(err => console.log(err));
         console.log(classUser)
         return classUser;
-    }
+    },
+    getClassAndTutor:async (idUser) => {
+        let result = await MyService.getRequestData("/class-user/class-tutor", { "idUser": idUser });
+        return result
+    },
 }
 export default ClassUserApi;

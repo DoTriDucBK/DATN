@@ -26,6 +26,7 @@ class PersonalPage extends Component {
         console.log(this.state)
     }
     render() {
+        
         var {tutor} = this.state;
         if (tutor.length === 0) {
             return <div></div>
@@ -35,6 +36,7 @@ class PersonalPage extends Component {
            <div className="main-personal">
                 <div className="left-personal">
                     <div className="img-tutor">
+                    <img id="show_avatar" alt="ảnh đại diện" className="avatar1" src={tutor[0].link_image}/>
                     </div>
                     <div className="infoTutor">
                         <div className="nameTutor">
@@ -85,7 +87,7 @@ class PersonalPage extends Component {
         
                         </div>
                         <div className="ttc2">
-                            <p><i className="fas fa-address-card"></i>&nbsp;Nghề nghiệp hiện tại:&nbsp;<b> {tutor[0].job}</b></p>
+                            <p><i className="fas fa-address-card"></i>&nbsp;Nghề nghiệp hiện tại:&nbsp;<b> {tutor[0].jobTutor}</b></p>
                            
                         </div>
                         <div className="ttc2">

@@ -47,25 +47,44 @@ class App extends Component {
 					<Nav />
 					<main>
 						<Route exact path="/" component={() => <Home />} />
+						{/* Đăng kí làm gia sư */}
 						<Route path="/become-tutor" component={Home} />
+						{/* Hướng dẫn dùng */}
 						<Route path="/guide" component={Home} />
+						{/* Thông tin chi tiết 1 gia sư */}
 						<Route path="/tutor-item" component={TutorItem} />
+						{/* Trang cá nhân gia sư */}
 						<Route path="/personal-page" component={PersonalPage} />
+						{/* Thông tin chi tiết để đăng yêu cầu mở lớp */}
 						<Route path="/offer-class" component={OfferClass} />
+						{/* Đăng nhập */}
 						<Route path="/login" component={Login} />
+						{/* Danh sách gia sư nổi bật */}
 						<Route path="/list-tutor" component={ListTutor} />
+						{/* Thanh điều hướng navbar */}
 						<Route path="/nav" component={Nav} />
+						{/* Đăng kí tài khoản */}
 						<Route path="/signin" component={Signin} />
+						{/* Tìm kiếm gia sư theo môn học */}
 						<Route path="/searchTutor/:textSearch" component={SearchListTutor} />
+						{/* Danh sách tất cả các lớp của tất cả người dùng đăng lên */}
 						<Route path="/listclass" component={ListClass} />
+						{/* Class chi tiết chung cho tất cả các class mà người dùng đăng lên */}
 						<Route path="/classItem" component={ClassItem} />
+						{/* Modal thông tin lỗi yêu cầu nhập xong mới tìm kiếm */}
 						<Route path="/info-mess" component={InfoMess} />
+						{/* Danh sách các lớp mà một gia sư đã đề nghị dạy  */}
 						<Route path="/manage-class" component={ManageClassOffer} />
+						{/* Class chi tiết khi user mời gia sư */}
 						<Route path="/class-element" component={ClassElement}/>
+						{/* Danh sách những lớp mà người dùng đã mời gia sư */}
 						<Route path="/manage-invitation" component={ManageInvitation}/>
 						<Route path="/tutor-profile" component={TutorProfile}/>
+						{/* Danh sách các lớp mà user đăng lên, dùng để chọn lớp mời gia sư dạy */}
 						<Route path="/class-user" component={ManageClass}/>
+						{/* Hiển thị chi tiết thông tin của class */}
 						<Route path="/detail-class" component={DetailClass}/>
+						{/* Quản lí danh sách các class của user đăng lên */}
 						<Route path="/manage-class-of-user" component={ManageClassOfUser}/>
 					</main>
 					<Footer />

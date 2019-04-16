@@ -95,7 +95,7 @@ class VoteTutor extends Component {
         var data2 = {
             idTutor:this.props.idTutor,
             star:parseFloat(MyUtils.calculateStar(this.state.numberStar, this.props.oldStar, this.props.timesVote)),
-            times_vote: this.props.timesVote + 1
+            times_vote: this.props.timesVote + 1 
         }
         var tutor = await TutorApi.editTutor(data2).then(result2 => {
             if(result2 && result2.code === "success"){

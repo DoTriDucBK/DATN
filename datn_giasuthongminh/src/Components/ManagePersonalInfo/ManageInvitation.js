@@ -3,6 +3,7 @@ import './ManageClassOffer.css';
 import './ManageInvitation.css';
 import ClassItem_Tutor from '../ClassItem/ClassItem_Tutor';
 import ClassInfoAPI from '../../API/ClassInfoAPI';
+import ClassUserAPI from '../../API/ClassUserAPI';
 import { reactLocalStorage } from "reactjs-localstorage";
 import ClassUserApi from '../../API/ClassUserAPI';
 class ManageInvitation extends Component {
@@ -11,13 +12,13 @@ class ManageInvitation extends Component {
         this.state={
             idUser:reactLocalStorage.getObject("user.info").idUser,
             idTutor:0,
-            listClass:[]
+            classTutor:[]
         }
     }
     async componentDidMount(){
-            let value = await ClassInfoAPI.getClassByIdUser(this.state.idUser);
+            let value = await ClassUserAPI.getClassAndTutor(this.state.idUser);
             this.setState({
-                listClass: value.data,
+                classTutor: value.data,
                 // idUser:parseInt(this.props.location.state.id_User),
             // idTutor:parseInt(this.props.location.state.idTutor)
             });
@@ -28,18 +29,22 @@ class ManageInvitation extends Component {
         
     }
     showClassInfo = () => {
-        const listClass = this.state.listClass.map((item, index) =>
+        const classTutor = this.state.classTutor.map((item, index) =>
             <div className="result-element-class" key={index}>
-                <ClassItem_Tutor description={item.description}
-                    detailClass={item.detailClass}
-                    nameSubject={item.nameSubject}
-                    city={item.nameCity}
-                    typeMethod={item.typeMethod}
-                    numberDay={item.numberDay}
-                    fee={item.fee} />
+                <ClassItem_Tutor description={item.classInfo[0].description}
+                    detailClass={item.classInfo[0].detailClass}
+                    nameSubject={item.classInfo[0].nameSubject}
+                    city={item.classInfo[0].nameCity}
+                    typeMethod={item.classInfo[0].typeMethod}
+                    numberDay={item.classInfo[0].numberDay}
+                    fee={item.classInfo[0].fee}
+                    nameTutor={item.tutor[0].nameTutor}
+                    birthdayTutor={item.tutor[0].birthdayTutor}
+                    telTutor={item.tutor[0].telTutor}
+                    emailTutor={item.tutor[0].emailTutor} />
             </div>
-        );
-        return listClass;
+        ); 
+        return classTutor;
     }
     render() {
         return (

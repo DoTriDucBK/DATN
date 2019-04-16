@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import './TutorProfile.css';
 import TutorApi from '../../API/TutorAPI';
-import {reactLocalStorage} from 'reactjs-localstorage'
+import {reactLocalStorage} from 'reactjs-localstorage';
+import ImageApi from '../../API/ImageAPI';
+import {Redirect} from 'react-router-dom';
 class TutorProfile extends Component {
     constructor(props){
         super(props);
         this.state = {
-            nameTutor: reactLocalStorage.getObject("tutor.login.info").userNameTutor,
+            nameTutor: reactLocalStorage.getObject("user.info").userName,
             tutor:[],
             birthdayTutor:"",
             telTutor:"",
@@ -19,11 +21,27 @@ class TutorProfile extends Component {
             nameSubject:"",
             methodTeaching: new Set(),
             typeMethod:"",
-            idTutor:0
+            idTutor:0,
+            redirectPersonalPage:false,
+            image_personal:"",
+            img_personal_local:"https://d1plicc6iqzi9y.cloudfront.net/sites/all/themes/blacasa/images/default/default_user.png"
         }
     }
+    onChange1 = async(e) => {
+        if(e.target.files && e.target.files[0]){
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                this.setState({
+                    img_personal_local:e.target.result, image_personal:""
+                });
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        }
+        this.setState({file:e.target.files[0]});
+        
+    }
     async componentDidMount(){
-        let value = await TutorApi.getTutorByName(this.state.nameTutor);
+        let value = await TutorApi.getTutorByName(reactLocalStorage.getObject("user.info").userName);
         this.setState({
             tutor: value.data,
             nameSubject:value.data[0].nameSubject,
@@ -37,7 +55,8 @@ class TutorProfile extends Component {
             nameAdress:value.data[0].nameAdress,
             fee:value.data[0].fee,
             jobTutor:value.data[0].jobTutor,
-            idTutor:value.data[0].idTutor
+            idTutor:value.data[0].idTutor,
+            img_personal_local1:value.data[0].link_image,
         }) 
         if(value.data[0].methodTeaching === "0"){
             this.setState({
@@ -110,7 +129,8 @@ class TutorProfile extends Component {
             jobTutor:this.state.jobTutor,
             infoTutor:this.state.infoTutor,
             birthdayTutor:this.state.birthdayTutor,
-            addressTutor:this.state.nameCity
+            addressTutor:this.state.nameCity,
+            link_image:"http://localhost:8081/uploads/"+this.state.file.name
         }
         // console.log("1111111111  " , data);
         var tutor = await TutorApi.editTutor(data).then(result => {
@@ -121,8 +141,25 @@ class TutorProfile extends Component {
             }
         })
         .catch(err => console.log(err));
+        let image1 = this.state.image_personal;
+        if(!image1){
+           image1 = await ImageApi.uploadHandler(this.state.file)
+        }
+        this.setState({image_personal:image1,
+        redirectPersonalPage:true
+        })
     };
     render() {
+        
+        if (this.state.redirectPersonalPage) {
+            return <Redirect to={{
+                pathname: '/personal-page',
+                state: {
+                    idTutor: [this.state.idTutor]
+                }
+            }}>
+            </Redirect>
+        }
         var {tutor} = this.state;
         if(tutor.length === 0){
             return <div></div>
@@ -515,27 +552,9 @@ class TutorProfile extends Component {
                             <div className="title-image-info-tutor">
                                 <p className="title-image-info">Ảnh đại diện (ảnh phải rõ mặt và chụp một mình)</p>
                             </div>
-                            <img id="show_avatar" alt="ảnh đại diện"className="show_avatar_default" src="https://d1plicc6iqzi9y.cloudfront.net/sites/all/themes/blacasa/images/default/default_user.png" />
+                            <img id="show_avatar" alt="ảnh đại diện"className="show_avatar_default" src={this.state.image_personal ? this.state.image_personal:this.state.img_personal_local1?this.state.img_personal_local1:this.state.img_personal_local} />
                             <div className="submit-image-info">
-                                <label className="nameChooseImage"><input type="file" name="file" id="file" className="inputfile" /><i className="fas fa-upload"></i>&nbsp;&nbsp;Chọn ảnh</label>
-                            </div>
-                        </div>
-                        <div className="image-info-tutor1">
-                            <div className="title-image-info-tutor">
-                                <p className="title-image-info">Thẻ sinh viên hoặc bằng cấp</p>
-                            </div>
-                            <img id="show-img-cert" alt="Thẻ sinh viên / Bằng cấp" className="show_avatar_default1" src="https://d1plicc6iqzi9y.cloudfront.net/sites/all/themes/blacasa/images/default/cert.png "></img>
-                            <div className="submit-image-info">
-                                <label className="nameChooseImage"> <input type="file" name="file" id="file" className="inputfile" /><i className="fas fa-upload"></i>&nbsp;&nbsp;Chọn ảnh</label>
-                            </div>
-                        </div>
-                        <div className="image-info-tutor1">
-                            <div className="title-image-info-tutor">
-                                <p className="title-image-info">Ảnh đại diện (ảnh phải rõ mặt và chụp một mình)</p>
-                            </div>
-                            <img id="show_avatar" alt="Chứng minh thư" className="show_avatar_default1" src="https://d1plicc6iqzi9y.cloudfront.net/sites/all/themes/blacasa/images/default/passport_default.png" />
-                            <div className="submit-image-info">
-                                <label className="nameChooseImage"> <input type="file" name="file" id="file" className="inputfile" /><i className="fas fa-upload"></i>&nbsp;&nbsp;Chọn ảnh</label>
+                                <label className="nameChooseImage"><input type="file" name="file" id="file" className="inputfile" onChange={(e) => this.onChange1(e)} /><i className="fas fa-upload"></i>&nbsp;&nbsp;Chọn ảnh</label>
                             </div>
                         </div>
                     </div>

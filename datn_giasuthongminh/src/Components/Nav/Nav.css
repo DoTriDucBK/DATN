@@ -95,9 +95,15 @@ nav div.notChange{
 nav div.img-profile{
     width: 36px;
     height: 36px;
-    background: url('../../images/anhdaidien.png') center center;
+    /* background: url('../../images/anhdaidien.png') center center; */
     background-size: cover;
     float: left;
+    border-radius: 50%;
+}
+img.avatar2{
+    width: 36px;
+    height: 36px;
+    background-size: cover;
     border-radius: 50%;
 }
 nav div.user-profile{

@@ -29,7 +29,13 @@ div.img-tutor{
     background-color: aqua;
     border-radius: 50%;
     box-shadow: 0 0px 10px 0 rgba(31, 28, 38, 0.35);
-    background-image: url('../../images/anhdaidien.png');
+    background-position: center;
+}
+img.avatar1{
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    box-shadow: 0 0px 10px 0 rgba(31, 28, 38, 0.35);
     background-position: center;
 }
 div.infoTutor{

@@ -45,14 +45,15 @@ class SigninTutor extends Component {
             telUser: tutorInfo.tutor_acc_phon.value,
             emailUser: tutorInfo.tutor_acc_emai.value,
             password: tutorInfo.tutor_acc_pass.value,
-            type:1
+            type:1,
+            active:1
         }
         console.log("1111111111  " , data);
         var result = await UserApi.register(data);
         if (!result) alert("Lỗi kết nối mạng")
         if (result && result.code === "error") this.setState({ message: result.message })
         else if (result && result.data) {
-            reactLocalStorage.setObject("tutor.login.info", result.data)
+            reactLocalStorage.setObject("user.info", result.data)
         }
         console.log(result.data);
         this.setState({

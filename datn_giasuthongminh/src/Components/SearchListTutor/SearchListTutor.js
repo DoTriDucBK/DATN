@@ -112,7 +112,7 @@ class SearchListTutor extends Component {
 
         const renderTodos = currentTutor.map((item) => {
             return <div className="col col-md-3 row1" key={item.idTutor}>
-                <TutorItem key={item.idTutor} idTutor={item.idTutor} name={item.nameTutor} address={item.addressTutor} subject={item.nameSubject} fee={item.fee} detail={item.infoTutor} />
+                <TutorItem key={item.idTutor} idTutor={item.idTutor} name={item.nameTutor} address={item.addressTutor} subject={item.nameSubject} fee={item.fee} detail={item.infoTutor} image={item.link_image} />
             </div>;
         });
         // Logic for displaying page numbers

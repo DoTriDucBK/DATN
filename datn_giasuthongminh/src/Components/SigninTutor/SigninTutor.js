@@ -33,6 +33,7 @@ class SigninTutor extends Component {
             message: "",
             isClick: false,
             redirectHome: false,
+            redirectInfoTutor:false
         }
     }
 
@@ -57,7 +58,7 @@ class SigninTutor extends Component {
         }
         console.log(result.data);
         this.setState({
-            redirectHome: true
+            redirectInfoTutor:true
         })
     };
 
@@ -117,12 +118,14 @@ class SigninTutor extends Component {
         if (this.state.redirectToPersonalPage && !isClick) {
             alert("Vui lòng nhập đủ thông tin")
         }
-        if (this.state.redirectHome && isClick) {
-            return <Redirect push to="/"/>
-                    // pathname: '/tutor-profile',
-                    // state: { nameTutor: [this.state.tutorInfo.tutor_acc_fullname.value],
-                    //          emailTutor: [this.state.tutorInfo.tutor_acc_emai.value],
-                    //          telTutor: [this.state.tutorInfo.tutor_acc_phon.value] }}} />
+        if (this.state.redirectInfoTutor && isClick) {
+            return <Redirect to={{
+                pathname: '/info-tutor',
+                state: { nameTutor: [this.state.tutorInfo.tutor_acc_fullname.value],
+                        telTutor:[this.state.tutorInfo.tutor_acc_phon.value],
+                    emailTutor:[this.state.tutorInfo.tutor_acc_emai.value]}
+            }}
+            />
     
         }
         return (

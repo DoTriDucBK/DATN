@@ -52,6 +52,8 @@ class ClassElement extends Component {
             idTutor: this.state.idTutor,
             idClass: this.state.idClass,
             status: 2,
+            notification:0,
+            is_seen:0
         }
         // console.log("1111111111  " , data);
         var classUser = ClassUserAPI.createClassUser(data).then(result => {

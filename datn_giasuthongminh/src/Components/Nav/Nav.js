@@ -10,6 +10,8 @@ import InfoMess from './InfoMess';
 import { reactLocalStorage } from "reactjs-localstorage";
 import UserApi from '../../API/UserAPI';
 import TutorApi from '../../API/TutorAPI';
+import ClassUserAPI from '../../API/ClassUserAPI';
+import ClassTutorAPI from '../../API/ClassTutorAPI';
 class Nav extends Component {
     constructor(props) {
         super(props);
@@ -24,17 +26,19 @@ class Nav extends Component {
             modalSignin: false,
             modalErr: false,
             userinfo: reactLocalStorage.getObject("user.info"),
-            is_login: false,
-            redirectManageClassOffer:false
+            is_login: reactLocalStorage.getObject("home.is_login"),
+            type:reactLocalStorage.get("type"),
+            redirectManageClassOffer:false,
+            listInvite:[]
         }
         this.toggle = this.toggle.bind(this);
         this.toggleSignin = this.toggleSignin.bind(this);
         this.toggleErr = this.toggleErr.bind(this);
     }
-    componentDidMount() {
-        this.setState({ is_login: false })
-        // reactLocalStorage.get("home.is_login")
-    }
+    // componentDidMount() {
+    //     this.setState({ is_login: false })
+    //     // reactLocalStorage.get("home.is_login")
+    // }
     toggle() {
         this.setState(prevState => ({
             modal: !prevState.modal
@@ -50,6 +54,45 @@ class Nav extends Component {
             modalErr: !prevState.modalErr
         }));
     }
+    async componentDidMount(){
+        if(this.state.type == "1"){
+            var tutor = await TutorApi.getTutorByName(reactLocalStorage.getObject("user.info").userName);
+            var options = {
+                idTutor: tutor.data[0].idTutor,
+                notification:0,
+                is_seen:0
+            }
+    
+            var list = await ClassUserAPI.searchClassUser(options).then(
+                listInvite => {
+                    if (listInvite && listInvite.code === "success") {
+                        list = listInvite.data
+                        this.setState({ listInvite: listInvite.data })
+                    } else if (listInvite && listInvite.code === "error") {
+                        alert(listInvite.message)
+                    }
+                }
+            ).catch(err => console.log(err)
+            )
+        }else if(this.state.type=="2"){
+            var options = {
+                idUser: reactLocalStorage.getObject("user.info").idUser,
+                notification:0,
+                is_seen:0
+            }
+            var list = await ClassTutorAPI.searchClassUser(options).then(
+                listInvite => {
+                    if (listInvite && listInvite.code === "success") {
+                        list = listInvite.data
+                        this.setState({ listInvite: listInvite.data })
+                    } else if (listInvite && listInvite.code === "error") {
+                        alert(listInvite.message)
+                    }
+                }
+            ).catch(err => console.log(err)
+            )
+        }
+    }
     // Lấy nội dung ô search khi thay đổi
     handleSearchChange = (e) => {
         var value = e.target.value;
@@ -59,11 +102,8 @@ class Nav extends Component {
         })
 
     };
-    handleLogin = (userinfo, is_login) => {
-        this.setState({ userinfo: userinfo, is_login: is_login })
-    }
-    handleLogin2 = (tutorinfo, is_login) => {
-        this.setState({tutorinfo:tutorinfo, is_login:is_login})
+    handleLogin = (userinfo, is_login,type) => {
+        this.setState({ userinfo: userinfo, is_login: is_login, type:type })
     }
     // Bắt sự kiện cho button search
     // searchTutor = (e) => {
@@ -99,9 +139,11 @@ class Nav extends Component {
         if (result) {
             reactLocalStorage.setObject("user.info", null);
             reactLocalStorage.setObject("home.is_login", false);
+            reactLocalStorage.setObject("type",0);
             this.setState({
                 userinfo: null,
-                is_login: false
+                is_login: false,
+                type:0
             })
         } else console.log("Lỗi kết nối mạng")
         // reactLocalStorage.set("home.is_login", true);
@@ -111,7 +153,7 @@ class Nav extends Component {
     }
     render() {
         var user_name = this.state.userinfo ? this.state.userinfo.userName : "";
-        console.log(this.state.is_login);
+        console.log(reactLocalStorage.getObject("home.is_login"));
         if (this.state.redirectLogin) {
             return <Redirect push to="/login" />;
         } else if (this.state.redirectHome) {
@@ -128,12 +170,12 @@ class Nav extends Component {
         return ( 
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light nav-header">
-                    <a className="navbar-brand" href="#">
+                    <a className="navbar-brand brand-custom" href="#">
                         <div
                             className="d-inline-block align-top image-logo" alt="" />
                         {/* <label className="nameLogo">Gia sư BK</label> */}
                     </a>
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div className="collapse navbar-collapse navbar-collapse-custom" id="navbarSupportedContent">
                         <form className="form-inline my-2 my-lg-0 search form-search">
                             <input className=" search mr-sm-2" type="search"
                                 placeholder="Tìm kiếm gia sư theo môn học" aria-label="Search"
@@ -160,7 +202,12 @@ class Nav extends Component {
                             </li>
                             {
                                 this.state.is_login ?
-                                    <div>
+                                    <div className="yes-login">
+                                        <li className="nav-item">
+                                            {reactLocalStorage.get("type") == "1" ?
+                                            <Link to="/manage-invite" className="nav-link loimoi">Lời mời<sup className="number-invite">&nbsp;{this.state.listInvite.length}</sup></Link>
+                                            :<Link to="/manage-offer" className="nav-link loimoi">Lời mời<sup className="number-invite">&nbsp;{this.state.listInvite.length}</sup></Link>}
+                                        </li>
                                         <li className="nav-item li-item-user ">
                                             <div className="profile-user">
                                                 <div className="img-profile">

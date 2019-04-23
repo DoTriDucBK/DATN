@@ -4,15 +4,15 @@ import TutorApi from '../../API/TutorAPI';
 import {reactLocalStorage} from 'reactjs-localstorage';
 import ImageApi from '../../API/ImageAPI';
 import {Redirect} from 'react-router-dom';
-class TutorProfile extends Component {
+class InfoTutor extends Component {
     constructor(props){
         super(props);
         this.state = {
-            nameTutor: reactLocalStorage.getObject("user.info").userName,
+            nameTutor:this.props.location.state.nameTutor,
             tutor:[],
             birthdayTutor:"",
-            telTutor:"",
-            emailTutor:"",
+            telTutor:this.props.location.state.telTutor,
+            emailTutor:this.props.location.state.emailTutor,
             nameCity:"",
             nameAdress:"",
             jobTutor:"",
@@ -39,6 +39,7 @@ class TutorProfile extends Component {
             calFri:0,
             calSat:0,
             calSun:0,
+
         }
     }
     onChange1 = async(e) => {
@@ -54,249 +55,7 @@ class TutorProfile extends Component {
         this.setState({file:e.target.files[0]});
         
     }
-    async componentDidMount(){
-        let value = await TutorApi.getTutorByName(reactLocalStorage.getObject("user.info").userName);
-        this.setState({
-            tutor: value.data,
-            nameSubject:value.data[0].nameSubject,
-            nameTutor:value.data[0].nameTutor,
-            birthdayTutor:value.data[0].birthdayTutor,
-            telTutor:value.data[0].telTutor,
-            emailTutor:value.data[0].emailTutor,
-            infoTutor:value.data[0].infoTutor,
-            typeMethod:value.data[0].methodTeaching,
-            nameCity:value.data[0].nameCity,
-            nameAdress:value.data[0].nameAdress,
-            fee:value.data[0].fee,
-            jobTutor:value.data[0].jobTutor,
-            idTutor:value.data[0].idTutor,
-            img_personal_local1:value.data[0].link_image,
-            calMon:value.data[0].monday,
-            calTue:value.data[0].tuesday,
-            calWed:value.data[0].wednesday,
-            calThu:value.data[0].thursday,
-            calFri:value.data[0].friday,
-            calSat:value.data[0].saturday,
-            calSun:value.data[0].sunday
-        }) 
-        if(value.data[0].methodTeaching === "0"){
-            this.setState({
-                methodTeaching: this.checkedCheckboxMethod.add("Offline")
-            })
-        }else if(value.data[0].methodTeaching === "1"){
-            this.setState({
-                methodTeaching: this.checkedCheckboxMethod.add("Online")
-            })
-        }else if(value.data[0].methodTeaching === "2"){
-            this.setState({
-                methodTeaching: new Set (["Online", "Offline"])
-            })
-        }
-        if(value.data[0].monday === "1"){
-            this.setState({
-                monday:this.checkedMonday.add("Sáng")
-            })
-        }else if(value.data[0].monday === "2"){
-            this.setState({
-                monday:this.checkedMonday.add("Chiều")
-            })
-        }else if(value.data[0].monday === "3"){
-            this.setState({
-                monday:this.checkedMonday.add("Tối")
-            })
-        }else if (value.data[0].monday === "4"){
-            this.setState({
-                monday:new Set (["Sáng", "Chiều"])
-            })
-        }else if(value.data[0].monday === "5"){
-            this.setState({
-                monday:new Set (["Chiều", "Tối"])
-            })
-        }else if(value.data[0].monday === "6"){
-            this.setState({
-                monday:new Set (["Sáng", "Tối"])
-            })
-        }else if(value.data[0].monday === "7"){
-            this.setState({
-                monday:new Set (["Sáng","Chiều", "Tối"])
-            })
-        }
-        if(value.data[0].tuesday === "1"){
-            this.setState({
-                tuesday:this.checkedTuesday.add("Sáng")
-            })
-        }else if(value.data[0].tuesday === "2"){
-            this.setState({
-                tuesday:this.checkedTuesday.add("Chiều")
-            })
-        }else if(value.data[0].tuesday === "3"){
-            this.setState({
-                tuesday:this.checkedTuesday.add("Tối")
-            })
-        }else if (value.data[0].tuesday === "4"){
-            this.setState({
-                tuesday:new Set (["Sáng", "Chiều"])
-            })
-        }else if(value.data[0].tuesday === "5"){
-            this.setState({
-                tuesday:new Set (["Chiều", "Tối"])
-            })
-        }else if(value.data[0].tuesday === "6"){
-            this.setState({
-                tuesday:new Set (["Sáng", "Tối"])
-            })
-        }else if(value.data[0].tuesday === "7"){
-            this.setState({
-                tuesday:new Set (["Sáng","Chiều", "Tối"])
-            })
-        }
-        if(value.data[0].wednesday === "1"){
-            this.setState({
-                wednesday:this.checkedWednesday.add("Sáng")
-            })
-        }else if(value.data[0].wednesday === "2"){
-            this.setState({
-                wednesday:this.checkedWednesday.add("Chiều")
-            })
-        }else if(value.data[0].wednesday === "3"){
-            this.setState({
-                wednesday:this.checkedWednesday.add("Tối")
-            })
-        }else if (value.data[0].wednesday === "4"){
-            this.setState({
-                wednesday:new Set (["Sáng", "Chiều"])
-            })
-        }else if(value.data[0].wednesday === "5"){
-            this.setState({
-                wednesday:new Set (["Chiều", "Tối"])
-            })
-        }else if(value.data[0].wednesday === "6"){
-            this.setState({
-                wednesday:new Set (["Sáng", "Tối"])
-            })
-        }else if(value.data[0].wednesday === "7"){
-            this.setState({
-                wednesday:new Set (["Sáng","Chiều", "Tối"])
-            })
-        }
-        if(value.data[0].thursday === "1"){
-            this.setState({
-                thursday:this.checkedThursday.add("Sáng")
-            })
-        }else if(value.data[0].thursday === "2"){
-            this.setState({
-                thursday:this.checkedThursday.add("Chiều")
-            })
-        }else if(value.data[0].thursday === "3"){
-            this.setState({
-                thursday:this.checkedThursday.add("Tối")
-            })
-        }else if (value.data[0].thursday === "4"){
-            this.setState({
-                thursday:new Set (["Sáng", "Chiều"])
-            })
-        }else if(value.data[0].thursday === "5"){
-            this.setState({
-                thursday:new Set (["Chiều", "Tối"])
-            })
-        }else if(value.data[0].thursday === "6"){
-            this.setState({
-                thursday:new Set (["Sáng", "Tối"])
-            })
-        }else if(value.data[0].thursday === "7"){
-            this.setState({
-                thursday:new Set (["Sáng","Chiều", "Tối"])
-            })
-        }
-        if(value.data[0].friday === "1"){
-            this.setState({
-                friday:this.checkedFriday.add("Sáng")
-            })
-        }else if(value.data[0].friday === "2"){
-            this.setState({
-                friday:this.checkedFriday.add("Chiều")
-            })
-        }else if(value.data[0].friday === "3"){
-            this.setState({
-                friday:this.checkedFriday.add("Tối")
-            })
-        }else if (value.data[0].friday === "4"){
-            this.setState({
-                friday:new Set (["Sáng", "Chiều"])
-            })
-        }else if(value.data[0].friday === "5"){
-            this.setState({
-                friday:new Set (["Chiều", "Tối"])
-            })
-        }else if(value.data[0].friday === "6"){
-            this.setState({
-                friday:new Set (["Sáng", "Tối"])
-            })
-        }else if(value.data[0].friday === "7"){
-            this.setState({
-                friday:new Set (["Sáng","Chiều", "Tối"])
-            })
-        }
-        if(value.data[0].saturday === "1"){
-            this.setState({
-                saturday:this.checkedSaturday.add("Sáng")
-            })
-        }else if(value.data[0].saturday === "2"){
-            this.setState({
-                saturday:this.checkedSaturday.add("Chiều")
-            })
-        }else if(value.data[0].saturday === "3"){
-            this.setState({
-                saturday:this.checkedSaturday.add("Tối")
-            })
-        }else if (value.data[0].saturday === "4"){
-            this.setState({
-                saturday:new Set (["Sáng", "Chiều"])
-            })
-        }else if(value.data[0].saturday === "5"){
-            this.setState({
-                saturday:new Set (["Chiều", "Tối"])
-            })
-        }else if(value.data[0].saturday === "6"){
-            this.setState({
-                saturday:new Set (["Sáng", "Tối"])
-            })
-        }else if(value.data[0].saturday === "7"){
-            this.setState({
-                saturday:new Set (["Sáng","Chiều", "Tối"])
-            })
-        }
-        if(value.data[0].sunday === "1"){
-            this.setState({
-                sunday:this.checkedSunday.add("Sáng")
-            })
-        }else if(value.data[0].sunday === "2"){
-            this.setState({
-                sunday:this.checkedSunday.add("Chiều")
-            })
-        }else if(value.data[0].sunday === "3"){
-            this.setState({
-                sunday:this.checkedSunday.add("Tối")
-            })
-        }else if (value.data[0].sunday === "4"){
-            this.setState({
-                sunday:new Set (["Sáng", "Chiều"])
-            })
-        }else if(value.data[0].sunday === "5"){
-            this.setState({
-                sunday:new Set (["Chiều", "Tối"])
-            })
-        }else if(value.data[0].sunday === "6"){
-            this.setState({
-                sunday:new Set (["Sáng", "Tối"])
-            })
-        }else if(value.data[0].sunday === "7"){
-            this.setState({
-                sunday:new Set (["Sáng","Chiều", "Tối"])
-            })
-        }
-        console.log(this.state.methodTeaching)
-    }
+    
     handleChangeInputTextForm = (e) => {
         this.setState({
             [e.target.name]:e.target.value
@@ -582,7 +341,6 @@ class TutorProfile extends Component {
             return false
         }
     }
-
     handleSubmit = async (e) => {
         e.preventDefault();
         var data = {
@@ -606,10 +364,12 @@ class TutorProfile extends Component {
             infoTutor:this.state.infoTutor,
             birthdayTutor:this.state.birthdayTutor,
             addressTutor:this.state.nameCity,
-            link_image:"http://localhost:8081/uploads/"+this.state.file.name
+            link_image:"http://localhost:8081/uploads/"+this.state.file.name,
+            star:0,
+            authentication:0
         }
         // console.log("1111111111  " , data);
-        var tutor = await TutorApi.editTutor(data).then(result => {
+        var tutor = await TutorApi.createTutor(data).then(result => {
             if (result && result.code === "success") {
                 tutor = result.data;
             } else if (result.code === "error") {
@@ -633,12 +393,7 @@ class TutorProfile extends Component {
                 state: {
                     idTutor: [this.state.idTutor]
                 }
-            }}>
-            </Redirect>
-        }
-        var {tutor} = this.state;
-        if(tutor.length === 0){
-            return <div></div>
+            }}/>
         }
         return (
             <div className="tutor-profile-con">
@@ -660,8 +415,8 @@ class TutorProfile extends Component {
                                 <p className="value-title1">Họ tên đầy đủ</p>
                             </div>
                             <div className="value-title2">
-                                <input className="value-title2" name="nameTutor" placeholder="Nhập họ tên" defaultValue={this.state.nameTutor}
-                                    onChange={this.handleChangeInputTextForm}></input>
+                                <input className="value-title2" name="nameTutor" placeholder="Nhập họ tên" 
+                                    onChange={this.handleChangeInputTextForm} defaultValue={this.state.nameTutor}></input>
                             </div>
                         </div>
                         <div className="value1-tutor-right">
@@ -670,7 +425,7 @@ class TutorProfile extends Component {
                             </div>
                             <div className="value-title2">
                                 <input className="value-title2" name="birthdayTutor" placeholder="Nhập ngày sinh"
-                                 onChange={this.handleChangeInputTextForm} defaultValue={this.state.birthdayTutor} ></input>
+                                 onChange={this.handleChangeInputTextForm}  ></input>
                             </div>
                         </div>
                     </div>
@@ -690,7 +445,7 @@ class TutorProfile extends Component {
                             </div>
                             <div className="value-title2">
                                 <input className="value-title2" name="emailTutor" placeholder="Nhập email"
-                                onChange={this.handleChangeInputTextForm} defaultValue={this.state.emailTutor}></input>
+                                onChange={this.handleChangeInputTextForm} defaultValue={this.state.emailTutor} ></input>
                             </div>
                         </div>
                     </div>
@@ -700,7 +455,7 @@ class TutorProfile extends Component {
                                 <p className="value-title1">Địa chỉ (tỉnh thành)</p>
                             </div>
                             <div className="value-title2">
-                                <select required="" name="nameCity" className="value-title2" value={this.state.nameCity} onChange={this.handleChangeInputTextForm}>
+                                <select required="" name="nameCity" className="value-title2"  onChange={this.handleChangeInputTextForm}>
                                     <option value hidden className="opt-search">Tỉnh thành</option>
                                     <optgroup label="Địa điểm phổ biến">
                                         <option value="Hà Nội">Hà Nội</option>
@@ -778,7 +533,7 @@ class TutorProfile extends Component {
                             </div>
                             <div className="value-title2">
                                 <input className="value-title2" name="nameAdress" placeholder="Nhập địa chỉ" 
-                                onChange={this.handleChangeInputTextForm} defaultValue={this.state.nameAdress}></input>
+                                onChange={this.handleChangeInputTextForm} ></input>
                             </div>
                         </div>
                     </div>
@@ -788,7 +543,7 @@ class TutorProfile extends Component {
                         </div>
                         <div className="profile-detail-value">
                             <textarea className="profile-detail-value" name="infoTutor"
-                            onChange={this.handleChangeInputTextForm} defaultValue={this.state.infoTutor} />
+                            onChange={this.handleChangeInputTextForm} />
                         </div>
                     </div>
                     <div className="title-tutor-profile2">
@@ -805,7 +560,7 @@ class TutorProfile extends Component {
                                 <p className="value-title1">Bạn đang là?</p>
                             </div>
                             <div className="value-title2">
-                                <select required="" name="jobTutor"className="value-title2" value={this.state.jobTutor} onChange={this.handleChangeInputTextForm}>
+                                <select required="" name="jobTutor"className="value-title2"  onChange={this.handleChangeInputTextForm}>
                                     <option value hidden className="opt-search">Lựa chọn nghề nghiệp</option>
                                     <option value="Sinh viên">Sinh viên</option>
                                     <option value="Giáo viên">Giáo viên</option>
@@ -820,7 +575,7 @@ class TutorProfile extends Component {
                             </div>
                             <div className="value-title2">
                                 <input className="value-title2" name="fee" placeholder="Ví dụ: 200000"
-                                onChange={this.handleChangeInputTextForm} defaultValue={this.state.fee}></input>
+                                onChange={this.handleChangeInputTextForm} ></input>
                             </div>
                         </div>
                     </div>
@@ -840,7 +595,7 @@ class TutorProfile extends Component {
                                 <p className="value-title1">Môn học đăng kí dạy</p>
                             </div>
                             <div className="value-title2">
-                                <select name="nameSubject" required="" className="value-title2" onChange={this.handleChangeInputTextForm} value={this.state.nameSubject}>
+                                <select name="nameSubject" required="" className="value-title2" onChange={this.handleChangeInputTextForm} >
                                     <option value hidden className="opt1">Lựa chọn môn học</option>
                                     <optgroup label="Môn học phổ thông">
                                         <option value="Toán">Toán</option>
@@ -1043,4 +798,4 @@ class TutorProfile extends Component {
     } 
 }
 
-export default TutorProfile;
+export default InfoTutor;

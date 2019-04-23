@@ -53,7 +53,8 @@ const UserApi = {
                 .catch(err => console.log(err))
                 console.log("ĐUCCCC")
             if (result && result.code === "success") {
-                reactLocalStorage.setObject("user.info", null)
+                reactLocalStorage.setObject("user.info", null);
+                reactLocalStorage.setObject("home.is_login",false);
                 console.log("DDDĐ")
                 return true
             } else return false
@@ -91,6 +92,10 @@ const UserApi = {
             reactLocalStorage.setObject("user.info", result.data)
         }
         return result
-    }
+    },
+    getUserByIdUser: async (id) => {
+        let result = await MyService.getRequestData("/user/idUser", { "idUser": id });
+        return result
+    },
 }
 export default UserApi;

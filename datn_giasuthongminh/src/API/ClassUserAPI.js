@@ -46,5 +46,15 @@ const ClassUserApi = {
         let result = await MyService.getRequestData("/class-user/class-tutor", { "idUser": idUser });
         return result
     },
+    getClassAndTutorByIdTutor:async (options) => {
+        options= MyUtils.clearBlank(options);
+        let result = await MyService.getRequestData("/class-user/class-tutor-by-idTutor", options);
+        return result
+    },
+    searchClassUser: async (options) => {
+        options= MyUtils.clearBlank(options);
+        let result = await MyService.getRequestData("/class-user/search-notification", options);
+        return result
+    },
 }
 export default ClassUserApi;

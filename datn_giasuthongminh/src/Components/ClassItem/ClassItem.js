@@ -40,7 +40,9 @@ class ClassItem extends Component {
             idUser: this.props.idUser,
             idTutor: this.state.tutor[0].idTutor,
             idClass:this.props.idClass,
-            status:2
+            status:2,
+            notification:0,
+            is_seen:0
         }
         console.log("1111111111  " , data);
         var classTutor = ClassTutorAPI.createClassTutor(data).then(result => {

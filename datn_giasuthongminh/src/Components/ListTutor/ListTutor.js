@@ -24,7 +24,7 @@ class ListTutor extends Component {
         
     }
     show_tutor = () => {
-        const listTutor = this.state.tutor.map((item) =>
+        const listTutor = this.state.tutor.sort((a,b)=>b.star - a.star).map((item) =>
             <div className="slide-tutor" key={item.idTutor}>
                 <TutorItem key={item.idTutor} name={item.nameTutor}
                      address={item.addressTutor} subject= {item.nameSubject}
@@ -33,7 +33,8 @@ class ListTutor extends Component {
                      image={item.link_image}/>
              </div>
         );
-        return listTutor;
+        console.log(listTutor);
+        return listTutor.slice(0,10);
     }
     render() {
         const  settings = {

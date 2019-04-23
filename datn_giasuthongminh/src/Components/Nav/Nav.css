@@ -7,6 +7,12 @@ nav.nav-header{
     /* position: fixed; Cho menu cố định 1 vị trí với top và left */
   width: 100%;
   box-shadow: 0 1px 10px 0 rgba(31, 28, 38, 0.15);
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+a.brand-custom{
+    width: 90px !important;
+    height: 60px !important;
 }
 nav ul.ul-nav{
     /* margin-left: 26px !important;  */
@@ -32,13 +38,18 @@ input.search{
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 form.form-search{
-    width: 430px !important;
+    width: 400px !important;
+    margin-left: 0px !important;
 }
 div.image-logo{
-    width: 115px;
-    height: 40px;
+    width: 90px;
+    height: 50px;
     background: url('../../images/logo_bk.png') center center no-repeat;
     background-size: cover;
+}
+div.navbar-collapse-custom{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
 }
 nav div.nav-btn-search{
     width: 99px;
@@ -64,9 +75,13 @@ a.link{
 }
 a.nav-link{
     color: black !important;
+    margin-top: 7px !important;
 }
 a.nav-link:hover{
     color: white !important;
+}
+a.loimoi{
+    float: left !important;
 }
 nav button.nav-btn-dangki{ 
     background-color: #069d86;
@@ -93,26 +108,27 @@ nav div.notChange{
     text-align: right
 } */
 nav div.img-profile{
-    width: 36px;
-    height: 36px;
+    width: 30px;
+    height: 30px;
     /* background: url('../../images/anhdaidien.png') center center; */
     background-size: cover;
     float: left;
+    margin-top: 10px;
     border-radius: 50%;
 }
 img.avatar2{
-    width: 36px;
-    height: 36px;
+    width: 30px;
+    height: 30px;
     background-size: cover;
     border-radius: 50%;
 }
 nav div.user-profile{
-    width: 160px;
+    width: 145px;
     height: 50px;
     float: left;
-    /* background-color: green; */
     /* line-height: 100px;
     vertical-align: middle; */
+    margin-top:4px;
 }
 nav p.user-profile{
     text-align: left;
@@ -132,8 +148,7 @@ li.nav-item2{
 }
 li.li-item-user{
     float: left !important;
-    width: 200px !important;
-    /* background-color: red !important; */
+    width: 180px !important;
 }
 label.menu-dropdown{
     font-size: 28px;
@@ -146,6 +161,7 @@ li.nav-item-login{
 li.nav-item-signin{
     margin-left: 10px !important;
     float: left !important;
+    margin-top: 7px !important;
 }
 li.nav-item{
     margin-left: 8px !important;
@@ -214,4 +230,13 @@ li.nav-item{
   }
   li.nav-item1:hover{
       color: white !important;
+  }
+  div.yes-login{
+      width: 310px !important;
+      height: 60px !important;
+  }
+  sup.number-invite{
+      font-size: 16px;
+      color: red;
+      font-weight: bold
   }

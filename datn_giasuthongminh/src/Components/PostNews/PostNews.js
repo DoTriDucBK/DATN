@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import './PostNews.css';
 import {Redirect} from 'react-router';
 import { reactLocalStorage } from 'reactjs-localstorage';
+import { Modal, ModalBody } from 'reactstrap';
+import '../css/ModalCustome.css';
+import InfoNotLogin from '../Nav/InfoNotLogin';
+import InfoMess from '../Nav/InfoMess';
 
 class PostNews extends Component {
     constructor(props){
@@ -10,7 +14,22 @@ class PostNews extends Component {
             redirectOfferClass: false,
             subject:"",
             address:"",
+            modalErr:false,
+            err:"",
+            modalErr1:false,
         }
+        this.toggleErr = this.toggleErr.bind(this);
+        this.toggleErr1 = this.toggleErr1.bind(this);
+    }
+    toggleErr() {
+        this.setState(prevState => ({
+            modalErr: !prevState.modalErr
+        }));
+    }
+    toggleErr1() {
+        this.setState(prevState => ({
+            modalErr1: !prevState.modalErr1
+        }));
     }
     // Thay đổi môn học
     handleSubjectChange = (event) => {
@@ -27,7 +46,9 @@ class PostNews extends Component {
     // submit
     handleSubmit = (e) => {
         if(this.state.subject === "" || this.state.address === ""){
-
+            this.toggleErr();
+        }else if(!reactLocalStorage.getObject("home.is_login")){
+            this.toggleErr1();
         }else{
             e.preventDefault();
             this.setState({redirectOfferClass:true});
@@ -167,6 +188,20 @@ class PostNews extends Component {
                         <button className="btn-post" onClick={this.handleSubmit} >Đăng yêu cầu</button>
                     </div>
                 </div>
+                <Modal isOpen={this.state.modalErr} toggle={this.toggleErr} className={this.props.className}>
+
+                    <ModalBody>
+                        <InfoMess />
+                    </ModalBody>
+
+                </Modal>
+                <Modal isOpen={this.state.modalErr1} toggle={this.toggleErr1} className={this.props.className}>
+
+                    <ModalBody>
+                        <InfoNotLogin />
+                    </ModalBody>
+
+                </Modal>
             </div>
         );
     }

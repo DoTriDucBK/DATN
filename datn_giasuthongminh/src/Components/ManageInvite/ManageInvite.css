@@ -1,0 +1,84 @@
+div.manage-invite-container{
+    width: 100%;
+    height: 900px;
+    background-color: #f7f7f7;
+    padding-top: 90px;
+}
+div.manage-invite-title{
+    width: 86%;
+    height: 40px;
+    margin: auto;
+}
+div.titleInvite-manage1{
+    width: 20%;
+    height: 100%;
+    float: left;
+    background-color: #069D86;
+}
+p.titleInvite-manage{
+    color: white;
+    text-align: center;
+    margin-top: 5px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+div.titleInvite-manage2{
+    width: 80%;
+    height: 100%;
+    border-bottom: 1px solid #069D86;
+    float: left;
+    background-color: #f7f7f7;
+}
+div.title-invite-manage{
+    width: 86%;
+    height: 40px;
+    margin: auto;
+    background-color: white;
+    margin-top: 10px;
+    border-top: 1px solid #DFDFDF;
+    border-bottom: 1px solid #DFDFDF;
+}
+div.manage-invite{
+    width: 16%;
+    height: 100%;
+    float: left;
+}
+div.manage2-invite{
+    width: 45%;
+    height: 100%;
+    float: left;
+    margin-left: 1%;
+}
+p.manage2-invite{
+    font-size: 16px;
+    text-transform: uppercase;
+    text-align: left;
+    margin-left: 10px;
+    font-weight: 600;
+    margin-top: 7px;
+}
+div.manage3-invite{
+    width: 21%;
+    height: 100%;
+    float: left;
+}
+p.manage3-invite{
+    margin-top: 7px;
+    font-size: 16px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 600;
+}
+div.manage4-invite{
+    width: 17%;
+    height: 100%;
+    float: left;
+}
+p.manage4-invite{
+    margin-top: 7px;
+    font-size: 16px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 600;
+}

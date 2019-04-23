@@ -23,6 +23,9 @@ import ManageClass from '../ManageClass/ManageClass';
 import DetailClass from '../DetailClass/DetailClass';
 import { reactLocalStorage } from 'reactjs-localstorage';
 import ManageClassOfUser from '../ManageClass/ManageClassOfUser';
+import InfoTutor from '../TutorProfile/InfoTutor';
+import ManageInvite from '../ManageInvite/ManageInvite';
+import ManageOffer from '../ManageInvite/ManageOffer';
 class App extends Component {
 	constructor(props) {
 		super(props)
@@ -31,14 +34,6 @@ class App extends Component {
 			
 		})
 	
-	}
-	componentDidMount(){
-		var user = reactLocalStorage.getObject("user.info");
-		var tutor = reactLocalStorage.getObject("tutor.login.info");
-		if(!user || !tutor){
-			console.log("aa");
-			reactLocalStorage.set("home.is_login", false)
-		}
 	}
 	render() {
 		return (
@@ -79,6 +74,7 @@ class App extends Component {
 						<Route path="/class-element" component={ClassElement}/>
 						{/* Danh sách những lớp mà người dùng đã mời gia sư */}
 						<Route path="/manage-invitation" component={ManageInvitation}/>
+						{/* Cập nhật hồ sơ */}
 						<Route path="/tutor-profile" component={TutorProfile}/>
 						{/* Danh sách các lớp mà user đăng lên, dùng để chọn lớp mời gia sư dạy */}
 						<Route path="/class-user" component={ManageClass}/>
@@ -86,6 +82,12 @@ class App extends Component {
 						<Route path="/detail-class" component={DetailClass}/>
 						{/* Quản lí danh sách các class của user đăng lên */}
 						<Route path="/manage-class-of-user" component={ManageClassOfUser}/>
+						{/* Hồ sơ sau khi đăng kí */}
+						<Route path="/info-tutor" component={InfoTutor}/>
+						{/* Quản lý lời mời người dùng mời gia sư */}
+						<Route path="/manage-invite" component={ManageInvite}/>
+						{/* Quản lý lời đề nghị của gia sư dạy lớp */}
+						<Route path="/manage-offer" component={ManageOffer}/>
 					</main>
 					<Footer />
 				</div>

@@ -26,6 +26,16 @@ const ClassTutorApi = {
         }
         return result
 
-    }
+    },
+    getClassAndTutorByIdTutor:async (options) => {
+        options= MyUtils.clearBlank(options);
+        let result = await MyService.getRequestData("/class-tutor/class-tutor-by-idTutor", options);
+        return result
+    },
+    searchClassUser: async (options) => {
+        options= MyUtils.clearBlank(options);
+        let result = await MyService.getRequestData("/class-tutor/search-notification", options);
+        return result
+    },
 }
 export default ClassTutorApi;

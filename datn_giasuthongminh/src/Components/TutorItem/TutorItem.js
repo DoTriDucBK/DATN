@@ -4,6 +4,9 @@ import { Redirect } from 'react-router';
 import MyUtil from '../../utils/MyUtils';
 import { reactLocalStorage } from "reactjs-localstorage";
 import StarRatings from 'react-star-ratings';
+import { Modal, ModalBody } from 'reactstrap';
+import '../css/ModalCustome.css';
+import InfoNotLogin from '../Nav/InfoNotLogin';
 class TutorItem extends Component {
     constructor(props) {
         super(props);
@@ -16,7 +19,14 @@ class TutorItem extends Component {
             redirectListClassUser: false,
             idTutor: [this.props.idTutor],
             star:[this.props.star],
+            modalErr1:false,
         }
+        this.toggleErr1 = this.toggleErr1.bind(this);
+    }
+    toggleErr1() {
+        this.setState(prevState => ({
+            modalErr1: !prevState.modalErr1
+        }));
     }
     redirectPersonalPage = () => {
         this.setState({
@@ -30,9 +40,12 @@ class TutorItem extends Component {
         });
     }
     redirectListClassUser = () => {
+        if(!reactLocalStorage.getObject("home.is_login")){
+            this.toggleErr1();
+        }else{
         this.setState({
             redirectListClassUser: true
-        })
+        })}
     }
     render() {
         var userInfo = reactLocalStorage.getObject("user.info", null);
@@ -95,6 +108,13 @@ class TutorItem extends Component {
                         <button className="btn btn2" onClick={this.redirectListClassUser}>Mời dạy</button>
                     </div>
                 </div>
+                <Modal isOpen={this.state.modalErr1} toggle={this.toggleErr1} className={this.props.className}>
+
+                    <ModalBody>
+                        <InfoNotLogin />
+                    </ModalBody>
+
+                </Modal>
             </div>
         );
     }

@@ -45,8 +45,9 @@ class Login extends Component {
             else if (result && result.data) {
                 user = result.data;
                 reactLocalStorage.setObject("user.info", user);
-                reactLocalStorage.set("home.is_login", true);
-                this.props.handleLogin(user, true)
+                reactLocalStorage.setObject("home.is_login", true);
+                reactLocalStorage.set("type",this.state.type);
+                this.props.handleLogin(user, true,this.state.type)
             } else alert("Lỗi kết nối mạng");
 
             this.setState({

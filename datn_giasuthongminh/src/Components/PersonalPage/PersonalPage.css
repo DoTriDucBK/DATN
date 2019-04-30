@@ -1,14 +1,15 @@
 div.personal-container{
     width: 100%;
-    height: 1350px;
+    height: 1330px;
     padding-top: 80px;
     background-color: white;
 }
 div.main-personal{
     width: 95%;
-    height: 1150px;
+    height: 1120px;
     margin: auto;
     /* padding-top: 80px; */
+    max-height: 1330px;
 }
 div.left-personal{
     width: 23%;
@@ -279,4 +280,49 @@ div.line-lichday{
     height: 40px;
     border-bottom: 1px solid #0f9298;
     float: left;
+}
+div.class-teaching{
+    width: 90%;
+    height: 280px;
+    margin: auto; 
+    max-height: 500px;
+}
+div.info-class-teaching{
+    width: 100%;
+    height: 100px;
+    border-left: 3px solid #069D86;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+div.info-class-1{
+    width: 100%;
+    height: 25px;
+}
+div.info-class-1-left{
+    width: 29%;
+    height: 100%;
+    margin-right: 3%;
+    margin-left: 1%;
+    float: left;
+}
+div.info-class-1-center{
+    width: 30%;
+    height: 100%;
+    margin-right: 3%;
+    float: left;
+}
+div.info-class-1-right{
+    width: 30%;
+    height: 100%;
+    margin-right: 3%;
+    float: left;
+}
+p.info-class-1{
+    text-align: left;
+}
+div.info-class-2{
+    width: 99%;
+    height: 25px;
+    margin-top: 5px;
+    margin-left: 1%;
 }

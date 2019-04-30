@@ -35,7 +35,9 @@ class ManageInvite extends Component {
     showClass = () => {
         const classTutor = this.state.classTutor.map((item, index) =>
             <div className="result-element-class" key={index}>
-                <ClassInvite description={item.classInfo[0].description}
+                <ClassInvite idClassUser={item.idClass_User}
+                idClass = {item.classInfo[0].idClass}
+                 description={item.classInfo[0].description}
                     detailClass={item.classInfo[0].detailClass}
                     nameSubject={item.classInfo[0].nameSubject}
                     city={item.classInfo[0].nameCity}

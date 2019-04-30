@@ -26,6 +26,7 @@ import ManageClassOfUser from '../ManageClass/ManageClassOfUser';
 import InfoTutor from '../TutorProfile/InfoTutor';
 import ManageInvite from '../ManageInvite/ManageInvite';
 import ManageOffer from '../ManageInvite/ManageOffer';
+import Personal from '../PersonalPage/Personal';
 class App extends Component {
 	constructor(props) {
 		super(props)
@@ -88,6 +89,7 @@ class App extends Component {
 						<Route path="/manage-invite" component={ManageInvite}/>
 						{/* Quản lý lời đề nghị của gia sư dạy lớp */}
 						<Route path="/manage-offer" component={ManageOffer}/>
+						<Route path="/personal" component={Personal}/>
 					</main>
 					<Footer />
 				</div>

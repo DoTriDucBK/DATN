@@ -11,8 +11,8 @@ nav.nav-header{
   margin-right: 0px !important;
 }
 a.brand-custom{
-    width: 90px !important;
-    height: 60px !important;
+    width: 90px ;
+    height: 60px ;
 }
 nav ul.ul-nav{
     /* margin-left: 26px !important;  */
@@ -76,6 +76,9 @@ a.link{
 a.nav-link{
     color: black !important;
     margin-top: 7px !important;
+}
+a.custom-link{
+    margin-top: 0px !important;
 }
 a.nav-link:hover{
     color: white !important;
@@ -240,3 +243,239 @@ li.nav-item{
       color: red;
       font-weight: bold
   }
+  div.small-menu-dropdown{
+      width: 10%;
+      height: 35px;
+      position: relative;
+    display: inline-block;
+    display: none;
+  }
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content-small {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 180px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content-small label {
+    color: black;
+    padding-top: 12px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    margin-left: 15px;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content-small a:hover {background-color: #f1f1f1}
+  
+  /* Show the dropdown menu on hover */
+  .small-menu-dropdown:hover .dropdown-content-small {
+    display: block;
+  }
+  li.dropdown-content-item-small{
+      list-style: none;
+  }
+  ul.dropdown-content-info-small{
+      text-align: left;
+      display: inline;
+      margin-top: 0px !important;
+}
+  @media only screen and (max-width: 320px){
+    nav.nav-header{
+        height: 60px;
+        width: 100% !important;
+        padding:0px !important;
+    }
+    div.navbar-collapse-custom{
+        width: 0px;
+        height: 0px;
+        display: none;
+    }
+    a.brand-custom{
+        width: 20%;
+        height: 100%;
+    }
+    div.image-logo{
+        width: 100%;
+    height: 100%;
+    background: url('../../images/logo_bk.png') center center no-repeat;
+    background-size: cover;
+    }
+    form.form-search{
+        display: none;
+    }
+    ul.ul-custom{
+        display: none;
+    }
+    div.small-menu-dropdown{
+        display: inline-block;
+        margin-right: 5px;
+    }
+    li.dropdown-content-item-small label{
+        font-size: 14px;
+    }
+ }
+ @media only screen and (min-width: 321px) and (max-width: 375px){
+    nav.nav-header{
+        height: 60px;
+        width: 100%;
+        padding:0px !important;
+    }
+    div.navbar-collapse-custom{
+        width: 0px;
+        height: 0px;
+        display: none;
+    }
+    a.brand-custom{
+        width: 20%;
+        height: 100%;
+    }
+    div.image-logo{
+        width: 100%;
+    height: 100%;
+    background: url('../../images/logo_bk.png') center center no-repeat;
+    background-size: cover;
+    }
+    form.form-search{
+        display: none;
+    }
+    ul.ul-custom{
+        display: none;
+    }
+    div.small-menu-dropdown{
+        display: inline-block;
+        margin-right: 2%;
+    }
+    div.navbar-collapse-custom{
+        display: none;
+    }
+    .dropdown-content-small {
+        min-width: 200px;
+      }
+    li.dropdown-content-item-small label{
+        font-size: 14px;
+
+    }
+ }
+ @media only screen and (min-width: 376px) and (max-width: 425px){
+    nav.nav-header{
+        height: 60px;
+        width: 100% !important;
+        padding:0px !important;
+    }
+    div.navbar-collapse-custom{
+        width: 0px;
+        height: 0px;
+        display: none;
+    }
+    a.brand-custom{
+        width: 20%;
+        height: 100%;
+    }
+    div.image-logo{
+        width: 100%;
+    height: 100%;
+    background: url('../../images/logo_bk.png') center center no-repeat;
+    background-size: cover;
+    }
+    form.form-search{
+        display: none;
+    }
+    ul.ul-custom{
+        display: none;
+    }
+    div.small-menu-dropdown{
+        display: inline-block;
+        margin-right: 2%;
+    }
+    div.navbar-collapse-custom{
+        display: none;
+    }
+    .dropdown-content-small {
+        min-width: 200px;
+      }
+    li.dropdown-content-item-small label{
+        font-size: 14px;
+
+    }
+ }
+ @media only screen and (min-width:426px) and (max-width:768px){
+    nav.nav-header{
+        height: 60px;
+        width: 100% !important;
+        padding:0px !important;
+    }
+    div.navbar-collapse-custom{
+        width: 0px;
+        height: 0px;
+        display: none;
+    }
+    a.brand-custom{
+        width: 20%;
+        height: 100%;
+    }
+    div.image-logo{
+        width: 100%;
+    height: 100%;
+    background: url('../../images/logo_bk.png') center center no-repeat;
+    background-size: cover;
+    }
+    form.form-search{
+        display: none;
+    }
+    ul.ul-custom{
+        display: none;
+    }
+    div.small-menu-dropdown{
+        display: inline-block;
+        margin-right: 2%;
+    }
+    div.navbar-collapse-custom{
+        display: none;
+    }
+    .dropdown-content-small {
+        min-width: 200px;
+      }
+    li.dropdown-content-item-small label{
+        font-size: 14px;
+
+    }
+ }
+ @media only screen and (min-width:769px) and (max-width:1024px){
+    nav.nav-header{
+        height: 60px;
+        width: 100% !important;
+        padding:0px !important;
+    }
+    a.brand-custom{
+        width: 10%;
+        height: 100%;
+    }
+    div.image-logo{
+        width: 100%;
+    height: 100%;
+    background: url('../../images/logo_bk.png') center center no-repeat;
+    background-size: cover;
+    }
+    form.form-search{
+        width: 300px;
+        height: 40px;
+    }
+    input.search{
+        width: 260px;
+        height: 40px;
+    }
+    li.guide{
+        display: none;
+    }
+    li.become-tutor{
+        display: none;
+    }
+ }

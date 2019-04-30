@@ -36,5 +36,16 @@ const ClassInfoApi = {
         let result = await MyService.getRequestData("/class-info/search-class", options);
         return result
     },
+    editClassInfo: async ( data) =>{
+        var classInfo = null;
+        await MyService.postRequestData("/class-info/edit-class",data)
+            .then(result => {
+                console.log(result);
+                classInfo = result;
+            })
+            .catch(err => console.log(err));
+        console.log(classInfo)
+        return classInfo;
+    },
 }
 export default ClassInfoApi;

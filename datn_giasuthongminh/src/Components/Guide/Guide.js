@@ -34,9 +34,6 @@ class Guide extends Component {
                             </div>
                         </div>
                     </div>
-                    {/* <div className="btn-guide">
-                        <button className="btn-detail">Xem chi tiết</button>
-                    </div> */}
                 </div>
             </div>
         );

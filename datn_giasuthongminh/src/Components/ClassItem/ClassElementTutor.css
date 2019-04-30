@@ -1,0 +1,24 @@
+div.DaChapNhan{
+    width: 150px;
+    height: 40px;
+    border: 1px solid yellow;
+    border-radius: 5px;
+    background-color: #069D86;
+    margin: auto;
+    margin-top: 30%;
+}
+p.text-status{
+    color: yellow;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+div.DangYeuCau{
+    width: 150px;
+    height: 40px;
+    border: 1px solid yellow;
+    border-radius: 5px;
+    background-color: red;
+    margin: auto;
+    margin-top: 30%;
+}

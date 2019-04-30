@@ -8,7 +8,6 @@ div.listTutor-con{
     width: 90%;
     height: 650px;
     margin: auto;
-    
 }
 div.list-title{
     margin-top: 20px;
@@ -16,4 +15,30 @@ div.list-title{
 }
 div.list-title h1{
     color: #069d86;
+}
+@media only screen and (max-width: 320px){
+    div.listTutor-con{
+        display: none;
+    }
+
+}
+@media only screen and (min-width:321px) and (max-width:375px){
+    div.listTutor-con{
+        display: none;
+    }
+}
+@media only screen and (min-width:376px) and (max-width:425px){
+    div.listTutor-con{
+        display: none;
+    }
+}
+@media only screen and (min-width:426px) and (max-width:768px){
+    div.listTutor-con{
+        display: none;
+    }
+}
+@media only screen and (min-width:769px) and (max-width:1024px){
+    div.listTutor-con{
+        display: none;
+    }
 }

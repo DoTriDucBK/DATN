@@ -105,3 +105,116 @@ input.is_tutor{
     margin-left: 20px;
     margin-top: 10px;
 }
+@media only screen and (max-width:425px){
+    div.login-con{
+        width: 280px;
+        height: 380px;
+        margin: auto;
+        margin-top: 100px;
+        border-radius: 5px;
+        box-shadow: 0 0px 10px 0 rgba(31, 28, 38, 0.35); 
+        background-color: #EEEEEE;
+        overflow: auto;
+    }
+    
+    div.login-title{
+        width: 100%;
+        height: 40px;
+        margin-top: 30px;
+        margin: auto;
+    }
+    div.login-title p{
+        color: #0f9298;
+        font-size: 22px;
+        margin-top: 20px;
+        text-align: center;
+    }
+    div.login-username{
+        width: 88%;
+        height: 70px;
+        margin-top: 10px;
+        margin:auto;
+    }
+    div.login-username-title{
+        width: 100%;
+        height: 30px;
+    }
+    div.login-username-title p{
+        text-align: left;
+        font-size: 14px;
+    }
+    div.login-username input{
+        width: 100%;
+        height: 30px;
+        background: #D3D3D3;
+        margin-bottom: 6%;
+        font-family: 'Open Sans', sans-serif;
+        color: #676767;
+        font-size: 14px;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        border: 1px solid #DED6D6;
+        padding-left: 10px;
+    }
+    div.login-username input:hover{
+        border: 1px solid #676767;
+    }
+    div.login-btn{
+        width: 100%;
+        height: 40px;
+        margin-top: 25px;
+    }
+    div.login-btn button.btn-login{
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(to right, #0f959b, #064a50);
+        color: #fff;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        margin-left: 70px;
+    }
+    div.login-btn button.btn-login:hover{
+        background: linear-gradient(to right,#064a50, #0f959b);
+    }
+    div.log-sign{
+        width: 100%;
+        height: 20px;
+        margin-top: 25px;
+    }
+    div.log-sign p{
+        font-size: 14px;
+        margin-left:20px;
+    }
+    div.log-sign label:hover{
+        color: #0f9298;
+    }
+    div.is_tutor{
+        width: 90%;
+        height: 30px;
+        margin: auto;
+        margin-top: 12px;
+    }
+    div.is_tutor_left{
+        width: 20%;
+        height: 100%;
+        float: left;
+    }
+    label.is_tutor{
+        margin-left: 5px;
+        margin-top: 5px;
+        font-size: 14px;
+    }
+    div.is_tutor_right{
+        width: 70%;
+        height: 100%;
+        float: left;
+        font-size: 14px;
+    }
+    input.is_tutor{
+        margin-left: 20px;
+        margin-top: 10px;
+        font-size: 14px;
+    }
+}

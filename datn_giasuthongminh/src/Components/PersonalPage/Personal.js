@@ -5,11 +5,12 @@ import TutorAPI from '../../API/TutorAPI';
 import StarRatings from 'react-star-ratings';
 import ClassUserAPI from '../../API/ClassUserAPI';
 import ClassTutorApi from '../../API/ClassTutorAPI';
-class PersonalPage extends Component {
+import { reactLocalStorage } from 'reactjs-localstorage';
+class Personal extends Component {
     constructor(props){
         super(props);
         this.state = {
-            idTutor:this.props.location.state.idTutor,
+            idTutor:0,
             tutor:[],
             methodTeaching:"",
             monday: new Set(),
@@ -31,7 +32,7 @@ class PersonalPage extends Component {
         }
     }
     async componentDidMount(){
-        let listTutor = await TutorAPI.getTutorById(parseInt(this.props.location.state.idTutor));
+        let listTutor = await TutorAPI.getTutorByName(reactLocalStorage.getObject("user.info").userName);
         this.setState({
             tutor: listTutor.data,
             calMon:listTutor.data[0].monday,
@@ -40,7 +41,8 @@ class PersonalPage extends Component {
             calThu:listTutor.data[0].thursday,
             calFri:listTutor.data[0].friday,
             calSat:listTutor.data[0].saturday,
-            calSun:listTutor.data[0].sunday
+            calSun:listTutor.data[0].sunday,
+            idTutor:listTutor.data[0].idTutor
         })
         console.log(listTutor.data[0].methodTeaching)
         if(listTutor.data[0].methodTeaching === "0"){
@@ -254,7 +256,7 @@ class PersonalPage extends Component {
             })
         }
         var options = {
-            idTutor: parseInt(this.props.location.state.idTutor),
+            idTutor: listTutor.data[0].idTutor,
             notification:1
         }
         var list = await ClassUserAPI.getClassAndTutorByIdTutor(options).then(
@@ -594,4 +596,4 @@ class PersonalPage extends Component {
     }
 }
 
-export default PersonalPage;
+export default Personal;

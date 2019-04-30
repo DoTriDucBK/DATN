@@ -12,6 +12,7 @@ import UserApi from '../../API/UserAPI';
 import TutorApi from '../../API/TutorAPI';
 import ClassUserAPI from '../../API/ClassUserAPI';
 import ClassTutorAPI from '../../API/ClassTutorAPI';
+import UserShareClassAPI from '../../API/UserShareClassAPI';
 class Nav extends Component {
     constructor(props) {
         super(props);
@@ -27,9 +28,10 @@ class Nav extends Component {
             modalErr: false,
             userinfo: reactLocalStorage.getObject("user.info"),
             is_login: reactLocalStorage.getObject("home.is_login"),
-            type:reactLocalStorage.get("type"),
-            redirectManageClassOffer:false,
-            listInvite:[]
+            type: reactLocalStorage.get("type"),
+            redirectManageClassOffer: false,
+            listInvite: [],
+            listShare: []
         }
         this.toggle = this.toggle.bind(this);
         this.toggleSignin = this.toggleSignin.bind(this);
@@ -54,15 +56,15 @@ class Nav extends Component {
             modalErr: !prevState.modalErr
         }));
     }
-    async componentDidMount(){
-        if(this.state.type == "1"){
+    async componentDidMount() {
+        if (this.state.type == "1") {
             var tutor = await TutorApi.getTutorByName(reactLocalStorage.getObject("user.info").userName);
             var options = {
                 idTutor: tutor.data[0].idTutor,
-                notification:0,
-                is_seen:0
+                notification: 0,
+                is_seen: 0
             }
-    
+
             var list = await ClassUserAPI.searchClassUser(options).then(
                 listInvite => {
                     if (listInvite && listInvite.code === "success") {
@@ -74,11 +76,11 @@ class Nav extends Component {
                 }
             ).catch(err => console.log(err)
             )
-        }else if(this.state.type=="2"){
+        } else if (this.state.type == "2") {
             var options = {
                 idUser: reactLocalStorage.getObject("user.info").idUser,
-                notification:0,
-                is_seen:0
+                notification: 0,
+                is_seen: 0
             }
             var list = await ClassTutorAPI.searchClassUser(options).then(
                 listInvite => {
@@ -91,6 +93,23 @@ class Nav extends Component {
                 }
             ).catch(err => console.log(err)
             )
+            var option1 = {
+                idUserOfClass: reactLocalStorage.getObject("user.info").idUser,
+                notification: 0,
+                is_seen: 0
+            }
+            var listClass = await UserShareClassAPI.searchClassUser(option1).then(
+                listShareClass => {
+                    if (listShareClass && listShareClass.code === "success") {
+                        listClass = listShareClass.data;
+                        this.setState({
+                            listShare: listShareClass.data
+                        })
+                    } else if (listShareClass && listShareClass.code === "error") {
+                        alert(listShareClass.message)
+                    }
+                }
+            ).catch(err => console.log(err))
         }
     }
     // Lấy nội dung ô search khi thay đổi
@@ -102,8 +121,8 @@ class Nav extends Component {
         })
 
     };
-    handleLogin = (userinfo, is_login,type) => {
-        this.setState({ userinfo: userinfo, is_login: is_login, type:type })
+    handleLogin = (userinfo, is_login, type) => {
+        this.setState({ userinfo: userinfo, is_login: is_login, type: type })
     }
     // Bắt sự kiện cho button search
     // searchTutor = (e) => {
@@ -128,28 +147,33 @@ class Nav extends Component {
         this.setState({ redirectSearchTutor: true });
     }
     redirectManageClassOffer = () => {
-        this.setState({redirectManageClassOffer:true});
+        this.setState({ redirectManageClassOffer: true });
     }
     alertInfo = () => {
         alert("Nhập dữ liệu tìm kiếm đi ĐỒ NGỐC! Ahihi");
     }
     handleLogout = async () => {
+        console.log("Đưc");
         var result = await UserApi.logout();
         console.log(result)
         if (result) {
             reactLocalStorage.setObject("user.info", null);
             reactLocalStorage.setObject("home.is_login", false);
-            reactLocalStorage.setObject("type",0);
+            reactLocalStorage.setObject("type", 0);
             this.setState({
                 userinfo: null,
                 is_login: false,
-                type:0
+                type: 0
             })
         } else console.log("Lỗi kết nối mạng")
         // reactLocalStorage.set("home.is_login", true);
         // this.setState({
         //     redirectHome: true, 
         // })
+    }
+    calNumberShare = (a, b) => {
+        console.log(this.state.listShare.length)
+        return parseInt(a) + parseInt(b);
     }
     render() {
         var user_name = this.state.userinfo ? this.state.userinfo.userName : "";
@@ -160,14 +184,14 @@ class Nav extends Component {
             return <Redirect push to="/" />;
         } else if (this.state.redirectListClass) {
             return <Redirect push to="/listclass" />;
-        } else if (this.state.redirectManageClassOffer){
-            return <Redirect push to="/manage-offer"/>
+        } else if (this.state.redirectManageClassOffer) {
+            return <Redirect push to="/manage-offer" />
         }
         // else if(this.state.redirectSearchTutor){
         //     var textSearch = this.state.textSearch;
         //     return <Redirect  to={"/searchTutor/" + textSearch + ""}/>
         // }
-        return ( 
+        return (
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light nav-header">
                     <a className="navbar-brand brand-custom" href="#">
@@ -194,10 +218,10 @@ class Nav extends Component {
                             <li className="nav-item">
                                 <Link to="/listclass" className="nav-link">Lớp học</Link>
                             </li>
-                            <li className="nav-item">
+                            <li className="nav-item become-tutor">
                                 <Link to="/become-tutor" className="nav-link">Trở thành gia sư</Link>
                             </li>
-                            <li className="nav-item">
+                            <li className="nav-item guide">
                                 <Link to="/guide" className="nav-link">Xem hướng dẫn</Link>
                             </li>
                             {
@@ -205,13 +229,13 @@ class Nav extends Component {
                                     <div className="yes-login">
                                         <li className="nav-item">
                                             {reactLocalStorage.get("type") == "1" ?
-                                            <Link to="/manage-invite" className="nav-link loimoi">Lời mời<sup className="number-invite">&nbsp;{this.state.listInvite.length}</sup></Link>
-                                            :<Link to="/manage-offer" className="nav-link loimoi">Lời mời<sup className="number-invite">&nbsp;{this.state.listInvite.length}</sup></Link>}
+                                                <Link to="/manage-invite" className="nav-link loimoi">Lời mời<sup className="number-invite">&nbsp;{this.state.listInvite.length}</sup></Link>
+                                                : <Link to="/manage-offer" className="nav-link loimoi">Lời mời<sup className="number-invite">&nbsp;{this.calNumberShare(this.state.listInvite.length, this.state.listShare.length)}</sup></Link>}
                                         </li>
                                         <li className="nav-item li-item-user ">
                                             <div className="profile-user">
                                                 <div className="img-profile">
-                                                <img id="show_avatar" alt="ảnh đại diện" className="avatar2" src="https://d1plicc6iqzi9y.cloudfront.net/sites/all/themes/blacasa/images/default/default_user.png" />
+                                                    <img id="show_avatar" alt="ảnh đại diện" className="avatar2" src="https://d1plicc6iqzi9y.cloudfront.net/sites/all/themes/blacasa/images/default/default_user.png" />
                                                 </div>
                                                 <div className="user-profile">
                                                     <p className="user-profile">{user_name}</p>
@@ -223,13 +247,18 @@ class Nav extends Component {
                                             <label className="menu-dropdown dropbtn"><i className="fas fa-bars"></i></label>
                                             <div className="dropdown-content">
                                                 <ul className="dropdown-content-info">
-                                                    <li className="dropdown-item-title1">Chức năng gia sư</li>
-                                                    <li className="dropdown-content-item"><Link to="/listclass"> <label><i className="fas fa-school"></i>&nbsp;&nbsp;Xem danh sách lớp học</label></Link></li>
-                                                    <li className="dropdown-content-item"><Link to="/manage-offer"><label><i className="fas fa-graduation-cap"></i>&nbsp;Các đề nghị dạy đã gửi</label></Link></li>
-                                                    <li className="dropdown-content-item"> <Link to = "/tutor-profile"><label><i className="fas fa-tools"></i>&nbsp;&nbsp;Cập nhật hồ sơ gia sư</label></Link></li>
-                                                    <li className="dropdown-item-title">Chức năng học viên</li>
-                                                    <li className="dropdown-content-item"> <Link to="/manage-invitation"><label><i className="fas fa-tasks"></i>&nbsp;&nbsp;Quản lý các yêu cầu gia sư</label></Link></li>
-                                                    <li className="dropdown-content-item"> <Link to="/manage-class-of-user"><label><i className="fas fa-plus-circle"></i>&nbsp;Danh sách lớp đã đăng</label></Link></li>
+                                                    {reactLocalStorage.get("type") == "1" ?
+                                                        <div>
+                                                            <li className="dropdown-item-title1">Chức năng gia sư</li>
+                                                            <li className="dropdown-content-item"><Link to="/listclass"> <label><i className="fas fa-school"></i>&nbsp;&nbsp;Xem danh sách lớp học</label></Link></li>
+                                                            <li className="dropdown-content-item"><Link to="/manage-class"><label><i className="fas fa-graduation-cap"></i>&nbsp;Các đề nghị dạy đã gửi</label></Link></li>
+                                                            <li className="dropdown-content-item"> <Link to="/personal"><label><i className="fas fa-user-shield"></i>&nbsp;&nbsp;Trang cá nhân</label></Link></li>
+                                                            <li className="dropdown-content-item"> <Link to="/tutor-profile"><label><i className="fas fa-tools"></i>&nbsp;&nbsp;Cập nhật hồ sơ gia sư</label></Link></li>
+                                                        </div> : <div>
+                                                            <li className="dropdown-item-title">Chức năng học viên</li>
+                                                            <li className="dropdown-content-item"> <Link to="/manage-invitation"><label><i className="fas fa-tasks"></i>&nbsp;&nbsp;Quản lý các yêu cầu gia sư</label></Link></li>
+                                                            <li className="dropdown-content-item"> <Link to="/manage-class-of-user"><label><i className="fas fa-plus-circle"></i>&nbsp;Danh sách lớp đã đăng</label></Link></li>
+                                                        </div>}
                                                     <li className="dropdown-item-title">Chức năng cá nhân</li>
                                                     <li className="dropdown-content-item"> <label><i className="fas fa-unlock-alt"></i>&nbsp;Đổi mật khẩu</label></li>
                                                     <li className="dropdown-content-item" onClick={this.handleLogout}> <label><i className="fas fa-sign-out-alt"></i>&nbsp;Đăng xuất</label></li>
@@ -252,20 +281,30 @@ class Nav extends Component {
 
                             {/*  */}
                         </ul>
-
+                        
                     </div>
+                    <div className="small-menu-dropdown">
+                            <label className="menu-dropdown dropbtn"><i className="fas fa-bars"></i></label>
+                            <div className="dropdown-content-small">
+                            <ul className="dropdown-content-info-small">
+                                    <li className="dropdown-content-item-small"><Link to="/"> <label><i className="fas fa-school"></i>&nbsp;&nbsp;Trang chủ</label></Link></li>
+                                    <li className="dropdown-content-item-small"><Link to="/listclass"><label><i className="fas fa-graduation-cap"></i>&nbsp;Danh sách lớp học</label></Link></li>
+                                    <li className="dropdown-content-item-small" onClick={this.toggle}> <Link to=""><label><i className="fas fa-user-shield"></i>&nbsp;&nbsp;Đăng nhập</label></Link></li>
+                                    </ul>
+                            </div>
+                        </div>
                 </nav>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
 
                     <ModalBody>
-                        <Login toggle={this.toggle} handleLogin={this.handleLogin} handleLogin2 = {this.handleLogin2}/>
+                        <Login toggle={this.toggle} handleLogin={this.handleLogin} handleLogin2={this.handleLogin2} />
                     </ModalBody>
 
                 </Modal>
                 <Modal isOpen={this.state.modalSignin} toggle={this.toggleSignin} className={this.props.className}>
 
                     <ModalBody>
-                        <Signin toggleSignin = {this.toggleSignin}/>
+                        <Signin toggleSignin={this.toggleSignin} />
                     </ModalBody>
 
                 </Modal>

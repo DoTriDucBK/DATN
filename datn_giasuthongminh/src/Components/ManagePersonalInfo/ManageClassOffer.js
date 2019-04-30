@@ -2,15 +2,45 @@ import React, { Component } from 'react';
 import './ManageClassOffer.css';
 import ClassElement from '../ClassItem/ClassElement';
 import ClassElementTutor from '../ClassItem/ClassElementTutor';
+import { reactLocalStorage } from 'reactjs-localstorage';
+import ClassTutorAPI from '../../API/ClassTutorAPI';
 class ManageClassOffer extends Component {
     constructor(props){
         super(props);
         this.state= {
-            idTutor: this.props.location.state.idTutor
+            idTutor: reactLocalStorage.getObject("user.info").idTutor,
+            listClassTutor:[]
         }
     }
     async componentDidMount(){
-        
+        var options = {
+            idTutor: this.state.idTutor
+        }
+        var listClassTutor = await ClassTutorAPI.getClassAndTutorByIdTutor(options);
+        this.setState({
+            listClassTutor:listClassTutor.data
+        })
+    }
+    show_listClassTutor = () => {
+        const listClass = this.state.listClassTutor.map((item, index) =>
+            <div className="result-element-class" key={index}>
+                <ClassElementTutor description={item.classInfo[0].description}
+                idClassTutor={item.idClass_Tutor}
+                idClass = {item.idClass}
+                status = {item.status}
+                    detailClass={item.classInfo[0].detailClass}
+                    nameSubject={item.classInfo[0].nameSubject}
+                    city={item.classInfo[0].nameCity}
+                    typeMethod={item.classInfo[0].typeMethod}
+                    numberDay={item.classInfo[0].numberDay}
+                    fee={item.classInfo[0].fee}
+                    nameTutor={item.tutor[0].nameTutor}
+                    telTutor={item.tutor[0].telTutor}
+                    emailTutor={item.tutor[0].emailTutor} />
+            </div>
+        ); 
+        console.log(this.state);
+        return listClass;
     }
     render() {
         return (
@@ -48,15 +78,7 @@ class ManageClassOffer extends Component {
                         <p className="manage4">Trạng thái</p>
                     </div>
                 </div>
-                <div className="result-element-class">
-                    <ClassElementTutor />
-                </div>
-                <div className="result-element-class">
-                    <ClassElementTutor />
-                </div>
-                <div className="result-element-class">
-                    <ClassElementTutor />
-                </div>
+                {this.show_listClassTutor()}
             </div>
 
         );

@@ -76,21 +76,321 @@ div.title-guide p{
     font-size: 23px;
     color: black;
 }
-/* div.btn-guide{
-    width: 100%;
-    height: 50px;
-    margin-top: 10px;
-} */
-/* button.btn-detail{
-    width: 20%;
-    height: 100%;
-    background: linear-gradient(to right, #0f959b, #064a50);
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-}
 
-button.btn-detail:hover{
-    background: linear-gradient(to right,#064a50, #0f959b );
-} */
+@media only screen and (max-width: 320px){
+    div.guide-con{
+        width: 100%;
+        height: 500px;
+        margin-top: 20px;
+    }
+    div.guide-123{
+        width: 80%;
+        height: 100%;
+        margin: auto;
+    }
+    div.guide-name{
+        width: 100%;
+        height: 40px;
+    }
+    div.guide-name h1{
+        color: #069d86;
+        font-size: 22px;
+    }
+    div.guide-top{
+        width: 100%;
+        height: 700px;
+        margin-top: 10px;
+    }
+    div.guide-part{
+        width: 90%;
+        height: 32%;
+        margin-left: 4%;
+        margin-top: 0px;
+    }
+    div.img-guide1{
+        width: 150px;
+        height: 150px;
+        margin: auto;
+        border-radius: 50%;
+        background-image: url('../../images/step1.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+    }
+    div.img-guide1:hover{
+        transform: scale(1.1);
+     }
+    div.img-guide2{
+        width: 150px;
+        height: 150px;
+        margin: auto;
+        border-radius: 50%;
+        background-image: url('../../images/step2.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+    }
+    div.img-guide2:hover{
+        transform: scale(1.1);
+     }
+    div.img-guide3{
+        width: 150px;
+        height: 150px;
+        margin: auto;
+        border-radius: 50%;
+        background-image: url('../../images/step3.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+    }
+    div.img-guide3:hover{
+       transform: scale(1.1);
+    }
+    div.title-guide{
+        width: 100%;
+        height: 100%;
+        margin-top: 0px;
+    }
+    div.title-guide p{
+        font-size: 14px;
+    }
+}
+@media only screen and (min-width: 321px) and (max-width:375px){
+    div.guide-con{
+        width: 100%;
+        height: 750px;
+        margin-top: 20px;
+    }
+    div.guide-123{
+        width: 80%;
+        height: 100%;
+        margin: auto;
+    }
+    div.guide-name{
+        width: 100%;
+        height: 40px;
+    }
+    div.guide-name h1{
+        color: #069d86;
+        font-size: 24px;
+    }
+    div.guide-top{
+        width: 100%;
+        height: 700px;
+        margin-top: 10px;
+    }
+    div.guide-part{
+        width: 90%;
+        height: 32%;
+        margin-left: 4%;
+        margin-top: 0px;
+    }
+    div.img-guide1{
+        width: 200px;
+        height: 200px;
+        margin: auto;
+        border-radius: 50%;
+        background-image: url('../../images/step1.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+    }
+    div.img-guide1:hover{
+        transform: scale(1.1);
+     }
+    div.img-guide2{
+        width: 200px;
+        height: 200px;
+        margin: auto;
+        border-radius: 50%;
+        background-image: url('../../images/step2.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        margin-top: 10px;
+    }
+    div.img-guide2:hover{
+        transform: scale(1.1);
+     }
+    div.img-guide3{
+        width: 200px;
+        height: 200px;
+        margin: auto;
+        border-radius: 50%;
+        background-image: url('../../images/step3.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        margin-top:10px;
+    }
+    div.img-guide3:hover{
+       transform: scale(1.1);
+    }
+    div.title-guide{
+        width: 100%;
+        height: 100%;
+        margin-top: 0px;
+    }
+    div.title-guide p{
+        font-size: 16px;
+    }
+}
+@media only screen and (min-width: 376px) and (max-width:425px){
+    div.guide-con{
+        width: 100%;
+        height: 750px;
+        margin-top: 20px;
+    }
+    div.guide-123{
+        width: 80%;
+        height: 100%;
+        margin: auto;
+    }
+    div.guide-name{
+        width: 100%;
+        height: 40px;
+    }
+    div.guide-name h1{
+        color: #069d86;
+        font-size: 24px;
+    }
+    div.guide-top{
+        width: 100%;
+        height: 700px;
+        margin-top: 10px;
+    }
+    div.guide-part{
+        width: 90%;
+        height: 32%;
+        margin-left: 4%;
+        margin-top: 0px;
+    }
+    div.img-guide1{
+        width: 200px;
+        height: 200px;
+        margin: auto;
+        border-radius: 50%;
+        background-image: url('../../images/step1.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+    }
+    div.img-guide1:hover{
+        transform: scale(1.1);
+     }
+    div.img-guide2{
+        width: 200px;
+        height: 200px;
+        margin: auto;
+        border-radius: 50%;
+        background-image: url('../../images/step2.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        margin-top: 10px;
+    }
+    div.img-guide2:hover{
+        transform: scale(1.1);
+     }
+    div.img-guide3{
+        width: 200px;
+        height: 200px;
+        margin: auto;
+        border-radius: 50%;
+        background-image: url('../../images/step3.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        margin-top:10px;
+    }
+    div.img-guide3:hover{
+       transform: scale(1.1);
+    }
+    div.title-guide{
+        width: 100%;
+        height: 100%;
+        margin-top: 0px;
+    }
+    div.title-guide p{
+        font-size: 16px;
+    }
+}
+@media only screen and (min-width:426px) and (max-width:768px){
+    div.guide-con{
+        width: 100%;
+        height: 500px;
+        margin-top: 40px;
+        background-color: white;
+    }
+    div.guide-123{
+        width: 90%;
+        height: 100%;
+        margin: auto;
+    }
+    div.guide-name{
+        width: 100%;
+        height: 20px;
+    }
+    div.guide-name h1{
+        color: #069d86;
+    }
+    div.guide-top{
+        width: 100%;
+        height: 340px;
+        margin-top: 55px;
+    }
+    div.guide-part{
+        width: 28%;
+        height: 100%;
+        float: left;
+        margin-top: 15px;
+    }
+    div.img-guide1{
+        width: 220px;
+        height: 220px;
+        margin: auto;
+        border-radius: 50%;
+        background-image: url('../../images/step1.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+    }
+    div.img-guide1:hover{
+        transform: scale(1.1);
+     }
+    div.img-guide2{
+        width: 220px;
+        height: 220px;
+        margin: auto;
+        border-radius: 50%;
+        background-image: url('../../images/step2.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+    }
+    div.img-guide2:hover{
+        transform: scale(1.1);
+     }
+    div.img-guide3{
+        width: 220px;
+        height: 220px;
+        margin: auto;
+        border-radius: 50%;
+        background-image: url('../../images/step3.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+    }
+    div.img-guide3:hover{
+       transform: scale(1.1);
+    }
+    div.title-guide{
+        width: 100%;
+        height: 15%;
+        margin-top: 25px;
+    }
+    div.title-guide p{
+        font-size: 20px;
+        color: black;
+    }
+}

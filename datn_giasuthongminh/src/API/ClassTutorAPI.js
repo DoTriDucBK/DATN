@@ -15,6 +15,10 @@ const ClassTutorApi = {
         let result = await MyService.getRequestData("/class-tutor/class-id", { "idUser": id });
         return result
     },
+    getClassByIdTutor: async (id) => {
+        let result = await MyService.getRequestData("/class-tutor/class-idTutor", { "idTutor": id });
+        return result
+    },
     createClassTutor: async (data) => {
         console.log(data, "??????????????")
         var result = null;
@@ -36,6 +40,17 @@ const ClassTutorApi = {
         options= MyUtils.clearBlank(options);
         let result = await MyService.getRequestData("/class-tutor/search-notification", options);
         return result
+    },
+    editClassTutor: async ( data) =>{
+        var classTutor = null;
+        await MyService.postRequestData("/class-tutor/edit-classTutor",data)
+            .then(result => {
+                console.log(result);
+                classTutor = result;
+            })
+            .catch(err => console.log(err));
+        console.log(classTutor)
+        return classTutor;
     },
 }
 export default ClassTutorApi;

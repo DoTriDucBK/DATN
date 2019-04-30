@@ -156,7 +156,7 @@ class ListClass extends Component {
                     </div>
                     <div className="select-result-searchClass">
                         <div className="select-searchClass">
-                            <select required="" className="select-searchClass" name="city" onChange={this.handleChangeSearch}>
+                            <select required="" className="select-searchClass city" name="city" onChange={this.handleChangeSearch}>
                                 <option value="" className="opt-searchClass">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--Tỉnh thành--</option>
                                 <optgroup label="Địa điểm phổ biến">
                                     <option value="Hà Nội">Hà Nội</option>
@@ -254,18 +254,18 @@ class ListClass extends Component {
                                     <option value="Ngành nghề khác">Ngành nghề khác</option>
                                 </optgroup>
                             </select>
-                            <select required="" className="select-searchClass" name="method" onChange={this.handleChangeSearch}>
+                            <select required="" className="select-searchClass method" name="method" onChange={this.handleChangeSearch}>
                                 <option value="" className="opt-searchClass">&nbsp;&nbsp;&nbsp;&nbsp;--Hình thức dạy--</option>
                                 <option value="Online">Online</option>
                                 <option value="Offline">Offline (Tại nhà)</option>
                                 <option value="both">Cả 2 hình thức</option>
                             </select>
-                            <select required="" className="select-searchClass"name="doubleClass" onChange={this.handleChangeSearch}>
+                            <select required="" className="select-searchClass doubleClass"name="doubleClass" onChange={this.handleChangeSearch}>
                                 <option value="" className="opt-searchClass">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--Học ghép--</option>
                                 <option value="Có">Có</option>
                                 <option value="Không">Không</option>
                             </select>
-                            <select required="" className="select-searchClass" name="status" onChange={this.handleChangeSearch}>
+                            <select required="" className="select-searchClass status" name="status" onChange={this.handleChangeSearch}>
                                 <option value="" className="opt-searchClass">&nbsp;--Trạng thái--</option>
                                 <option value="Chưa nhận lớp">Chưa nhận lớp</option>
                                 <option value="Đã nhận lớp">Đã nhận lớp</option>

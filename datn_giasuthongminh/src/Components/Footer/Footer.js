@@ -12,7 +12,7 @@ class Footer extends Component {
                         <h5 className="title-footer">Liên lạc</h5>
                         <p className="title-footer"><i className="fas fa-phone"></i>&nbsp;Điện thoại: 0965143540</p>
                         <p className="title-footer"><i className="fas fa-map-marker-alt"></i>&nbsp;Địa chỉ: 7, Tạ Quang Bửu, Hà Nội.</p>
-                        <p className="title-footer"><i className="fas fa-envelope"></i>&nbsp;Email: dotriduc26071996@gmail.com</p>
+                        <p className="title-footer email"><i className="fas fa-envelope"></i>&nbsp;Email: dotriduc26071996@gmail.com</p>
                     </div>
                     <div className="value-footer1">
                         <h5 className="title-footer">Dịch vụ</h5>

@@ -2,6 +2,14 @@ const MyUtils = {
     currencyFormat: function (currency) {
         return currency.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
     },
+    calculateFeeShare(numberStudentNow, feeNow){
+        if(numberStudentNow === 1){
+            return 2 * parseInt(feeNow) * 0.8;
+        }
+        if(numberStudentNow === 2){
+            return 3 * parseInt(feeNow) * 0.7;
+        }
+    },
     calculateFee: function (numberDay, fee) {
         return parseInt(numberDay) * parseInt(fee) * 4;
     },

@@ -1,7 +1,80 @@
 import React, { Component } from 'react';
 import './ClassInvite.css';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
+import ClassUserAPI from '../../API/ClassUserAPI';
+import ClassInfoAPI from '../../API/ClassInfoAPI';
+import {Redirect} from 'react-router-dom';
 class ClassInvite extends Component {
+    constructor(props){
+        super(props);
+        this.state={
+            open:false,
+            redirectHome:false
+        }
+    }
+    handleClose = async () => {
+        var data = {
+            idClass_User: this.props.idClassUser,
+            notification:0,
+            is_seen:1
+        }
+        // console.log("1111111111  " , data);
+        var classUser = await ClassUserAPI.editClassUser(data).then(result => {
+            if (result && result.code === "success") {
+                classUser = result.data;
+            } else if (result.code === "error") {
+                alert(result.message)
+            }
+        })
+        .catch(err => console.log(err));
+        this.setState({ open: false,
+            redirectHome:true
+        });
+    };
+    handleYes = async () => {
+        var data1 = {
+            idClass_User: this.props.idClassUser,
+            notification:1,
+            is_seen:1
+        }
+        var classUser = await ClassUserAPI.editClassUser(data1).then(result => {
+            if (result && result.code === "success") {
+                classUser = result.data;
+            } else if (result.code === "error") {
+                alert(result.message)
+            }
+        })
+        .catch(err => console.log(err));
+        var data2 = {
+            idClass:this.props.idClass,
+            status:"Đã nhận lớp"
+        }
+        var classInfo = await ClassInfoAPI.editClassInfo(data2).then(result => {
+            if(result && result.code === "success"){
+                classInfo = result.data
+            }else if(result.code === "error"){
+                alert(result.message)
+            }
+        }).catch(err =>console.log(err));
+        this.setState({
+            open:false,
+            redirectHome:true
+        })
+    }
+    onClickReply =() => {
+        this.setState({
+            open:true
+        })
+    }
     render() {
+        if(this.state.redirectHome){
+            return <Redirect push to="/"/>
+        }
         return (
             <div className="classInvite-con">
                 <div className="img-logoBK-invite">
@@ -38,8 +111,28 @@ class ClassInvite extends Component {
                     </div>
                 </div>
                 <div className="class-offer-invite">
-                   <button className="btn-reply">Phản hồi</button>
+                   <button className="btn-reply" onClick={this.onClickReply}>Trả lời
+                   </button>
                 </div>
+                <Dialog
+                    open={this.state.open}
+                    onClose={this.handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle id="alert-dialog-title">{"Bạn có đồng ý nhận lời dạy lớp?"}</DialogTitle>
+                    <DialogContent id="alert-dialog-description">
+                        
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={this.handleClose} color="primary">
+                            Từ chối
+            </Button>
+                        <Button onClick={this.handleYes} color="primary" autoFocus>
+                            Đồng ý
+            </Button>
+                    </DialogActions>
+                </Dialog>
             </div>
         );
     }

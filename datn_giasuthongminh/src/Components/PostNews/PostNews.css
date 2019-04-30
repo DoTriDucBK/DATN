@@ -115,3 +115,437 @@ button.btn-post{
 button.btn-post:hover{
     background: linear-gradient(to right,#064a50, #0f959b );
 }
+@media only screen and (max-width: 320px){
+    div.post-container{
+        width: 100% !important;
+        height: 400px;
+        background-image: url('../../images/bg.png'); 
+        background-size: cover;
+        padding-top: 70px;
+    }
+    div.left{
+        width: 0%;
+        margin-left: 0%;
+        height: 100%;
+        float: left;
+    } 
+    div.right{
+        width: 90%;
+        height: 90%;
+        float: left; 
+        margin-left: 5%;
+        margin-top: 5%;
+    }
+    p.text-post{
+        margin-top: 30px;
+        color: #0C7C82;
+        font-size: 18px;
+    }
+    div.title{
+        height: 32px;
+        color: black;
+        font-size: 14px;
+        text-align: left;
+        margin-left: 5%;
+        margin-top: 5px;
+    }
+    div.title2{
+        height: 32px;
+        color: black;
+        font-size: 14px;
+        text-align: left;
+        margin-left: 5%;
+        margin-top: 10px;
+    }
+    div.input-subject{
+        width: 90%;
+        height: 30px;
+        border: 1px solid #bcbcbc;
+        margin-left: 5%;
+        border-radius: 5px;
+        position: relative;
+        font-size: 14px;
+    } 
+    select.dropdown{
+        width: 88%;
+        height: 100%;
+        border: none;
+        background: none;
+    } 
+    option.opt{
+        margin-left: 10px;
+    }
+    div.icon1{
+        width: 0%;
+        height: 0px;
+        float: left;
+        margin-left: 0%;
+        margin-top: 2%;
+        background-image: url('../../images/icon-book.png');
+    }
+    
+    div.city{
+        width: 90%;
+        height: 30px;
+        border: 1px solid #bcbcbc;
+        margin-left: 5%;
+        border-radius: 5px;
+    }
+    div.city input{
+        width:90%;
+        height: 100%;
+        border: none;
+        background: none;
+        color: black;
+        float: left;
+        margin-left: 2%;
+        font-size: 14px;
+    }
+    div.icon3{
+        width: 0%;
+        height: 0px;
+        float: left;
+        /* margin-left: 2%; */
+        margin-top: 2%;
+        background-image: url('../../images/city.png');
+    }
+    div.btn-post{
+        width: 100%;
+        height: 12%;
+        margin-top: 25px;
+    }
+    button.btn-post{
+        width: 55%;
+        height: 100%;
+        background: linear-gradient(to right, #0f959b, #064a50);
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+}
+@media only screen and (min-width: 321px) and (max-width: 375px){
+    div.post-container{
+        width: 100% !important;
+        height: 400px;
+        background-image: url('../../images/bg.png'); 
+        background-size: cover;
+        padding-top: 70px;
+    }
+    div.left{
+        width: 0%;
+        margin-left: 0%;
+        height: 100%;
+        float: left;
+    } 
+    div.right{
+        width: 90%;
+        height: 90%;
+        float: left; 
+        margin-left: 5%;
+        margin-top: 5%;
+    }
+    p.text-post{
+        margin-top: 30px;
+        color: #0C7C82;
+        font-size: 18px;
+    }
+    div.title{
+        height: 32px;
+        color: black;
+        font-size: 14px;
+        text-align: left;
+        margin-left: 5%;
+        margin-top: 5px;
+    }
+    div.title2{
+        height: 32px;
+        color: black;
+        font-size: 14px;
+        text-align: left;
+        margin-left: 5%;
+        margin-top: 10px;
+    }
+    div.input-subject{
+        width: 90%;
+        height: 30px;
+        border: 1px solid #bcbcbc;
+        margin-left: 5%;
+        border-radius: 5px;
+        position: relative;
+        font-size: 14px;
+    } 
+    select.dropdown{
+        width: 88%;
+        height: 100%;
+        border: none;
+        background: none;
+    } 
+    option.opt{
+        margin-left: 10px;
+    }
+    div.icon1{
+        width: 0%;
+        height: 0px;
+        float: left;
+        margin-left: 0%;
+        margin-top: 2%;
+        background-image: url('../../images/icon-book.png');
+    }
+    
+    div.city{
+        width: 90%;
+        height: 30px;
+        border: 1px solid #bcbcbc;
+        margin-left: 5%;
+        border-radius: 5px;
+    }
+    div.city input{
+        width:90%;
+        height: 100%;
+        border: none;
+        background: none;
+        color: black;
+        float: left;
+        margin-left: 2%;
+        font-size: 14px;
+    }
+    div.icon3{
+        width: 0%;
+        height: 0px;
+        float: left;
+        /* margin-left: 2%; */
+        margin-top: 2%;
+        background-image: url('../../images/city.png');
+    }
+    div.btn-post{
+        width: 100%;
+        height: 12%;
+        margin-top: 25px;
+    }
+    button.btn-post{
+        width: 55%;
+        height: 100%;
+        background: linear-gradient(to right, #0f959b, #064a50);
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+}
+@media only screen and (min-width: 376px) and (max-width: 425px){
+    div.post-container{
+        width: 100%;
+        height: 400px;
+        background-image: url('../../images/bg.png'); 
+        background-size: cover;
+        padding-top: 70px;
+    }
+    div.left{
+        width: 0%;
+        margin-left: 0%;
+        height: 100%;
+        float: left;
+    } 
+    div.right{
+        width: 90%;
+        height: 90%;
+        float: left; 
+        margin-left: 5%;
+        margin-top: 5%;
+    }
+    p.text-post{
+        margin-top: 30px;
+        color: #0C7C82;
+        font-size: 18px;
+    }
+    div.title{
+        height: 32px;
+        color: black;
+        font-size: 14px;
+        text-align: left;
+        margin-left: 5%;
+        margin-top: 5px;
+    }
+    div.title2{
+        height: 32px;
+        color: black;
+        font-size: 14px;
+        text-align: left;
+        margin-left: 5%;
+        margin-top: 10px;
+    }
+    div.input-subject{
+        width: 90%;
+        height: 30px;
+        border: 1px solid #bcbcbc;
+        margin-left: 5%;
+        border-radius: 5px;
+        position: relative;
+        font-size: 14px;
+    } 
+    select.dropdown{
+        width: 88%;
+        height: 100%;
+        border: none;
+        background: none;
+    } 
+    option.opt{
+        margin-left: 10px;
+    }
+    div.icon1{
+        width: 0%;
+        height: 0px;
+        float: left;
+        margin-left: 0%;
+        margin-top: 2%;
+        background-image: url('../../images/icon-book.png');
+    }
+    
+    div.city{
+        width: 90%;
+        height: 30px;
+        border: 1px solid #bcbcbc;
+        margin-left: 5%;
+        border-radius: 5px;
+    }
+    div.city input{
+        width:90%;
+        height: 100%;
+        border: none;
+        background: none;
+        color: black;
+        float: left;
+        margin-left: 2%;
+        font-size: 14px;
+    }
+    div.icon3{
+        width: 0%;
+        height: 0px;
+        float: left;
+        /* margin-left: 2%; */
+        margin-top: 2%;
+        background-image: url('../../images/city.png');
+    }
+    div.btn-post{
+        width: 100%;
+        height: 12%;
+        margin-top: 25px;
+    }
+    button.btn-post{
+        width: 55%;
+        height: 100%;
+        background: linear-gradient(to right, #0f959b, #064a50);
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+}
+@media only screen and (min-width: 426px) and (max-width: 768px){
+    div.post-container{
+        width: 100%;
+        height: 400px;
+        background-image: url('../../images/bg.png'); 
+        background-size: cover;
+        padding-top: 70px;
+    }
+    div.left{
+        width: 10%;
+        height: 100%;
+        float: left;
+    } 
+    div.right{
+        width: 60%;
+        height: 90%;
+        float: left; 
+        margin-top: 3%;
+    }
+    p.text-post{
+        margin-top: 30px;
+        color: #0C7C82;
+        font-size: 18px;
+    }
+    div.title{
+        height: 32px;
+        color: black;
+        font-size: 14px;
+        text-align: left;
+        margin-left: 5%;
+        margin-top: 5px;
+    }
+    div.title2{
+        height: 32px;
+        color: black;
+        font-size: 14px;
+        text-align: left;
+        margin-left: 5%;
+        margin-top: 10px;
+    }
+    div.input-subject{
+        width: 90%;
+        height: 30px;
+        border: 1px solid #bcbcbc;
+        margin-left: 5%;
+        border-radius: 5px;
+        position: relative;
+        font-size: 14px;
+    } 
+    select.dropdown{
+        width: 88%;
+        height: 100%;
+        border: none;
+        background: none;
+    } 
+    option.opt{
+        margin-left: 10px;
+    }
+    div.icon1{
+        width: 0%;
+        height: 0px;
+        float: left;
+        margin-left: 0%;
+        margin-top: 2%;
+        background-image: url('../../images/icon-book.png');
+    }
+    
+    div.city{
+        width: 90%;
+        height: 30px;
+        border: 1px solid #bcbcbc;
+        margin-left: 5%;
+        border-radius: 5px;
+    }
+    div.city input{
+        width:90%;
+        height: 100%;
+        border: none;
+        background: none;
+        color: black;
+        float: left;
+        margin-left: 2%;
+        font-size: 14px;
+    }
+    div.icon3{
+        width: 0%;
+        height: 0px;
+        float: left;
+        /* margin-left: 2%; */
+        margin-top: 2%;
+        background-image: url('../../images/city.png');
+    }
+    div.btn-post{
+        width: 100%;
+        height: 12%;
+        margin-top: 25px;
+    }
+    button.btn-post{
+        width: 55%;
+        height: 100%;
+        background: linear-gradient(to right, #0f959b, #064a50);
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+}

@@ -6,11 +6,11 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
-import ClassUserAPI from '../../API/ClassUserAPI';
-import ClassTutorAPI from '../../API/ClassTutorAPI';
+import UserShareClassAPI from '../../API/UserShareClassAPI';
 import ClassInfoAPI from '../../API/ClassInfoAPI';
 import {Redirect} from 'react-router-dom';
-class ClassOffer extends Component {
+import MyUtils from '../../utils/MyUtils';
+class ClassShare extends Component {
     constructor(props){
         super(props);
         this.state={
@@ -20,14 +20,14 @@ class ClassOffer extends Component {
     }
     handleClose = async () => {
         var data = {
-            idClass_Tutor: this.props.idClassTutor,
+            idUserUser: this.props.idUserUser,
             notification:0,
             is_seen:1
         }
         // console.log("1111111111  " , data);
-        var classTutor = await ClassTutorAPI.editClassTutor(data).then(result => {
+        var userShare = await UserShareClassAPI.editClassUser(data).then(result => {
             if (result && result.code === "success") {
-                classTutor = result.data;
+                userShare = result.data;
             } else if (result.code === "error") {
                 alert(result.message)
             }
@@ -39,14 +39,13 @@ class ClassOffer extends Component {
     };
     handleYes = async () => {
         var data1 = {
-            idClass_Tutor: this.props.idClassTutor,
+            idUserUser: this.props.idUserUser,
             notification:1,
-            is_seen:1,
-            status:1
+            is_seen:1
         }
-        var classTutor = await ClassTutorAPI.editClassTutor(data1).then(result => {
+        var userShare = await UserShareClassAPI.editClassUser(data1).then(result => {
             if (result && result.code === "success") {
-                classTutor = result.data;
+                userShare = result.data;
             } else if (result.code === "error") {
                 alert(result.message)
             }
@@ -54,7 +53,8 @@ class ClassOffer extends Component {
         .catch(err => console.log(err));
         var data2 = {
             idClass:this.props.idClass,
-            status:"Đã nhận lớp"
+            numberStudent: parseInt(this.props.numberStudent) + 1,
+            fee: MyUtils.calculateFeeShare(this.props.numberStudent, this.props.fee)
         }
         var classInfo = await ClassInfoAPI.editClassInfo(data2).then(result => {
             if(result && result.code === "success"){
@@ -103,13 +103,13 @@ class ClassOffer extends Component {
                 </div>
                 <div className="class-fee-invite">
                     <div className="name-person-of-invite">
-                        <p className="name-person-of-invite"><label className="name-person-of-invite"><i className="fas fa-user"></i></label>&nbsp;{this.props.nameTutor}</p>
+                        <p className="name-person-of-invite"><label className="name-person-of-invite"><i className="fas fa-user"></i></label>&nbsp;{this.props.userName}</p>
                     </div>
                     <div className="name-person-of-invite">
-                        <p className="name-person-of-invite"><label className="name-person-of-invite"><i className="fas fa-phone-square"></i></label>&nbsp;{this.props.telTutor}</p>
+                        <p className="name-person-of-invite"><label className="name-person-of-invite"><i className="fas fa-phone-square"></i></label>&nbsp;{this.props.telUser}</p>
                     </div>
                     <div className="name-person-of-invite">
-                        <p className="name-person-of-invite"><label className="name-person-of-invite"><i className="fas fa-envelope-square"></i></label>&nbsp;{this.props.emailTutor}</p>
+                        <p className="name-person-of-invite"><label className="name-person-of-invite"><i className="fas fa-envelope-square"></i></label>&nbsp;{this.props.emailUser}</p>
                     </div>
                 </div>
                 <div className="class-offer-invite">
@@ -121,7 +121,7 @@ class ClassOffer extends Component {
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description"
                 >
-                    <DialogTitle id="alert-dialog-title">{"Bạn có đồng ý để gia sư dạy lớp này?"}</DialogTitle>
+                    <DialogTitle id="alert-dialog-title">{"Bạn có đồng ý học ghép cùng?"}</DialogTitle>
                     <DialogContent id="alert-dialog-description">
                         
                     </DialogContent>
@@ -139,4 +139,4 @@ class ClassOffer extends Component {
     }
 }
 
-export default ClassOffer;
+export default ClassShare;

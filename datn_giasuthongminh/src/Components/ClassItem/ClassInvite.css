@@ -98,5 +98,8 @@ button.btn-reply{
     margin-top: 50px;
     color: yellow;
 }
+button.btn-reply:hover{
+    transform: scale(1.05);
+}
 
 

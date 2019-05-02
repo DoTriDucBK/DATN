@@ -26,19 +26,48 @@ div.list-title h1{
     div.listTutor-con{
         display: none;
     }
+
 }
 @media only screen and (min-width:376px) and (max-width:425px){
     div.listTutor-con{
-        display: none;
+        width: 72%;
+        height: 630px;
+        margin: auto;
+    }
+    div.list-title{
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+    div.list-title h1{
+        color: #069d86;
     }
 }
 @media only screen and (min-width:426px) and (max-width:768px){
     div.listTutor-con{
-        display: none;
+        width: 79%;
+        height: 630px;
+        margin: auto;
+    }
+    div.list-title{
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+    div.list-title h1{
+        color: #069d86;
     }
 }
 @media only screen and (min-width:769px) and (max-width:1024px){
     div.listTutor-con{
-        display: none;
+        width: 89%;
+        height: 630px;
+        margin: auto;
     }
+    div.list-title{
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+    div.list-title h1{
+        color: #069d86;
+    }
+
 }

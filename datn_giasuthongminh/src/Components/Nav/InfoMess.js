@@ -8,7 +8,7 @@ class InfoMess extends Component {
 
                 </div>
                 <div className="value-info">
-                    <p className="value-info">Vui lòng nhập vào ô tìm kiếm trước!</p>
+                    <p className="value-info">Vui lòng nhập dữ liệu trước!</p>
                 </div>
             </div>
         );

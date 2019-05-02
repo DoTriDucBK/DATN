@@ -4,7 +4,9 @@ import { Redirect } from 'react-router';
 import { reactLocalStorage } from "reactjs-localstorage";
 import { email, password, required, phone, confirmPassword } from '../../utils/Validate';
 import UserApi from '../../API/UserAPI';
-import TutorLoginApi from '../../API/TutorLoginAPI'
+import { Modal, ModalBody } from 'reactstrap';
+import InfoMess from '../Nav/InfoMess';
+import '../css/ModalCustome.css';
 class SigninTutor extends Component {
     constructor(props) {
         super(props)
@@ -33,33 +35,43 @@ class SigninTutor extends Component {
             message: "",
             isClick: false,
             redirectHome: false,
-            redirectInfoTutor:false
+            redirectInfoTutor: false,
+            modalErr: false
         }
+        this.toggleErr = this.toggleErr.bind(this);
     }
-
+    toggleErr() {
+        this.setState(prevState => ({
+            modalErr: !prevState.modalErr
+        }));
+    }
     handleSubmit = async (e) => {
-        e.preventDefault();
+        if (this.state.tutorInfo.tutor_acc_fullname.value == "" || this.state.tutorInfo.tutor_acc_phon.value == "" || this.state.tutorInfo.tutor_acc_emai.value == "" || this.state.tutorInfo.tutor_acc_pass.value == "" || this.state.tutorInfo.tutor_acc_confirm.value == "") {
+            this.toggleErr();
+        } else {
+            e.preventDefault();
 
-        var { tutorInfo } = this.state;
-        var data = {
-            userName: tutorInfo.tutor_acc_fullname.value,
-            telUser: tutorInfo.tutor_acc_phon.value,
-            emailUser: tutorInfo.tutor_acc_emai.value,
-            password: tutorInfo.tutor_acc_pass.value,
-            type:1,
-            active:1
+            var { tutorInfo } = this.state;
+            var data = {
+                userName: tutorInfo.tutor_acc_fullname.value,
+                telUser: tutorInfo.tutor_acc_phon.value,
+                emailUser: tutorInfo.tutor_acc_emai.value,
+                password: tutorInfo.tutor_acc_pass.value,
+                type: 1,
+                active: 1
+            }
+            console.log("1111111111  ", data);
+            var result = await UserApi.register(data);
+            if (!result) alert("Lỗi kết nối mạng")
+            if (result && result.code === "error") this.setState({ message: result.message })
+            else if (result && result.data) {
+                reactLocalStorage.setObject("user.info", result.data)
+            }
+            console.log(result.data);
+            this.setState({
+                redirectInfoTutor: true
+            })
         }
-        console.log("1111111111  " , data);
-        var result = await UserApi.register(data);
-        if (!result) alert("Lỗi kết nối mạng")
-        if (result && result.code === "error") this.setState({ message: result.message })
-        else if (result && result.data) {
-            reactLocalStorage.setObject("user.info", result.data)
-        }
-        console.log(result.data);
-        this.setState({
-            redirectInfoTutor:true
-        })
     };
 
     onChangeFullName = (e) => {
@@ -114,19 +126,21 @@ class SigninTutor extends Component {
     }
     render() {
         const { message, tutorInfo, isClick } = this.state;
-      
+
         if (this.state.redirectToPersonalPage && !isClick) {
             alert("Vui lòng nhập đủ thông tin")
         }
         if (this.state.redirectInfoTutor && isClick) {
             return <Redirect to={{
                 pathname: '/info-tutor',
-                state: { nameTutor: [this.state.tutorInfo.tutor_acc_fullname.value],
-                        telTutor:[this.state.tutorInfo.tutor_acc_phon.value],
-                    emailTutor:[this.state.tutorInfo.tutor_acc_emai.value]}
+                state: {
+                    nameTutor: [this.state.tutorInfo.tutor_acc_fullname.value],
+                    telTutor: [this.state.tutorInfo.tutor_acc_phon.value],
+                    emailTutor: [this.state.tutorInfo.tutor_acc_emai.value]
+                }
             }}
             />
-    
+
         }
         return (
             <div className="signTutor-con">
@@ -140,7 +154,7 @@ class SigninTutor extends Component {
                                 <label className="label-becomeTutor">Họ tên</label>
                             </div>
                             <div className="right-part">
-                                <input type="text" name="nameTutor" value={tutorInfo.tutor_acc_fullname.value}onChange={this.onChangeFullName}></input>
+                                <input type="text" name="nameTutor" value={tutorInfo.tutor_acc_fullname.value} onChange={this.onChangeFullName}></input>
                             </div>
                         </div>
                         <div className="part-signinTutor">
@@ -148,7 +162,7 @@ class SigninTutor extends Component {
                                 <label className="label-becomeTutor">Số điện thoại</label>
                             </div>
                             <div className="right-part">
-                                <input type="text" name="telTutor" pattern="[0-9]*"  value={tutorInfo.tutor_acc_phon.value}onChange={this.onChangePhone}></input>
+                                <input type="text" name="telTutor" pattern="[0-9]*" value={tutorInfo.tutor_acc_phon.value} onChange={this.onChangePhone}></input>
                             </div>
                         </div>
                         {tutorInfo.tutor_acc_phon.error ? tutorInfo.tutor_acc_phon.error : null}
@@ -157,7 +171,7 @@ class SigninTutor extends Component {
                                 <label className="label-becomeTutor">Email</label>
                             </div>
                             <div className="right-part">
-                                <input type="text" name="emailTutor" value={tutorInfo.tutor_acc_emai.value}onChange={this.onChangeEmail}></input>
+                                <input type="text" name="emailTutor" value={tutorInfo.tutor_acc_emai.value} onChange={this.onChangeEmail}></input>
                             </div>
                         </div>
                         {tutorInfo.tutor_acc_emai.error ? tutorInfo.tutor_acc_emai.error : null}
@@ -166,7 +180,7 @@ class SigninTutor extends Component {
                                 <label className="label-becomeTutor">Mật khẩu</label>
                             </div>
                             <div className="right-part">
-                                <input type="password" name="passTutor"  value={tutorInfo.tutor_acc_pass.value}onChange={this.onChangePass}></input>
+                                <input type="password" name="passTutor" value={tutorInfo.tutor_acc_pass.value} onChange={this.onChangePass}></input>
                             </div>
                         </div>
                         {tutorInfo.tutor_acc_pass.error ? tutorInfo.tutor_acc_pass.error : null}
@@ -175,7 +189,7 @@ class SigninTutor extends Component {
                                 <label className="label-becomeTutor">Nhắc lại mật khẩu</label>
                             </div>
                             <div className="right-part">
-                                <input type="password" name="rePassTutor"   value={tutorInfo.tutor_acc_confirm.value} onChange={this.onChangeConfirm}></input>
+                                <input type="password" name="rePassTutor" value={tutorInfo.tutor_acc_confirm.value} onChange={this.onChangeConfirm}></input>
                             </div>
                         </div>
                         {tutorInfo.tutor_acc_confirm.error ? tutorInfo.tutor_acc_confirm.error : null}
@@ -184,6 +198,13 @@ class SigninTutor extends Component {
                         </div>
                     </div>
                 </div>
+                <Modal isOpen={this.state.modalErr} toggle={this.toggleErr} className={this.props.className}>
+
+                    <ModalBody>
+                        <InfoMess />
+                    </ModalBody>
+
+                </Modal>
             </div>
         );
     }

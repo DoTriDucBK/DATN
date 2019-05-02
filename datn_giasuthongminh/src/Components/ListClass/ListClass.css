@@ -548,3 +548,264 @@ div.item-page:hover{
         background-color: #069D86;
     }
 }
+@media only screen and (min-width:426px) and (max-width:768px){
+    div.listClass-container{
+        width: 100%;
+        height: 1100px;
+        background-color: #f7f7f7;
+        padding-top: 80px;
+        /* max-height: 3000px; */
+    }
+    div.titleClass-container{
+        width: 95%;
+        height: 40px;
+        margin: auto;
+        /* margin-top: 20px; */
+    }
+    div.titleClass-container1{
+        width: 30%;
+        height: 100%;
+        float: left;
+        background-color: #069D86;
+    }
+    p.titleClass-container{
+        color: white;
+        text-align: center;
+        margin-top: 5px;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+    div.titleClass-container2{
+        width: 70%;
+        height: 100%;
+        border-bottom: 1px solid #069D86;
+        float: left;
+        background-color: #f7f7f7;
+    }
+    div.select-result-searchClass{
+        width: 95%;
+        height: 106px;
+        margin: auto;
+        background-color: white;
+        margin-top: 20px;
+        overflow: auto;
+    }
+    div.select-searchClass{
+        width: 100%;
+        height: 35px;
+        margin-top: 10px;
+    }
+    select.select-searchClass{
+        width: 140px;
+        height: 100%;
+        float: left;
+        margin-left: 10px;
+    }
+    select.method{
+        display: none;
+    }
+    button.search-title-btnClass{
+        width: 120px;
+        height: 100%;
+        margin-left: 5px;
+        background-color: #069D86;
+        border-radius: 5px;
+        border: 1px solid #f7f7f7;
+        color: white;
+    }
+    div.result-searchClass{
+        width: 100%;
+        height: 40px;
+        margin-top: 5px;
+    }
+    p.number-searchClass{
+        color: red;
+        margin-left: 20px;
+        float: left;
+        margin-top: 5px;
+        font-size: 18px;
+    }
+}
+@media only screen and (min-width:769px) and (max-width:1024px){
+    div.listClass-container{
+        width: 100%;
+        height: 1100px;
+        background-color: #f7f7f7;
+        padding-top: 80px;
+    }
+    div.titleClass-container{
+        width: 95%;
+        height: 40px;
+        margin: auto;
+    }
+    div.titleClass-container1{
+        width: 25%;
+        height: 100%;
+        float: left;
+        background-color: #069D86;
+    }
+    p.titleClass-container{
+        color: white;
+        text-align: center;
+        margin-top: 5px;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+    div.titleClass-container2{
+        width: 75%;
+        height: 100%;
+        border-bottom: 1px solid #069D86;
+        float: left;
+        background-color: #f7f7f7;
+    }
+    div.select-result-searchClass{
+        width: 95%;
+        height: 106px;
+        margin: auto;
+        background-color: white;
+        margin-top: 20px;
+        overflow: auto;
+    }
+    div.select-searchClass{
+        width: 100%;
+        height: 35px;
+        margin-top: 10px;
+    }
+    select.select-searchClass{
+        width: 155px;
+        height: 100%;
+        float: left;
+        margin-left: 10px;
+    }
+    button.search-title-btnClass{
+        width: 120px;
+        height: 100%;
+        margin-left: 5px;
+        background-color: #069D86;
+        border-radius: 5px;
+        border: 1px solid #f7f7f7;
+        color: white;
+    }
+    div.result-searchClass{
+        width: 100%;
+        height: 40px;
+        margin-top: 5px;
+    }
+    p.number-searchClass{
+        color: red;
+        margin-left: 20px;
+        float: left;
+        margin-top: 5px;
+        font-size: 18px;
+    }
+    div.title-class-offer{
+        width: 86%;
+        height: 40px;
+        margin: auto;
+        background-color: white;
+        margin-top: 5px;
+        border-top: 1px solid #DFDFDF;
+        border-bottom: 1px solid #DFDFDF;
+    }
+    div.title-class-offer1{
+        width: 16%;
+        height: 100%;
+        float: left;
+    }
+    div.title-class-offer2{
+        width: 49%;
+        height: 100%;
+        float: left;
+        margin-left: 1%;
+    }
+    p.title-class-offer2{
+        margin-top: 7px;
+        font-size: 16px;
+        text-transform: uppercase;
+        text-align: left;
+        margin-left: 10px;
+        font-weight: 600;
+    }
+    div.title-class-offer3{
+        width: 17%;
+        height: 100%;
+        float: left;
+    }
+    p.title-class-offer3{
+        margin-top: 7px;
+        font-size: 16px;
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: 600;
+    }
+    div.title-class-offer4{
+        width: 17%;
+        height: 100%;
+        float: left;
+    }
+    p.title-class-offer4{
+        margin-top: 7px;
+        font-size: 16px;
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: 600;
+    }
+    div.result-item-class{
+        width: 86%;
+        height: 160px;
+        margin: auto;
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+    ul.pagination {
+        display: -ms-flexbox;
+        display: flex;
+        margin-left: 550px;
+        margin-top: 40px;
+        /* padding-left: 0; */
+        list-style: none;
+        border-radius: .25rem;
+        font-size: 18px;
+        line-height: 10px;
+    }
+    ul.pagination li{
+        color: #069D86 !important;
+    }
+    div.rank-page{
+        width: 100%;
+        height: 60px;
+        /* background-color: yellow; */
+        margin-top: 20px;
+        overflow: auto;
+    }
+    div.rank-page ul{
+        margin-left: 420px !important;
+        margin-top: 15px !important;
+    }
+    div.rank-page ul li{
+        border: 1px solid blue !important;
+        width: 30px !important;
+        height: 30px !important;
+        text-align: center !important;
+        line-height: 30px !important;
+    }
+    div.page-number{
+        width: 180px;
+        height: 30px;
+        margin: auto;
+        margin-top: 15px;
+    }
+    div.item-page{
+        width: 30px;
+        height: 30px;
+        float: left;
+        margin: auto;
+        border: 1px solid #069D86;
+        
+    }
+    div.item-page:hover{
+        background-color: #069D86;
+    }
+}

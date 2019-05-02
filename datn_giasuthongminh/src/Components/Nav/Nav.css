@@ -465,12 +465,13 @@ li.nav-item{
     background-size: cover;
     }
     form.form-search{
-        width: 300px;
+        width: 340px !important;
         height: 40px;
     }
     input.search{
-        width: 260px;
+        width: 230px;
         height: 40px;
+        font-size: 15px;
     }
     li.guide{
         display: none;
@@ -478,4 +479,13 @@ li.nav-item{
     li.become-tutor{
         display: none;
     }
+    li.nav-item{
+        margin-left: 5px !important;
+    }
+    .dropdown {
+        position: relative;
+        display: inline-block;
+        margin-top: 2px;
+      }
+      
  }

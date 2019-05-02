@@ -30,19 +30,42 @@ class ListTutor extends Component {
                      address={item.addressTutor} subject= {item.nameSubject}
                      fee={item.fee} detail={item.infoTutor}
                      birthday={item.birthdayTutor} idTutor={item.idTutor} star={item.star}
-                     image={item.link_image}/>
+                     image={item.link_image} check={item.authentication}/>
              </div>
         );
         console.log(listTutor);
         return listTutor.slice(0,10);
     }
     render() {
-        const  settings = {
+        var  settings = {
             infinite: true,
-            speed: 500,
+            speed: 400,
             slidesToShow: 4,
             slidesToScroll: 1,
             autoplay: true,
+            responsive: [
+                {
+                  breakpoint: 1025,
+                  settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1
+                  }
+                },
+                {
+                  breakpoint: 769,
+                  settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1
+                  }
+                },
+                {
+                  breakpoint: 426,
+                  settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                  }
+                }
+              ]
         };
         return (
             <div className="listTutor-container">

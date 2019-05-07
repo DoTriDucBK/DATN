@@ -101,13 +101,12 @@ div.fee-offer{
     margin-top: 10px;
 }
 div.status-offer{
-    height: 90%;
-    width: 80%;
+    height: 90% !important;
+    width: 80% !important;
     margin: auto;
     /* background: url('../../images/sohot.PNG') center center; */
-    background: url('../../images/sohot.PNG') center center;
-
-    background-size: center;
+    background: url('../../images/sohot.PNG') center center !important;
+    background-size: center !important;
     border-radius: 5px;
 }
 label.status-offer{

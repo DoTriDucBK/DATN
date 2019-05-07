@@ -40,7 +40,8 @@ class ClassInvite extends Component {
         var data1 = {
             idClass_User: this.props.idClassUser,
             notification:1,
-            is_seen:1
+            is_seen:1,
+            status:1
         }
         var classUser = await ClassUserAPI.editClassUser(data1).then(result => {
             if (result && result.code === "success") {

@@ -9,6 +9,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import TutorAPI from '../../API/TutorAPI';
 import ClassUserAPI from '../../API/ClassUserAPI';
+import ClassInfoApi from '../../API/ClassInfoAPI'
 import { reactLocalStorage } from "reactjs-localstorage";
 import { Redirect } from 'react-router-dom';
 class ClassElement extends Component {
@@ -64,6 +65,17 @@ class ClassElement extends Component {
             }
         })
             .catch(err => console.log(err));
+            var infoClass = {
+                idClass:this.state.idClass,
+                status:"Đang yêu cầu"
+            }
+            var classInfo = ClassInfoApi.editClassInfo(infoClass).then (result => {
+                if(result && result.code ==="success"){
+                    classInfo = result.data
+                }else if(result.code === "error"){
+                    alert(result.message)
+                }
+            }).catch(err => console.log(err));
         this.setState({
             open: false,
             redirectManageInvitation: true
@@ -125,11 +137,15 @@ class ClassElement extends Component {
                 </div>
                 <div className="class-offer">
                     <div className="fee-offer">
-                        <div className="status-offer"><label className="status-offer">{this.state.status}</label></div>
+                        {this.props.status === "Chưa nhận lớp" ? <div className="status-offer"><label className="status-offer">{this.props.status}</label></div>:
+                        (this.props.status ==="Đang yêu cầu"?
+                        <div className="status-offer1"><label className="status-offer1">{this.props.status}</label></div>:
+                        <div className="status-offer2"><label className="status-offer2">{this.props.status}</label></div>)}
                     </div>
+                    {this.props.status === "Chưa nhận lớp" ?
                     <div className="button-offer">
                         <button className="button-offer" onClick={this.onClickOfferTutor}>Mời dạy</button>
-                    </div>
+                    </div>:<div></div>}
                 </div>
                 <Dialog
                     open={this.state.open}

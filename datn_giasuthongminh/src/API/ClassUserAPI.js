@@ -46,9 +46,19 @@ const ClassUserApi = {
         let result = await MyService.getRequestData("/class-user/class-tutor", { "idUser": idUser });
         return result
     },
+    searchClassUserByStatus: async (options) => {
+        options= MyUtils.clearBlank(options);
+        let result = await MyService.getRequestData("/class-user/class-tutor-by-status", options);
+        return result
+    },
     getClassAndTutorByIdTutor:async (options) => {
         options= MyUtils.clearBlank(options);
         let result = await MyService.getRequestData("/class-user/class-tutor-by-idTutor", options);
+        return result
+    },
+    getClassAndTutorByIdAndStatus:async (options) => {
+        options = MyUtils.clearBlank(options);
+        let result = await MyService.getRequestData("/class-user/class-tutor-by-id-status", options);
         return result
     },
     searchClassUser: async (options) => {

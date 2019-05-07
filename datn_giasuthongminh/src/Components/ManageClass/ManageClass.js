@@ -4,13 +4,16 @@ import ClassInfoAPI from '../../API/ClassInfoAPI';
 import ClassItem from '../ClassItem/ClassItem';
 import ClassElement from '../ClassItem/ClassElement';
 import { reactLocalStorage } from "reactjs-localstorage";
+import ClassUserApi from '../../API/ClassUserAPI';
 class ManageClass extends Component {
     constructor(props) {
         super(props);
         this.state = {
             idTutor: parseInt(this.props.location.state.idTutor),
             listClass: [],
-            idUser: reactLocalStorage.getObject("user.info").idUser
+            idUser: reactLocalStorage.getObject("user.info").idUser,
+            status:0,
+            classUser:[]
         }
     }
     async componentDidMount() {
@@ -24,7 +27,7 @@ class ManageClass extends Component {
 
     }
     showClassInfo = () => {
-        console.log("ssssssssssssssssssssssssss", this.state.listClass)
+        if(this.state.classUser.length === 0 && this.state.listClass.length >0){
         const listClass = this.state.listClass.map((item, index) =>
             <div className="result-element-class" key={index}>
                 <ClassElement description={item.description}
@@ -40,6 +43,47 @@ class ManageClass extends Component {
             </div>
         );
         return listClass;
+    }else{
+            const listClass = this.state.classUser.map((item, index) =>
+            <div className="result-element-class" key={index}>
+                <ClassElement description={item.classInfo[0].description}
+                    idClass={item.classInfo[0].idClass}
+                    detailClass={item.classInfo[0].detailClass}
+                    nameSubject={item.classInfo[0].nameSubject}
+                    city={item.classInfo[0].nameCity}
+                    typeMethod={item.classInfo[0].typeMethod}
+                    numberDay={item.classInfo[0].numberDay}
+                    fee={item.classInfo[0].fee}
+                    status={item.classInfo[0].status}
+                    idTutor={this.state.idTutor} />
+            </div>
+        );
+        return listClass;
+        }
+        
+    }
+    handleChangeSearch = (e) => {
+        this.setState({
+            [e.target.name] : e.target.value
+        });
+    }
+    searchClass = async () => {
+        console.log(this.state);
+        var options={
+            status:parseInt(this.state.status),
+            idUser:reactLocalStorage.getObject("user.info").idUser
+        }
+        var list = await ClassUserApi.getClassAndTutorByIdAndStatus(options).then(
+            classUser => {
+                if(classUser && classUser.code === "success"){
+                    list = classUser.data
+                    this.setState({ classUser:classUser.data})
+                }else if(classUser && classUser.code ==="error"){
+                    alert(classUser.message)
+                }
+            }
+        ).catch(err => console.log(err)
+        )
     }
     render() {
         const { listClass } = this.state;
@@ -59,13 +103,12 @@ class ManageClass extends Component {
                 </div>
                 <div className="select-manage-class">
                     <div className="select-container">
-                        <select required="" className="select-searchClassOffer">
-                            <option value className="opt-searchClassOffer">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Trạng thái --</option>
-                            <option value="2">Đang tìm gia sư</option>
+                        <select required="" className="select-searchClassOffer" name="status" onChange={this.handleChangeSearch}>
+                            <option value="" className="opt-searchClassOffer">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Trạng thái --</option>
+                            <option value="2">Đang gửi yêu cầu gia sư</option>
                             <option value="1">Đã chấp nhận</option>
-                            <option value="0">Đã gửi yêu cầu</option>
                         </select>
-                        <button className="manage-btnClass" onClick={this.onClick}> &nbsp;Áp dụng</button>
+                        <button className="manage-btnClass" onClick={this.searchClass}> &nbsp;Áp dụng</button>
                     </div>
 
                 </div>

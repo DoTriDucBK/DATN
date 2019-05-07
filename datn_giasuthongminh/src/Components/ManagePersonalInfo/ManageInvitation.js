@@ -12,7 +12,9 @@ class ManageInvitation extends Component {
         this.state={
             idUser:reactLocalStorage.getObject("user.info").idUser,
             idTutor:0,
-            classTutor:[]
+            classTutor:[],
+            classUser:[],
+            status:0
         }
     }
     async componentDidMount(){
@@ -28,7 +30,26 @@ class ManageInvitation extends Component {
         console.log(this.state);
         
     }
+    searchClass = async () => {
+        console.log(this.state);
+        var options={
+            status:parseInt(this.state.status),
+            idUser:reactLocalStorage.getObject("user.info").idUser
+        }
+        var list = await ClassUserApi.getClassAndTutorByIdAndStatus(options).then(
+            classUser => {
+                if(classUser && classUser.code === "success"){
+                    list = classUser.data
+                    this.setState({ classUser:classUser.data})
+                }else if(classUser && classUser.code ==="error"){
+                    alert(classUser.message)
+                }
+            }
+        ).catch(err => console.log(err)
+        )
+    }
     showClassInfo = () => {
+        if(this.state.classUser.length === 0 && this.state.classTutor.length > 0){
         const classTutor = this.state.classTutor.map((item, index) =>
             <div className="result-element-class" key={index}>
                 <ClassItem_Tutor description={item.classInfo[0].description}
@@ -41,10 +62,36 @@ class ManageInvitation extends Component {
                     nameTutor={item.tutor[0].nameTutor}
                     birthdayTutor={item.tutor[0].birthdayTutor}
                     telTutor={item.tutor[0].telTutor}
-                    emailTutor={item.tutor[0].emailTutor} />
+                    emailTutor={item.tutor[0].emailTutor} 
+                    status = {item.classInfo[0].status}/>
             </div>
         ); 
-        return classTutor;
+        return classTutor;}
+        else {
+            const classTutor = this.state.classUser.map((item, index) =>
+            <div className="result-element-class" key={index}>
+                <ClassItem_Tutor description={item.classInfo[0].description}
+                    detailClass={item.classInfo[0].detailClass}
+                    nameSubject={item.classInfo[0].nameSubject}
+                    city={item.classInfo[0].nameCity}
+                    typeMethod={item.classInfo[0].typeMethod}
+                    numberDay={item.classInfo[0].numberDay}
+                    fee={item.classInfo[0].fee}
+                    nameTutor={item.tutor[0].nameTutor}
+                    birthdayTutor={item.tutor[0].birthdayTutor}
+                    telTutor={item.tutor[0].telTutor}
+                    emailTutor={item.tutor[0].emailTutor} 
+                    status = {item.classInfo[0].status}/>
+            </div>
+            );
+            return classTutor;
+        }
+
+    }
+    handleChangeSearch = (e) => {
+        this.setState({
+            [e.target.name] : e.target.value
+        });
     }
     render() {
         return (
@@ -59,12 +106,12 @@ class ManageInvitation extends Component {
                 </div>
                 <div className="select-manage-class">
                     <div className="select-container">
-                        <select required="" className="select-searchClassOffer">
-                            <option value hidden className="opt-searchClassOffer">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Trạng thái --</option>
-                            <option value="1">Đang tìm gia sư</option>
-                            <option value="2">Đã chấp nhận</option>
+                        <select required="" className="select-searchClassOffer" name ="status" onChange={this.handleChangeSearch} >
+                            <option value="" className="opt-searchClassOffer">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Trạng thái --</option>
+                            <option value="2">Đang tìm gia sư</option>
+                            <option value="1">Đã chấp nhận</option>
                         </select>
-                        <button className="manage-btnClass" onClick={this.onClick}> &nbsp;Áp dụng</button>
+                        <button className="manage-btnClass" onClick={this.searchClass}> &nbsp;Áp dụng</button>
                     </div>
 
                 </div>

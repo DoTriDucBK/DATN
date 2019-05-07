@@ -53,6 +53,17 @@ class ClassItem extends Component {
             }
         })
             .catch(err => console.log(err));
+            var dataClass = {
+                idClass: this.props.idClass,
+                status: "Đang yêu cầu"
+            }
+            var classInfo = ClassInfoAPI.editClassInfo(dataClass).then(result => {
+                if (result && result.code === "success") {
+                    classInfo = result.data;
+                } else if (result.code === "error") {
+                    alert(result.message);
+                }
+            }).catch(err => console.log(err));
         this.setState({
             open: false,
             redirectManageOffer: true
@@ -67,16 +78,6 @@ class ClassItem extends Component {
 
     }
     async componentDidMount(){
-        // var s= parseInt(this.props.status);
-        // console.log(s)
-        // if( s === 0){
-        //     this.setState({status:"Chưa nhận lớp"})
-        // }
-        // else if(s === 1){
-        //     this.setState({status:"Hết lớp"})
-        // }else if (s === 2){
-        //     this.setState({status:"Đang yêu cầu"})
-        // }
         let tutor = await TutorAPI.getTutorByName(this.state.nameTutor);
         this.setState({
             tutor: tutor.data

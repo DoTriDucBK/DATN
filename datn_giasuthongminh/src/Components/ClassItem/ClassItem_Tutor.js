@@ -46,9 +46,14 @@ class ClassItem_Tutor extends Component {
                     </div> */}
                 </div>
                 <div className="class-offer-tutor">
+                {this.props.status === "Đang yêu cầu"?
                     <div className="button-manage-tutor">
-                        Đang yêu cầu
+                        {this.props.status}
+                    </div>:
+                    <div className="button-manage-tutor1">
+                        {this.props.status}
                     </div>
+                }
                 </div>
             </div>
         );

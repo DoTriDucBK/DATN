@@ -148,6 +148,29 @@ button.button-offer:hover{
 button.button-vote-tutor:hover{
     transform: scale(1.05);
 }
+div.status-class-custom{
+    width: 80%;
+    height: 40px;
+    background-color: #4267B2;
+    margin: auto;
+    margin-top: 25%;
+    border: 1px solid #F7F7F7;
+    border-radius: 5px;
+}
+div.status-class-custom2{
+    width: 80%;
+    height: 40px;
+    background-color: #FF961E;
+    margin: auto;
+    margin-top: 25%;
+    border: 1px solid #F7F7F7;
+    border-radius: 5px;
+}
+label.status-class-custom{
+    color: white;
+    font-size: 18px;
+    margin-top: 3px;
+}
 div.info-profile-tutor-custom{
     width: 90%;
     height: 100%;

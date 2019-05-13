@@ -32,13 +32,13 @@ class InfoTutor extends Component {
             friday:new Set(),
             saturday:new Set(),
             sunday:new Set(),
-            calMon:0,
-            calTue:0,
-            calWed:0,
-            calThu:0,
-            calFri:0,
-            calSat:0,
-            calSun:0,
+            calMon:"",
+            calTue:"",
+            calWed:"",
+            calThu:"",
+            calFri:"",
+            calSat:"",
+            calSun:"",
 
         }
     }
@@ -108,19 +108,19 @@ class InfoTutor extends Component {
         });
         // Lưu hình thức học vào biến typeMethod
         if(this.state.monday.has("Sáng") && this.state.monday.has("Chiều") && this.state.monday.has("Tối")){
-            this.setState({calMon:7})
+            this.setState({calMon:"7"})
         }else if(this.state.monday.has("Sáng") && this.state.monday.has("Chiều")){
-            this.setState({calMon:4})
+            this.setState({calMon:"4"})
         }else if(this.state.monday.has("Sáng") && this.state.monday.has("Tối")){
-            this.setState({calMon:6})
+            this.setState({calMon:"6"})
         }else if (this.state.monday.has("Chiều") && this.state.monday.has("Tối")){
-            this.setState({calMon:5})
+            this.setState({calMon:"5"})
         }else if(this.state.monday.has("Sáng")){
-            this.setState({calMon:1})
+            this.setState({calMon:"1"})
         }else if(this.state.monday.has("Chiều")){
-            this.setState({calMon:2})
+            this.setState({calMon:"2"})
         }else if(this.state.monday.has("Tối")){
-            this.setState({calMon:3})
+            this.setState({calMon:"3"})
         }
     }
     checkTuesdayInSet = (method) => {
@@ -135,19 +135,19 @@ class InfoTutor extends Component {
         });
         // Lưu hình thức học vào biến typeMethod
         if(this.state.tuesday.has("Sáng") && this.state.tuesday.has("Chiều") && this.state.tuesday.has("Tối")){
-            this.setState({calTue:7})
+            this.setState({calTue:"7"})
         }else if(this.state.tuesday.has("Sáng") && this.state.tuesday.has("Chiều")){
-            this.setState({calTue:4})
+            this.setState({calTue:"4"})
         }else if(this.state.tuesday.has("Sáng") && this.state.tuesday.has("Tối")){
-            this.setState({calTue:6})
+            this.setState({calTue:"6"})
         }else if (this.state.tuesday.has("Chiều") && this.state.tuesday.has("Tối")){
-            this.setState({calTue:5})
+            this.setState({calTue:"5"})
         }else if(this.state.tuesday.has("Sáng")){
-            this.setState({calTue:1})
+            this.setState({calTue:"1"})
         }else if(this.state.tuesday.has("Chiều")){
-            this.setState({calTue:2})
+            this.setState({calTue:"2"})
         }else if(this.state.tuesday.has("Tối")){
-            this.setState({calTue:3})
+            this.setState({calTue:"3"})
         }
     }
     checkWednesdayInSet = (method) => {
@@ -162,19 +162,19 @@ class InfoTutor extends Component {
         });
         // Lưu hình thức học vào biến typeMethod
         if(this.state.wednesday.has("Sáng") && this.state.wednesday.has("Chiều") && this.state.wednesday.has("Tối")){
-            this.setState({calWed:7})
+            this.setState({calWed:"7"})
         }else if(this.state.wednesday.has("Sáng") && this.state.wednesday.has("Chiều")){
-            this.setState({calWed:4})
+            this.setState({calWed:"4"})
         }else if(this.state.wednesday.has("Sáng") && this.state.wednesday.has("Tối")){
-            this.setState({calWed:6})
+            this.setState({calWed:"6"})
         }else if (this.state.wednesday.has("Chiều") && this.state.wednesday.has("Tối")){
-            this.setState({calWed:5})
+            this.setState({calWed:"5"})
         }else if(this.state.wednesday.has("Sáng")){
-            this.setState({calWed:1})
+            this.setState({calWed:"1"})
         }else if(this.state.wednesday.has("Chiều")){
-            this.setState({calWed:2})
+            this.setState({calWed:"2"})
         }else if(this.state.wednesday.has("Tối")){
-            this.setState({calWed:3})
+            this.setState({calWed:"3"})
         }
     }
     checkThursdayInSet = (method) => {
@@ -189,19 +189,19 @@ class InfoTutor extends Component {
         });
         // Lưu hình thức học vào biến typeMethod
         if(this.state.thursday.has("Sáng") && this.state.thursday.has("Chiều") && this.state.thursday.has("Tối")){
-            this.setState({calThu:7})
+            this.setState({calThu:"7"})
         }else if(this.state.thursday.has("Sáng") && this.state.thursday.has("Chiều")){
-            this.setState({calThu:4})
+            this.setState({calThu:"4"})
         }else if(this.state.thursday.has("Sáng") && this.state.thursday.has("Tối")){
-            this.setState({calThu:6})
+            this.setState({calThu:"6"})
         }else if (this.state.thursday.has("Chiều") && this.state.thursday.has("Tối")){
-            this.setState({calThu:5})
+            this.setState({calThu:"5"})
         }else if(this.state.thursday.has("Sáng")){
-            this.setState({calThu:1})
+            this.setState({calThu:"1"})
         }else if(this.state.thursday.has("Chiều")){
-            this.setState({calThu:2})
+            this.setState({calThu:"2"})
         }else if(this.state.thursday.has("Tối")){
-            this.setState({calThu:3})
+            this.setState({calThu:"3"})
         }
     }
     checkFridayInSet = (method) => {
@@ -216,19 +216,19 @@ class InfoTutor extends Component {
         });
         // Lưu hình thức học vào biến typeMethod
         if(this.state.friday.has("Sáng") && this.state.friday.has("Chiều") && this.state.friday.has("Tối")){
-            this.setState({calFri:7})
+            this.setState({calFri:"7"})
         }else if(this.state.friday.has("Sáng") && this.state.friday.has("Chiều")){
-            this.setState({calFri:4})
+            this.setState({calFri:"4"})
         }else if(this.state.friday.has("Sáng") && this.state.friday.has("Tối")){
-            this.setState({calFri:6})
+            this.setState({calFri:"6"})
         }else if (this.state.friday.has("Chiều") && this.state.friday.has("Tối")){
-            this.setState({calFri:5})
+            this.setState({calFri:"5"})
         }else if(this.state.friday.has("Sáng")){
-            this.setState({calFri:1})
+            this.setState({calFri:"1"})
         }else if(this.state.friday.has("Chiều")){
-            this.setState({calFri:2})
+            this.setState({calFri:"2"})
         }else if(this.state.friday.has("Tối")){
-            this.setState({calFri:3})
+            this.setState({calFri:"3"})
         }
     }
     checkSaturdayInSet = (method) => {
@@ -243,19 +243,19 @@ class InfoTutor extends Component {
         });
         // Lưu hình thức học vào biến typeMethod
         if(this.state.saturday.has("Sáng") && this.state.saturday.has("Chiều") && this.state.saturday.has("Tối")){
-            this.setState({calSat:7})
+            this.setState({calSat:"7"})
         }else if(this.state.saturday.has("Sáng") && this.state.saturday.has("Chiều")){
-            this.setState({calSat:4})
+            this.setState({calSat:"4"})
         }else if(this.state.saturday.has("Sáng") && this.state.saturday.has("Tối")){
-            this.setState({calSat:6})
+            this.setState({calSat:"6"})
         }else if (this.state.saturday.has("Chiều") && this.state.saturday.has("Tối")){
-            this.setState({calSat:5})
+            this.setState({calSat:"5"})
         }else if(this.state.saturday.has("Sáng")){
-            this.setState({calSat:1})
+            this.setState({calSat:"1"})
         }else if(this.state.saturday.has("Chiều")){
-            this.setState({calSat:2})
+            this.setState({calSat:"2"})
         }else if(this.state.saturday.has("Tối")){
-            this.setState({calSat:3})
+            this.setState({calSat:"3"})
         }
     }
     checkSundayInSet = (method) => {
@@ -270,19 +270,19 @@ class InfoTutor extends Component {
         });
         // Lưu hình thức học vào biến typeMethod
         if(this.state.sunday.has("Sáng") && this.state.sunday.has("Chiều") && this.state.sunday.has("Tối")){
-            this.setState({calSun:7})
+            this.setState({calSun:"7"})
         }else if(this.state.sunday.has("Sáng") && this.state.sunday.has("Chiều")){
-            this.setState({calSun:4})
+            this.setState({calSun:"4"})
         }else if(this.state.sunday.has("Sáng") && this.state.sunday.has("Tối")){
-            this.setState({calSun:6})
+            this.setState({calSun:"6"})
         }else if (this.state.sunday.has("Chiều") && this.state.sunday.has("Tối")){
-            this.setState({calSun:5})
+            this.setState({calSun:"5"})
         }else if(this.state.sunday.has("Sáng")){
-            this.setState({calSun:1})
+            this.setState({calSun:"1"})
         }else if(this.state.sunday.has("Chiều")){
-            this.setState({calSun:2})
+            this.setState({calSun:"2"})
         }else if(this.state.sunday.has("Tối")){
-            this.setState({calSun:3})
+            this.setState({calSun:"3"})
         }
     }
     checkNullSelect = (method) => {

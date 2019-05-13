@@ -11,7 +11,7 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            usernameInput: {
+            emailInput: {
                 value: "",
                 error: ""
             },
@@ -33,10 +33,10 @@ class Login extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault();
-        var { usernameInput, passwordInput, type } = this.state;
+        var { emailInput, passwordInput, type } = this.state;
         var user = null;
             var result = await UserApi.login({
-                userName: usernameInput.value,
+                emailUser: emailInput.value,
                 password: passwordInput.value,
                 type: parseInt(type)
             })
@@ -47,7 +47,9 @@ class Login extends Component {
                 reactLocalStorage.setObject("user.info", user);
                 reactLocalStorage.setObject("home.is_login", true);
                 reactLocalStorage.set("type",this.state.type);
-                this.props.handleLogin(user, true,this.state.type)
+                this.props.handleLogin(user, true,this.state.type);
+                var token = reactLocalStorage.get("tokenFirebase")
+                await UserApi.updateTokenFirebase(user.idUser, token)
             } else alert("Lỗi kết nối mạng");
 
             this.setState({
@@ -58,20 +60,20 @@ class Login extends Component {
 
     onChangeUsername = (e) => {
         var value = e.target.value;
-        var { usernameInput, passwordInput, isClick } = this.state;
-        usernameInput.value = value
-        usernameInput.error = required(value);
-        isClick = this.check({ usernameInput, passwordInput });
-        this.setState({ usernameInput, passwordInput, isClick, message: "" })
+        var { emailInput, passwordInput, isClick } = this.state;
+        emailInput.value = value
+        emailInput.error = required(value);
+        isClick = this.check({ emailInput, passwordInput });
+        this.setState({ emailInput, passwordInput, isClick, message: "" })
     }
 
     onChangePassword = (e) => {
         var value = e.target.value;
-        var { usernameInput, passwordInput, isClick } = this.state;
+        var { emailInput, passwordInput, isClick } = this.state;
         passwordInput.value = value
         passwordInput.error = required(value) || password(value);
-        isClick = this.check({ usernameInput, passwordInput });
-        this.setState({ usernameInput, passwordInput, isClick, message: "" })
+        isClick = this.check({ emailInput, passwordInput });
+        this.setState({ emailInput, passwordInput, isClick, message: "" })
     }
     handleChangeInputTextForm = (e) => {
         this.setState({
@@ -80,8 +82,8 @@ class Login extends Component {
         console.log(this.state)
     }
     check = (state) => {
-        if (!state || (!state.usernameInput) || (!state.passwordInput)) return false;
-        if ((!state.usernameInput.value) || (state.usernameInput.value && state.usernameInput.error)) return false;
+        if (!state || (!state.emailInput) || (!state.passwordInput)) return false;
+        if ((!state.emailInput.value) || (state.emailInput.value && state.emailInput.error)) return false;
         if ((!state.passwordInput.value) || (state.passwordInput.value && state.passwordInput.error)) return false;
         return true
     }
@@ -103,7 +105,7 @@ class Login extends Component {
                         <p className="login-username">Username</p>
                     </div>
                     <input type="text" placeholder="Tên đăng nhập"
-                        value={this.state.usernameInput.value}
+                        value={this.state.emailInput.value}
                         onChange={this.onChangeUsername}>
                     </input>
                 </div>

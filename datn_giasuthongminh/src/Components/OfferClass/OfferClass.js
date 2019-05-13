@@ -13,6 +13,7 @@ class OfferClass extends Component {
             address: "",
             phone: "",
             numberStudent: "",
+            limitStudent:"",
             numberHour: "1",
             methodTeaching: new Set(),
             addressDetail: "",
@@ -22,8 +23,8 @@ class OfferClass extends Component {
             typeMethod: "", //0-online 1-offline 2-cả hai,
             idUser: 0,
             nameGrade: "",
-            idPartHour:"",
-            detailClass:""
+            idPartHour: "",
+            detailClass: ""
         };
     }
     // Lấy dữ liệu thay đổi của text-input
@@ -64,38 +65,39 @@ class OfferClass extends Component {
 
 
     }
-    
+
     handleCreateClass = (e) => {
         // var {subject,address,nameGrade,addressDetail,sumSubject,} = this.state;
         e.preventDefault();
-                var data = {
-                    idUser:reactLocalStorage.getObject("user.info").idUser,
-                    fee:this.state.fee,
-                    status:"Chưa nhận lớp",
-                    nameSubject:this.state.subject,
-                    nameCity:this.state.address,
-                    address:this.state.addressDetail,
-                    typeMethod:this.state.typeMethod,
-                    nameGrade:this.state.nameGrade,
-                    idPartHour: parseInt(this.state.idPartHour),
-                    description:this.state.sumSubject,
-                    detailClass:this.state.detailClass,
-                    numberStudent:parseInt(this.state.numberStudent),
-                    numberDay:2,
-                    shareClass:this.state.isDoubleClass
-                }
-                // console.log("1111111111  " , data);
-                var classInfo = ClassInfoApi.createClassInfo(data).then(result => {
-                    if (result && result.code === "success") {
-                        classInfo = result.data;
-                    } else if (result.code === "error") {
-                        alert(result.message)
-                    }
-                })
-                .catch(err => console.log(err));
-                this.setState({
-                    redirectListClass:true
-                });
+        var data = {
+            idUser: reactLocalStorage.getObject("user.info").idUser,
+            fee: this.state.fee,
+            status: "Chưa nhận lớp",
+            nameSubject: this.state.subject,
+            nameCity: this.state.address,
+            address: this.state.addressDetail,
+            typeMethod: this.state.typeMethod,
+            nameGrade: this.state.nameGrade,
+            idPartHour: parseInt(this.state.idPartHour),
+            description: this.state.sumSubject,
+            detailClass: this.state.detailClass,
+            numberStudent: parseInt(this.state.numberStudent),
+            limitStudent:parseInt(this.state.limitStudent),
+            numberDay: 2,
+            shareClass: this.state.isDoubleClass
+        }
+        // console.log("1111111111  " , data);
+        var classInfo = ClassInfoApi.createClassInfo(data).then(result => {
+            if (result && result.code === "success") {
+                classInfo = result.data;
+            } else if (result.code === "error") {
+                alert(result.message)
+            }
+        })
+            .catch(err => console.log(err));
+        this.setState({
+            redirectListClass: true
+        });
     }
 
     render() {
@@ -293,19 +295,18 @@ class OfferClass extends Component {
                 <div className="info1">
                     <div className="info1-left">
                         <div className="info1-left-title">
-                            <label className="info-title"  >Số học viên<span className="notnull">  *</span></label>
+                            <label className="info-title"  >Số học viên hiện tại<span className="notnull">  *</span></label>
                         </div>
                         <div className="info1-left-content">
-                            <input type="number" placeholder="1" className="input-content" name="numberStudent" onChange={this.handleChangeInputTextForm}></input>
+                            <input type="number" placeholder="1" className="input-content" name="numberStudent" min="1" onChange={this.handleChangeInputTextForm}></input>
                         </div>
                     </div>
                     <div className="info1-right">
                         <div className="info1-right-title">
-                            <label className="info-title">Giới tính gia sư<span className="notnull">  *</span></label>
+                            <label className="info-title"  >Số học viên tối đa<span className="notnull">  *</span></label>
                         </div>
-                        <div className="info1-right-content">
-                            <input type="radio" name="sexTutor" value="Nam" checked={this.state.sexTutor === "Nam"} onChange={this.handleChangeInputTextForm} /><label>Nam</label>
-                            <input type="radio" name="sexTutor" value="Nữ" checked={this.state.sexTutor === "Nữ"} onChange={this.handleChangeInputTextForm} /><label>Nữ</label>
+                        <div className="info1-left-content">
+                            <input type="number" placeholder="1" className="input-content" name="limitStudent" min="1" max="3" onChange={this.handleChangeInputTextForm}></input>
                         </div>
                     </div>
                 </div>
@@ -317,13 +318,13 @@ class OfferClass extends Component {
                         <div className="info1-left-content">
                             <select name="idPartHour" required="" className="cruise-line1" onChange={this.handleChangeInputTextForm} value={this.state.idPartHour}>
                                 <option value hidden className="opt1">Lựa chọn kíp học</option>
-                                    <option value="1">Kíp 1 (Sáng)</option>
-                                    <option value="2">Kíp 2 (Chiều)</option>
-                                    <option value="3">Kíp 3 (Tối)</option>
+                                <option value="1">Kíp 1 (Sáng)</option>
+                                <option value="2">Kíp 2 (Chiều)</option>
+                                <option value="3">Kíp 3 (Tối)</option>
                             </select>
                         </div>
                     </div>
-                    <div className="info1-right">
+                    <div className="info1-right1">
                         <div className="info1-right-title">
                             <label className="info-title">Có muốn ghép lớp?<span className="notnull">  *</span></label>
                         </div>
@@ -332,11 +333,20 @@ class OfferClass extends Component {
                             <input type="radio" name="isDoubleClass" value="Không" checked={this.state.isDoubleClass === "Không"} onChange={this.handleChangeInputTextForm} /><label>Không</label>
                         </div>
                     </div>
+                    <div className="info1-right2">
+                        <div className="info1-right-title">
+                            <label className="info-title">Giới tính gia sư<span className="notnull">  *</span></label>
+                        </div>
+                        <div className="info1-right-content">
+                            <input type="radio" name="sexTutor" value="Nam" checked={this.state.sexTutor === "Nam"} onChange={this.handleChangeInputTextForm} /><label>Nam</label>
+                            <input type="radio" name="sexTutor" value="Nữ" checked={this.state.sexTutor === "Nữ"} onChange={this.handleChangeInputTextForm} /><label>Nữ</label>
+                        </div>
+                    </div>
                 </div>
                 <div className="info1">
-                        <div className="info1-left-title">
-                            <label className="info-title">Mô tả chi tiết lớp học <span className="notnull">*</span></label>
-                        </div>
+                    <div className="info1-left-title">
+                        <label className="info-title">Mô tả chi tiết lớp học <span className="notnull">*</span></label>
+                    </div>
                     <input className="input-detail" name="detailClass" placeholder="Mô tả chi tiết lớp học (dưới 500 từ)" onChange={this.handleChangeInputTextForm}></input>
                 </div>
                 <div className="offer-rule">

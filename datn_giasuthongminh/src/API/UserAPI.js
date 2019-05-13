@@ -24,19 +24,19 @@ const UserApi = {
         }
         return result
     },
-    getUserById: async (user) => {
-        var result = null;
-        result = await MyService.getRequestData("/user/" + user.userId)
-        // if (result.data) {
+    // getUserById: async (user) => {
+    //     var result = null;
+    //     result = await MyService.getRequestData("/user/" + user.idUser)
+    //     // if (result.data) {
 
-        //     var languageUser = reactLocalStorage.get("user.language");
-        //     languageUser = (languageUser === undefined || languageUser == "vi") ? "vi" : "en";
+    //     //     var languageUser = reactLocalStorage.get("user.language");
+    //     //     languageUser = (languageUser === undefined || languageUser == "vi") ? "vi" : "en";
 
-        //     reactLocalStorage.set("language", languageUser);
-        //     reactLocalStorage.setObject("user.info", result.data);
-        // }
-        return result
-    },
+    //     //     reactLocalStorage.set("language", languageUser);
+    //     //     reactLocalStorage.setObject("user.info", result.data);
+    //     // }
+    //     return result
+    // },
     logout: async () => {
         var user = reactLocalStorage.getObject("user.info", null);
         if (!user){
@@ -94,8 +94,30 @@ const UserApi = {
         return result
     },
     getUserByIdUser: async (id) => {
-        let result = await MyService.getRequestData("/user/idUser", { "idUser": id });
+        let result = await MyService.getRequestData("/user/get-user-id", { "idUser": id });
         return result
     },
+    getUserByName: async (name) => {
+        let result = await MyService.getRequestData("/user/get-user-name", { "userName": name });
+        return result
+    },
+    editUser: async ( data) =>{
+        var user = null;
+        await MyService.postRequestData("/user/edit-user",data)
+            .then(result => {
+                console.log(result);
+                user = result;
+            })
+            .catch(err => console.log(err));
+        console.log(user)
+        return user;
+    },
+    updateTokenFirebase: async (idUser,token) => {
+        var result ;
+        await MyService.putRequestData("/user/token-firebase", {idUser: idUser, tokenFirebase: token})
+            .then(data => result = data)
+            .catch(err => console.log(err))
+        return result;
+    }
 }
 export default UserApi;

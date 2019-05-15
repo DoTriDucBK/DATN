@@ -191,14 +191,14 @@ class PostNews extends Component {
                 <Modal isOpen={this.state.modalErr} toggle={this.toggleErr} className={this.props.className}>
 
                     <ModalBody>
-                        <InfoMess />
+                        <InfoMess toggleSearch={this.toggleErr} />
                     </ModalBody>
 
                 </Modal>
                 <Modal isOpen={this.state.modalErr1} toggle={this.toggleErr1} className={this.props.className}>
 
                     <ModalBody>
-                        <InfoNotLogin />
+                        <InfoNotLogin toggleNotLogin = {this.toggleErr1}/>
                     </ModalBody>
 
                 </Modal>

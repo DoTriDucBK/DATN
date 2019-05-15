@@ -24,10 +24,11 @@ class ManageInvite extends Component {
             idTutor: tutor.data[0].idTutor,
             is_seen:0
         }
-        var listClassTutor = await ClassUserAPI.getClassAndTutorByIdTutor(options);
+        var listClassTutor = await ClassUserAPI.getClassAndUser(options);
         this.setState({
             classTutor:listClassTutor.data
-        })
+        });
+        console.log(listClassTutor)
     }
     onClickReply = () => {
         console.log(this.state);

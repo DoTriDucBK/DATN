@@ -13,7 +13,9 @@ import ClassInfoAPI from '../../API/ClassInfoAPI';
 import ClassTutorAPI from '../../API/ClassTutorAPI';
 import { Modal, ModalBody } from 'reactstrap';
 import '../css/ModalCustome.css';
-import DetailClass from '../../Components/DetailClass/DetailClass'
+import DetailClass from '../../Components/DetailClass/DetailClass';
+import Service from '../../utils/Service';
+import UserAPI from '../../API/UserAPI';
 class ClassItem extends Component {
     constructor(props){
         super(props);
@@ -23,7 +25,8 @@ class ClassItem extends Component {
             tutor:[],
             open:false,
             redirectManageOffer:false,
-            modal: false
+            modal: false,
+            userOfClass:[]
         }
         this.toggle = this.toggle.bind(this);
     }
@@ -64,6 +67,11 @@ class ClassItem extends Component {
                     alert(result.message);
                 }
             }).catch(err => console.log(err));
+            var dataFirebase = {
+                title:"Thông báo",
+                message:"Gia sư "+this.state.tutor[0].nameTutor +" gửi yêu cầu đề nghị được dạy lớp có mã "+ this.props.idClass +" của bạn!"
+            }
+            var notify =  Service.postNotification(dataFirebase,this.state.userOfClass[0].tokenFirebase);
         this.setState({
             open: false,
             redirectManageOffer: true
@@ -79,8 +87,10 @@ class ClassItem extends Component {
     }
     async componentDidMount(){
         let tutor = await TutorAPI.getTutorByName(this.state.nameTutor);
+        let userOfClassInfo = await UserAPI.getUserByIdUser(this.props.idUser)
         this.setState({
-            tutor: tutor.data
+            tutor: tutor.data,
+            userOfClass:userOfClassInfo.data
         })
         console.log(this.state);
     }
@@ -194,7 +204,7 @@ class ClassItem extends Component {
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
 
                     <ModalBody>
-                        <DetailClass idClass={this.props.idClass}/>
+                        <DetailClass idClass={this.props.idClass} idUserOfClass = {this.props.idUser}/>
                     </ModalBody>
 
                 </Modal>

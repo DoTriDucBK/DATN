@@ -81,6 +81,31 @@ const MyService = {
             )
         return result;
     },
+    postNotification: async function (data, token) {
+        var obj = {
+            "notification": {
+                "title": data.title,
+                "body": data.message,
+                "click_action": "http://localhost:3000/",
+                "icon": "http://localhost:3000/favicon.ico"
+            },
+            "to":token
+        }
+        var result = await axios.post("https://fcm.googleapis.com/fcm/send", obj, {
+            headers: {
+                "Authorization": "key=AAAAn5lU7ZI:APA91bEL6ETwQWXqCegLIK7e0bC0aT4ZrIy1fNzd6PG1HYhcJLwPcWG4lAUOjn6qNV-lOyzHzOA8cRkZLW36KQ89wtMhsQrjgVIU5iSicRpdNbIEXQw_OohaEcCU1ps206XVN2joe7Vg",
+                'Content-Type': 'application/json'
+        
+            }
+        })
+            .then(response => {
+                console.log("aaaa")                
+            })
+            .catch(
+                error => console.log(error)
+            )
+        return result;
+    }
 }
 
 export default MyService;

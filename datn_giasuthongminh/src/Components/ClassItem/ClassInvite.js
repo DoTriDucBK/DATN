@@ -9,13 +9,26 @@ import Button from '@material-ui/core/Button';
 import ClassUserAPI from '../../API/ClassUserAPI';
 import ClassInfoAPI from '../../API/ClassInfoAPI';
 import {Redirect} from 'react-router-dom';
+import Service from '../../utils/Service';
+import UserAPI from '../../API/UserAPI';
+import { reactLocalStorage } from 'reactjs-localstorage';
 class ClassInvite extends Component {
     constructor(props){
         super(props);
         this.state={
             open:false,
-            redirectHome:false
+            redirectHome:false,
+            user:[],
+            userResponse:[]
         }
+    }
+    async componentDidMount(){
+        var user = await UserAPI.getUserByIdUser(reactLocalStorage.getObject("user.info").idUser);
+        var user2 = await UserAPI.getUserByName(this.props.userName);
+        this.setState({
+            user:user.data,
+            userResponse:user2.data
+        })
     }
     handleClose = async () => {
         var data = {
@@ -62,6 +75,11 @@ class ClassInvite extends Component {
                 alert(result.message)
             }
         }).catch(err =>console.log(err));
+        var dataFirebase = {
+            title:"Thông báo",
+            message:"Gia sư "+this.state.user[0].userName +" đồng ý dạy lớp mã số "+ this.props.idClass +" của bạn!"
+        }
+        var notify =  Service.postNotification(dataFirebase,this.state.userResponse[0].tokenFirebase);
         this.setState({
             open:false,
             redirectHome:true

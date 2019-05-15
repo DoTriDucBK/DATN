@@ -75,8 +75,10 @@ p.title-score{
     font-weight: bold;
 }
 div.value-score{
-    width: 100%;
+    width: 55%;
     height: 35px;
+    margin: auto;
+    margin-top: 10px;
 }
 input.number-star{
     width: 35%;

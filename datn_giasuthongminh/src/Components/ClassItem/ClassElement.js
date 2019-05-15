@@ -12,6 +12,8 @@ import ClassUserAPI from '../../API/ClassUserAPI';
 import ClassInfoApi from '../../API/ClassInfoAPI'
 import { reactLocalStorage } from "reactjs-localstorage";
 import { Redirect } from 'react-router-dom';
+import Service from '../../utils/Service';
+import UserApi from '../../API/UserAPI';
 class ClassElement extends Component {
     constructor(props) {
         super(props);
@@ -22,7 +24,9 @@ class ClassElement extends Component {
             tutor: [],
             idUser: reactLocalStorage.getObject("user.info").idUser,
             idClass: this.props.idClass,
-            redirectManageInvitation: false
+            redirectManageInvitation: false,
+            user:[],
+            userTutor:[]
         }
     }
     async componentDidMount() {
@@ -35,11 +39,13 @@ class ClassElement extends Component {
             this.setState({ status: "Đang yêu cầu" })
         }
         var listTutor = await TutorAPI.getTutorById(parseInt(this.props.idTutor));
-
-        console.log(listTutor)
+        var user = await UserApi.getUserByIdUser(parseInt(reactLocalStorage.getObject("user.info").idUser));
+        var userTutor = await UserApi.getUserByName(listTutor.data[0].nameTutor);
         this.setState({
             idTutor: this.props.idTutor,
             tutor: listTutor,
+            user:user.data,
+            userTutor:userTutor.data
         })
 
 
@@ -76,6 +82,11 @@ class ClassElement extends Component {
                     alert(result.message)
                 }
             }).catch(err => console.log(err));
+            var dataFirebase = {
+                title:"Thông báo",
+                message:"Bạn được mời dạy lớp mã số "+this.state.idClass +" từ học viên "+ this.state.user[0].userName
+            }
+            var notify =  Service.postNotification(dataFirebase,this.state.userTutor[0].tokenFirebase);
         this.setState({
             open: false,
             redirectManageInvitation: true

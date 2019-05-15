@@ -1,14 +1,25 @@
 import React, { Component } from 'react';
 import './InfoMess.css';
 class InfoMess extends Component {
+    toggle =()=> {
+        this.props.toggleSearch();
+    }
     render() {
         return (
             <div className="infoMess-con">
-                <div className="img-info-err">
-
+                <div className="title-dialog-search">
+                    <p className="title-dialog-search">Error</p>
                 </div>
-                <div className="value-info">
-                    <p className="value-info">Vui lòng nhập dữ liệu trước!</p>
+                <div className="value-dialog-search">
+                    <div className="img-info-err">
+                        <label className="img-info-err"><i className="fas fa-exclamation-circle"></i></label>
+                    </div>
+                    <div className="value-info">
+                        <p className="value-info">Vui lòng nhập dữ liệu trước!</p>
+                    </div>
+                </div>
+                <div className="btn-ok-dialog">
+                    <button className="btn-ok-dialog" onClick={this.toggle}>OK</button>
                 </div>
             </div>
         );

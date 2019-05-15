@@ -10,13 +10,23 @@ import UserShareClassAPI from '../../API/UserShareClassAPI';
 import ClassInfoAPI from '../../API/ClassInfoAPI';
 import {Redirect} from 'react-router-dom';
 import MyUtils from '../../utils/MyUtils';
+import Service from '../../utils/Service';
+import { reactLocalStorage } from "reactjs-localstorage";
+import UserAPI from '../../API/UserAPI';
 class ClassShare extends Component {
     constructor(props){
         super(props);
         this.state={
             open:false,
-            redirectHome:false
+            redirectHome:false,
+            userShare:[]
         }
+    }
+    async componentDidMount(){
+        var user = await UserAPI.getUserByName(this.props.userName);
+        this.setState({
+            userShare:user.data
+        })
     }
     handleClose = async () => {
         var data = {
@@ -63,6 +73,11 @@ class ClassShare extends Component {
                 alert(result.message)
             }
         }).catch(err =>console.log(err));
+        var dataFirebase = {
+            title:"Thông báo",
+            message:"Học viên "+reactLocalStorage.getObject("user.info").userName +" đã chấp nhận yêu cầu đề nghị học ghép lớp có mã "+ this.props.idClass +" của bạn!"
+        }
+        var notify =  Service.postNotification(dataFirebase,this.state.userShare[0].tokenFirebase);
         this.setState({
             open:false,
             redirectHome:true

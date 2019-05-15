@@ -10,13 +10,26 @@ import ClassUserAPI from '../../API/ClassUserAPI';
 import ClassTutorAPI from '../../API/ClassTutorAPI';
 import ClassInfoAPI from '../../API/ClassInfoAPI';
 import {Redirect} from 'react-router-dom';
+import Service from '../../utils/Service';
+import { reactLocalStorage } from 'reactjs-localstorage';
+import UserAPI from '../../API/UserAPI';
 class ClassOffer extends Component {
     constructor(props){
         super(props);
         this.state={
             open:false,
-            redirectHome:false
+            redirectHome:false,
+            user:[],
+            userOfClass:[]
         }
+    }
+    async componentDidMount(){
+        let user = await UserAPI.getUserByName(this.props.nameTutor);
+        let userInfo = await UserAPI.getUserByIdUser(reactLocalStorage.getObject("user.info").idUser);
+        this.setState({
+            user:user.data,
+            userOfClass:userInfo.data
+        })
     }
     handleClose = async () => {
         var data = {
@@ -63,6 +76,11 @@ class ClassOffer extends Component {
                 alert(result.message)
             }
         }).catch(err =>console.log(err));
+        var dataFirebase = {
+            title:"Thông báo",
+            message:"Học viên "+this.state.userOfClass[0].userName +" đã chấp nhận đề nghị được dạy lớp có mã "+ this.props.idClass +" của bạn!"
+        }
+        var notify =  Service.postNotification(dataFirebase,this.state.user[0].tokenFirebase);
         this.setState({
             open:false,
             redirectHome:true

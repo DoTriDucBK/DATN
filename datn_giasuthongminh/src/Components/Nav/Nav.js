@@ -37,10 +37,6 @@ class Nav extends Component {
         this.toggleSignin = this.toggleSignin.bind(this);
         this.toggleErr = this.toggleErr.bind(this);
     }
-    // componentDidMount() {
-    //     this.setState({ is_login: false })
-    //     // reactLocalStorage.get("home.is_login")
-    // }
     toggle() {
         this.setState(prevState => ({
             modal: !prevState.modal
@@ -311,7 +307,7 @@ class Nav extends Component {
                 <Modal isOpen={this.state.modalErr} toggle={this.toggleErr} className={this.props.className}>
 
                     <ModalBody>
-                        <InfoMess />
+                        <InfoMess toggleSearch = {this.toggleErr}/>
                     </ModalBody>
 
                 </Modal>

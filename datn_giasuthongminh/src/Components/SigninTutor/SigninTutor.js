@@ -201,7 +201,7 @@ class SigninTutor extends Component {
                 <Modal isOpen={this.state.modalErr} toggle={this.toggleErr} className={this.props.className}>
 
                     <ModalBody>
-                        <InfoMess />
+                        <InfoMess toggleSearch = {this.toggleErr}/>
                     </ModalBody>
 
                 </Modal>

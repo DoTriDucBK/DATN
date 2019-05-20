@@ -3,6 +3,9 @@ import './OfferClass.css';
 import { Redirect } from 'react-router';
 import ClassInfoApi from '../../API/ClassInfoAPI';
 import { reactLocalStorage } from 'reactjs-localstorage';
+import { Modal, ModalBody } from 'reactstrap';
+import '../css/ModalCustome.css';
+import InfoMess from '../Nav/InfoMess';
 class OfferClass extends Component {
     constructor(props) {
         super(props);
@@ -24,8 +27,15 @@ class OfferClass extends Component {
             idUser: 0,
             nameGrade: "",
             idPartHour: "",
-            detailClass: ""
+            detailClass: "",
+            modalErr: false,
         };
+        this.toggleErr = this.toggleErr.bind(this);
+    }
+    toggleErr() {
+        this.setState(prevState => ({
+            modalErr: !prevState.modalErr
+        }));
     }
     // Lấy dữ liệu thay đổi của text-input
     handleChangeInputTextForm = (e) => {
@@ -67,37 +77,41 @@ class OfferClass extends Component {
     }
 
     handleCreateClass = (e) => {
-        // var {subject,address,nameGrade,addressDetail,sumSubject,} = this.state;
-        e.preventDefault();
-        var data = {
-            idUser: reactLocalStorage.getObject("user.info").idUser,
-            fee: this.state.fee,
-            status: "Chưa nhận lớp",
-            nameSubject: this.state.subject,
-            nameCity: this.state.address,
-            address: this.state.addressDetail,
-            typeMethod: this.state.typeMethod,
-            nameGrade: this.state.nameGrade,
-            idPartHour: parseInt(this.state.idPartHour),
-            description: this.state.sumSubject,
-            detailClass: this.state.detailClass,
-            numberStudent: parseInt(this.state.numberStudent),
-            limitStudent:parseInt(this.state.limitStudent),
-            numberDay: 2,
-            shareClass: this.state.isDoubleClass
-        }
-        // console.log("1111111111  " , data);
-        var classInfo = ClassInfoApi.createClassInfo(data).then(result => {
-            if (result && result.code === "success") {
-                classInfo = result.data;
-            } else if (result.code === "error") {
-                alert(result.message)
+        if(this.state.sumSubject === "" || this.state.fee === "" || this.state.phone === "" || this.state.numberStudent === "" || this.state.addressDetail === "" || this.state.detailClass || this.state.idPartHour === "" || this.state.nameGrade ===""){
+            this.toggleErr();
+        }else{
+            e.preventDefault();
+            var data = {
+                idUser: reactLocalStorage.getObject("user.info").idUser,
+                fee: this.state.fee,
+                status: "Chưa nhận lớp",
+                nameSubject: this.state.subject,
+                nameCity: this.state.address,
+                address: this.state.addressDetail,
+                typeMethod: this.state.typeMethod,
+                nameGrade: this.state.nameGrade,
+                idPartHour: parseInt(this.state.idPartHour),
+                description: this.state.sumSubject,
+                detailClass: this.state.detailClass,
+                numberStudent: parseInt(this.state.numberStudent),
+                limitStudent:parseInt(this.state.limitStudent),
+                numberDay: 2,
+                shareClass: this.state.isDoubleClass
             }
-        })
-            .catch(err => console.log(err));
-        this.setState({
-            redirectListClass: true
-        });
+            // console.log("1111111111  " , data);
+            var classInfo = ClassInfoApi.createClassInfo(data).then(result => {
+                if (result && result.code === "success") {
+                    classInfo = result.data;
+                } else if (result.code === "error") {
+                    alert(result.message)
+                }
+            })
+                .catch(err => console.log(err));
+            this.setState({
+                redirectListClass: true
+            });
+        }
+        
     }
 
     render() {
@@ -355,6 +369,13 @@ class OfferClass extends Component {
                 <div className="btn-offer">
                     <button type="button" className="btn-offer" onClick={this.handleCreateClass}>Đăng tin </button>
                 </div>
+                <Modal isOpen={this.state.modalErr} toggle={this.toggleErr} className={this.props.className}>
+
+                    <ModalBody>
+                        <InfoMess toggleSearch = {this.toggleErr}/>
+                    </ModalBody>
+
+                </Modal>
             </div>
 
         );

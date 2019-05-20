@@ -292,6 +292,209 @@ class Personal extends Component {
         this.checkedSaturday = new Set();
         this.checkedSunday = new Set();
     }
+    checkMondayInSet = (method) => {
+        
+        if(this.checkedMonday.has(method)){
+            this.checkedMonday.delete(method);
+        }else{
+            this.checkedMonday.add(method);
+        }
+        this.setState({
+            monday: this.checkedMonday
+        });
+        // Lưu hình thức học vào biến typeMethod
+        if(this.state.monday.has("Sáng") && this.state.monday.has("Chiều") && this.state.monday.has("Tối")){
+            this.setState({calMon:"7"})
+        }else if(this.state.monday.has("Sáng") && this.state.monday.has("Chiều")){
+            this.setState({calMon:"4"})
+        }else if(this.state.monday.has("Sáng") && this.state.monday.has("Tối")){
+            this.setState({calMon:"6"})
+        }else if (this.state.monday.has("Chiều") && this.state.monday.has("Tối")){
+            this.setState({calMon:"5"})
+        }else if(this.state.monday.has("Sáng")){
+            this.setState({calMon:"1"})
+        }else if(this.state.monday.has("Chiều")){
+            this.setState({calMon:"2"})
+        }else if(this.state.monday.has("Tối")){
+            this.setState({calMon:"3"})
+        }else{
+            this.setState({calMon:"0"})
+        }
+    }
+    checkTuesdayInSet = (method) => {
+        
+        if(this.checkedTuesday.has(method)){
+            this.checkedTuesday.delete(method);
+        }else{
+            this.checkedTuesday.add(method);
+        }
+        this.setState({
+            tuesday: this.checkedTuesday
+        });
+        // Lưu hình thức học vào biến typeMethod
+        if(this.state.tuesday.has("Sáng") && this.state.tuesday.has("Chiều") && this.state.tuesday.has("Tối")){
+            this.setState({calTue:"7"})
+        }else if(this.state.tuesday.has("Sáng") && this.state.tuesday.has("Chiều")){
+            this.setState({calTue:"4"})
+        }else if(this.state.tuesday.has("Sáng") && this.state.tuesday.has("Tối")){
+            this.setState({calTue:"6"})
+        }else if (this.state.tuesday.has("Chiều") && this.state.tuesday.has("Tối")){
+            this.setState({calTue:"5"})
+        }else if(this.state.tuesday.has("Sáng")){
+            this.setState({calTue:"1"})
+        }else if(this.state.tuesday.has("Chiều")){
+            this.setState({calTue:"2"})
+        }else if(this.state.tuesday.has("Tối")){
+            this.setState({calTue:"3"})
+        }else{
+            this.setState({calTue:"0"})
+        }
+    }
+    checkWednesdayInSet = (method) => {
+        
+        if(this.checkedWednesday.has(method)){
+            this.checkedWednesday.delete(method);
+        }else{
+            this.checkedWednesday.add(method);
+        }
+        this.setState({
+            wednesday: this.checkedWednesday
+        });
+        // Lưu hình thức học vào biến typeMethod
+        if(this.state.wednesday.has("Sáng") && this.state.wednesday.has("Chiều") && this.state.wednesday.has("Tối")){
+            this.setState({calWed:"7"})
+        }else if(this.state.wednesday.has("Sáng") && this.state.wednesday.has("Chiều")){
+            this.setState({calWed:"4"})
+        }else if(this.state.wednesday.has("Sáng") && this.state.wednesday.has("Tối")){
+            this.setState({calWed:"6"})
+        }else if (this.state.wednesday.has("Chiều") && this.state.wednesday.has("Tối")){
+            this.setState({calWed:"5"})
+        }else if(this.state.wednesday.has("Sáng")){
+            this.setState({calWed:"1"})
+        }else if(this.state.wednesday.has("Chiều")){
+            this.setState({calWed:"2"})
+        }else if(this.state.wednesday.has("Tối")){
+            this.setState({calWed:"3"})
+        }else{
+            this.setState({calWed:"0"})
+        }
+    }
+    checkThursdayInSet = (method) => {
+        
+        if(this.checkedThursday.has(method)){
+            this.checkedThursday.delete(method);
+        }else{
+            this.checkedThursday.add(method);
+        }
+        this.setState({
+            thursday: this.checkedThursday
+        });
+        // Lưu hình thức học vào biến typeMethod
+        if(this.state.thursday.has("Sáng") && this.state.thursday.has("Chiều") && this.state.thursday.has("Tối")){
+            this.setState({calThu:"7"})
+        }else if(this.state.thursday.has("Sáng") && this.state.thursday.has("Chiều")){
+            this.setState({calThu:"4"})
+        }else if(this.state.thursday.has("Sáng") && this.state.thursday.has("Tối")){
+            this.setState({calThu:"6"})
+        }else if (this.state.thursday.has("Chiều") && this.state.thursday.has("Tối")){
+            this.setState({calThu:"5"})
+        }else if(this.state.thursday.has("Sáng")){
+            this.setState({calThu:"1"})
+        }else if(this.state.thursday.has("Chiều")){
+            this.setState({calThu:"2"})
+        }else if(this.state.thursday.has("Tối")){
+            this.setState({calThu:"3"})
+        }else{
+            this.setState({calThu:"0"})
+        }
+    }
+    checkFridayInSet = (method) => {
+        
+        if(this.checkedFriday.has(method)){
+            this.checkedFriday.delete(method);
+        }else{
+            this.checkedFriday.add(method);
+        }
+        this.setState({
+            friday: this.checkedFriday
+        });
+        // Lưu hình thức học vào biến typeMethod
+        if(this.state.friday.has("Sáng") && this.state.friday.has("Chiều") && this.state.friday.has("Tối")){
+            this.setState({calFri:"7"})
+        }else if(this.state.friday.has("Sáng") && this.state.friday.has("Chiều")){
+            this.setState({calFri:"4"})
+        }else if(this.state.friday.has("Sáng") && this.state.friday.has("Tối")){
+            this.setState({calFri:"6"})
+        }else if (this.state.friday.has("Chiều") && this.state.friday.has("Tối")){
+            this.setState({calFri:"5"})
+        }else if(this.state.friday.has("Sáng")){
+            this.setState({calFri:"1"})
+        }else if(this.state.friday.has("Chiều")){
+            this.setState({calFri:"2"})
+        }else if(this.state.friday.has("Tối")){
+            this.setState({calFri:"3"})
+        }else{
+            this.setState({calFri:"0"})
+        }
+    }
+    checkSaturdayInSet = (method) => {
+        
+        if(this.checkedSaturday.has(method)){
+            this.checkedSaturday.delete(method);
+        }else{
+            this.checkedSaturday.add(method);
+        }
+        this.setState({
+            saturday: this.checkedSaturday
+        });
+        // Lưu hình thức học vào biến typeMethod
+        if(this.state.saturday.has("Sáng") && this.state.saturday.has("Chiều") && this.state.saturday.has("Tối")){
+            this.setState({calSat:"7"})
+        }else if(this.state.saturday.has("Sáng") && this.state.saturday.has("Chiều")){
+            this.setState({calSat:"4"})
+        }else if(this.state.saturday.has("Sáng") && this.state.saturday.has("Tối")){
+            this.setState({calSat:"6"})
+        }else if (this.state.saturday.has("Chiều") && this.state.saturday.has("Tối")){
+            this.setState({calSat:"5"})
+        }else if(this.state.saturday.has("Sáng")){
+            this.setState({calSat:"1"})
+        }else if(this.state.saturday.has("Chiều")){
+            this.setState({calSat:"2"})
+        }else if(this.state.saturday.has("Tối")){
+            this.setState({calSat:"3"})
+        }else{
+            this.setState({calSat:"0"})
+        }
+    }
+    checkSundayInSet = (method) => {
+        
+        if(this.checkedSunday.has(method)){
+            this.checkedSunday.delete(method);
+        }else{
+            this.checkedSunday.add(method);
+        }
+        this.setState({
+            sunday: this.checkedSunday
+        });
+        // Lưu hình thức học vào biến typeMethod
+        if(this.state.sunday.has("Sáng") && this.state.sunday.has("Chiều") && this.state.sunday.has("Tối")){
+            this.setState({calSun:"7"})
+        }else if(this.state.sunday.has("Sáng") && this.state.sunday.has("Chiều")){
+            this.setState({calSun:"4"})
+        }else if(this.state.sunday.has("Sáng") && this.state.sunday.has("Tối")){
+            this.setState({calSun:"6"})
+        }else if (this.state.sunday.has("Chiều") && this.state.sunday.has("Tối")){
+            this.setState({calSun:"5"})
+        }else if(this.state.sunday.has("Sáng")){
+            this.setState({calSun:"1"})
+        }else if(this.state.sunday.has("Chiều")){
+            this.setState({calSun:"2"})
+        }else if(this.state.sunday.has("Tối")){
+            this.setState({calSun:"3"})
+        }else {
+            this.setState({calSun:"0"})
+        }
+    }
     showClassUser= ()=> {
         const listClassUser = this.state.listClassUser.map((item,index) =>
         <div className="info-class-teaching" key={index}>
@@ -300,7 +503,7 @@ class Personal extends Component {
                                 <p className="info-class-1"><i className="fas fa-book-reader"></i>&nbsp;Môn học:&nbsp;<b>{item.classInfo[0].nameSubject}</b></p>
                                 </div>
                                 <div className="info-class-1-center">
-                                <p className="info-class-1"><i className="fas fa-hand-holding-usd"></i>&nbsp;Học phí:&nbsp;<b>{item.classInfo[0].fee} vnđ/b</b></p>
+                                <p className="info-class-1"><i className="fas fa-hand-holding-usd"></i>&nbsp;Học phí:&nbsp;<b>{MyUtils.currencyFormat(item.classInfo[0].fee)} vnđ/b</b></p>
                                 </div>
                                 <div className="info-class-1-right">
                                 <p className="info-class-1"><i className="fas fa-address-card"></i>&nbsp;Hình thức học:&nbsp;<b>{item.classInfo[0].typeMethod}</b></p>
@@ -310,7 +513,7 @@ class Personal extends Component {
                             <p className="info-class-1"><i className="fas fa-map-marker-alt"></i>&nbsp;Địa chỉ:&nbsp;<b>{item.classInfo[0].address}</b></p>
                             </div>
                             <div className="info-class-2">
-                            <p className="info-class-1"><i className="fas fa-comments"></i>&nbsp;Đánh giá của học viên:&nbsp;<b>{item.comment}</b></p>
+                            <p className="info-class-1"><i className="fas fa-comments"></i>&nbsp;Đánh giá của học viên:&nbsp;<b>{item.classInfo[0].comment}</b></p>
                             </div>
                         </div>
     );
@@ -324,7 +527,7 @@ class Personal extends Component {
                                 <p className="info-class-1"><i className="fas fa-book-reader"></i>&nbsp;Môn học:&nbsp;<b>{item.classInfo[0].nameSubject}</b></p>
                                 </div>
                                 <div className="info-class-1-center">
-                                <p className="info-class-1"><i className="fas fa-hand-holding-usd"></i>&nbsp;Học phí:&nbsp;<b>{item.classInfo[0].fee} vnđ/b</b></p>
+                                <p className="info-class-1"><i className="fas fa-hand-holding-usd"></i>&nbsp;Học phí:&nbsp;<b>{MyUtils.currencyFormat(item.classInfo[0].fee)} vnđ/b</b></p>
                                 </div>
                                 <div className="info-class-1-right">
                                 <p className="info-class-1"><i className="fas fa-address-card"></i>&nbsp;Hình thức học:&nbsp;<b>{item.classInfo[0].typeMethod}</b></p>
@@ -334,7 +537,7 @@ class Personal extends Component {
                             <p className="info-class-1"><i className="fas fa-map-marker-alt"></i>&nbsp;Địa chỉ:&nbsp;<b>{item.classInfo[0].address}</b></p>
                             </div>
                             <div className="info-class-2">
-                            <p className="info-class-1"><i className="fas fa-comments"></i>&nbsp;Đánh giá của học viên:&nbsp;<b>{item.comment}</b></p>
+                            <p className="info-class-1"><i className="fas fa-comments"></i>&nbsp;Đánh giá của học viên:&nbsp;<b>{item.classInfo[0].comment}</b></p>
                             </div>
                         </div>
     );

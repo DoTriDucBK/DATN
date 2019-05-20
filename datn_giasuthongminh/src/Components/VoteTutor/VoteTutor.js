@@ -4,6 +4,7 @@ import ClassUserAPI from '../../API/ClassUserAPI';
 import TutorApi from '../../API/TutorAPI';
 import MyUtils from '../../utils/MyUtils';
 import StarRatings from 'react-star-ratings';
+import ClassInfoApi from '../../API/ClassInfoAPI';
 class VoteTutor extends Component {
     constructor(props) {
         super(props);
@@ -28,15 +29,12 @@ class VoteTutor extends Component {
     submitVote = async (e) => {
         e.preventDefault();
         var data = {
-            idUser: this.props.idUser,
             idClass: this.props.idClass,
-            idTutor: this.props.idTutor,
-            comment: this.state.comment,
-            idClass_User: this.props.idClass_User
+            comment: this.state.comment
         }
-        var classUser = await ClassUserAPI.editClassUser(data).then(result => {
+        var classInfo = await ClassInfoApi.editClassInfo(data).then(result => {
             if (result && result.code === "success") {
-                classUser = result.data;
+                classInfo = result.data;
             } else if (result.code === "error") {
                 alert(result.message)
             }

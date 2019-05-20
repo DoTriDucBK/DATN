@@ -27,7 +27,7 @@ class Nav extends Component {
             modalSignin: false,
             modalErr: false,
             userinfo: reactLocalStorage.getObject("user.info"),
-            is_login: reactLocalStorage.getObject("home.is_login"),
+            is_login: reactLocalStorage.get("home.is_login"),
             type: reactLocalStorage.get("type"),
             redirectManageClassOffer: false,
             listInvite: [],
@@ -154,8 +154,8 @@ class Nav extends Component {
         console.log(result)
         if (result) {
             reactLocalStorage.setObject("user.info", null);
-            reactLocalStorage.setObject("home.is_login", false);
-            reactLocalStorage.setObject("type", 0);
+            reactLocalStorage.set("home.is_login", false);
+            reactLocalStorage.set("type", 0);
             this.setState({
                 userinfo: null,
                 is_login: false,

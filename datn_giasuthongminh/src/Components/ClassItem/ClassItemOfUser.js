@@ -15,6 +15,7 @@ import { Modal, ModalBody } from 'reactstrap';
 import '../css/ModalCustome.css';
 import DetailClass from '../../Components/DetailClass/DetailClass'
 import VoteTutor from '../VoteTutor/VoteTutor';
+import ClassInfoApi from '../../API/ClassInfoAPI';
 class ClassItemOfUser extends Component {
     constructor(props){
         super(props);
@@ -30,7 +31,8 @@ class ClassItemOfUser extends Component {
             status:0,
             idClass_User:0,
             oldStar:0,
-            timesVote:0
+            timesVote:0,
+            comment:""
         }
         this.toggle = this.toggle.bind(this);
     }
@@ -56,8 +58,9 @@ class ClassItemOfUser extends Component {
             status: this.state.listClassUser[0].status,
             idClass_User:this.state.listClassUser[0].idClass_User,
             oldStar: valueTutor.data[0].star,
-            timesVote:valueTutor.data[0].times_vote
+            timesVote:valueTutor.data[0].times_vote,
         })
+
         this.setState(prevState => ({
             modal: !prevState.modal
         }));

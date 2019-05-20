@@ -499,7 +499,7 @@ class PersonalPage extends Component {
                                 <p className="info-class-1"><i className="fas fa-book-reader"></i>&nbsp;Môn học:&nbsp;<b>{item.classInfo[0].nameSubject}</b></p>
                                 </div>
                                 <div className="info-class-1-center">
-                                <p className="info-class-1"><i className="fas fa-hand-holding-usd"></i>&nbsp;Học phí:&nbsp;<b>{item.classInfo[0].fee} vnđ/b</b></p>
+                                <p className="info-class-1"><i className="fas fa-hand-holding-usd"></i>&nbsp;Học phí:&nbsp;<b>{MyUtils.currencyFormat(item.classInfo[0].fee)} vnđ/b</b></p>
                                 </div>
                                 <div className="info-class-1-right">
                                 <p className="info-class-1"><i className="fas fa-address-card"></i>&nbsp;Hình thức học:&nbsp;<b>{item.classInfo[0].typeMethod}</b></p>
@@ -509,7 +509,7 @@ class PersonalPage extends Component {
                             <p className="info-class-1"><i className="fas fa-map-marker-alt"></i>&nbsp;Địa chỉ:&nbsp;<b>{item.classInfo[0].address}</b></p>
                             </div>
                             <div className="info-class-2">
-                            <p className="info-class-1"><i className="fas fa-comments"></i>&nbsp;Đánh giá của học viên:&nbsp;<b>{item.comment}</b></p>
+                            <p className="info-class-1"><i className="fas fa-comments"></i>&nbsp;Đánh giá của học viên:&nbsp;<b>{item.classInfo[0].comment}</b></p>
                             </div>
                         </div>
     );
@@ -523,7 +523,7 @@ class PersonalPage extends Component {
                                 <p className="info-class-1"><i className="fas fa-book-reader"></i>&nbsp;Môn học:&nbsp;<b>{item.classInfo[0].nameSubject}</b></p>
                                 </div>
                                 <div className="info-class-1-center">
-                                <p className="info-class-1"><i className="fas fa-hand-holding-usd"></i>&nbsp;Học phí:&nbsp;<b>{item.classInfo[0].fee} vnđ/b</b></p>
+                                <p className="info-class-1"><i className="fas fa-hand-holding-usd"></i>&nbsp;Học phí:&nbsp;<b>{MyUtils.currencyFormat(item.classInfo[0].fee)} vnđ/b</b></p>
                                 </div>
                                 <div className="info-class-1-right">
                                 <p className="info-class-1"><i className="fas fa-address-card"></i>&nbsp;Hình thức học:&nbsp;<b>{item.classInfo[0].typeMethod}</b></p>
@@ -533,7 +533,7 @@ class PersonalPage extends Component {
                             <p className="info-class-1"><i className="fas fa-map-marker-alt"></i>&nbsp;Địa chỉ:&nbsp;<b>{item.classInfo[0].address}</b></p>
                             </div>
                             <div className="info-class-2">
-                            <p className="info-class-1"><i className="fas fa-comments"></i>&nbsp;Đánh giá của học viên:&nbsp;<b>{item.comment}</b></p>
+                            <p className="info-class-1"><i className="fas fa-comments"></i>&nbsp;Đánh giá của học viên:&nbsp;<b>{item.classInfo[0].comment}</b></p>
                             </div>
                         </div>
     );

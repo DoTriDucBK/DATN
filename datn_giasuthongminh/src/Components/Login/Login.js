@@ -45,7 +45,7 @@ class Login extends Component {
             else if (result && result.data) {
                 user = result.data;
                 reactLocalStorage.setObject("user.info", user);
-                reactLocalStorage.setObject("home.is_login", true);
+                reactLocalStorage.set("home.is_login", true);
                 reactLocalStorage.set("type",this.state.type);
                 this.props.handleLogin(user, true,this.state.type);
                 var token = reactLocalStorage.get("tokenFirebase")

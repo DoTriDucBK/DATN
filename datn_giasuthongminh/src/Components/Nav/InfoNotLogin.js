@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './InfoMess.css';
+import './InfoNotLogin.css';
 class InfoNotLogin extends Component {
     toggle = () => {
         this.props.toggleNotLogin();

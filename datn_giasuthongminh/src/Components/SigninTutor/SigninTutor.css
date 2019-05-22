@@ -254,7 +254,7 @@ button.btn-become:hover{
     }
 
 }
-@media only screen and (min-width:426px) and (max-width:768px){
+@media only screen and (min-width:426px) and (max-width:1024px){
     div.signTutor-con{
         width: 100%;
         height: 500px;
@@ -263,7 +263,7 @@ button.btn-become:hover{
         margin-top: 20px;
     }
     div.becomeTutor{
-        width: 60%;
+        width: 55%;
         height: 380px;
         margin-left: 20px;
         margin-top: 50px;

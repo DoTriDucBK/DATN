@@ -121,3 +121,35 @@ div.item-page{
 div.item-page:hover{
     background-color: #069D86;
 }
+@media only screen and (min-width:769px) and (max-width:1024px){
+    div.title-container{
+        width: 95%;
+        height: 40px;
+        margin: auto;
+        margin-top: 20px;
+    }
+    div.select-result-search{
+        width: 95%;
+    }
+    div.select-search{
+        width: 100%;
+        height: 35px;
+        margin-top: 10px;
+    }
+    select.select-search{
+        width: 180px;
+    }
+    button.search-title-btn{
+        width: 120px;
+    }
+    div.result-container{
+        width: 95%;
+        height: 600px;
+        margin: auto;
+        margin-top: 10px;
+    }
+    div.row1{
+        margin-top: 10px;
+        width: 100%;
+    }
+}

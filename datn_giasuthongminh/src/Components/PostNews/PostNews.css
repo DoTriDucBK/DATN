@@ -410,6 +410,7 @@ button.btn-post:hover{
         border: 1px solid #bcbcbc;
         margin-left: 5%;
         border-radius: 5px;
+        font-size: 14px;
     }
     div.city input{
         width:90%;
@@ -458,10 +459,11 @@ button.btn-post:hover{
         float: left;
     } 
     div.right{
-        width: 60%;
+        width: 40%;
         height: 90%;
         float: left; 
         margin-top: 3%;
+        margin-left: 36%;
     }
     p.text-post{
         margin-top: 30px;
@@ -517,6 +519,7 @@ button.btn-post:hover{
         border: 1px solid #bcbcbc;
         margin-left: 5%;
         border-radius: 5px;
+        font-size: 14px;
     }
     div.city input{
         width:90%;
@@ -549,5 +552,21 @@ button.btn-post:hover{
         border: none;
         border-radius: 5px;
         font-size: 14px;
+    }
+}
+@media only screen and (min-width: 769px) and (max-width: 1024px){
+    div.right{
+        width: 35%;
+        height: 70%;
+        float: left; 
+        margin-left: 20%;
+        margin-top: 5%;
+        background: linear-gradient(to bottom, #FFF 1%, #98c5e1 98%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+        box-sizing: border-box;
+        border-bottom: 1px solid #DFDFDF;
+        border-left: 1px solid #ECECEC;
+        border-radius: 8px;
+        border-right: 1px solid #ECECEC;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.04);
     }
 }

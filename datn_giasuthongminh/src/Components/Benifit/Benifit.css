@@ -209,7 +209,6 @@ div.benifit-value-right{
         height: 60px;
         margin-left:4%;
         margin-top: 20px;
-
     }
     div.benifit-value-left{
         width: 100%;
@@ -232,18 +231,18 @@ div.benifit-value-right{
     div.benifit-value-title1{
         width: 100%;
         height: 35%;
-        margin-top: 8px;
+        margin-top: 3px;
     }
     p.benifit-value-title{
         text-align: left;
-        font-size: 16px;
+        font-size: 18px;
     }
     div.benifit1{
         width: 100%;
         height: 50%;
     }
     p.benifit1{
-        font-size: 14px;
+        font-size: 16px;
         text-align: left;
     }
     div.benifit-value-right{
@@ -270,9 +269,9 @@ div.benifit-value-right{
         font-size: 30px;
     }
     div.benifit-value{
-        width: 82%;
+        width: 90%;
         height: 60px;
-        margin-left:10%;
+        margin-left:6%;
         margin-top: 20px;
     }
     div.benifit-value-left{
@@ -291,9 +290,10 @@ div.benifit-value-right{
         font-size: 30px;
     }
     div.benifit-value-title{
-        width: 90%;
+        width: 88%;
         height: 100%;
         float: left;
+        margin-left:2%;
     }
     div.benifit-value-title1{
         width: 100%;
@@ -317,5 +317,13 @@ div.benifit-value-right{
         height: 100px;
         float: left;
         margin-left: 4%;
+    }
+}
+@media only screen and (min-width:769px) and (max-width: 1024px){
+    div.benifit-value{
+        width: 90%;
+        height: 60px;
+        margin-left:6%;
+        margin-top: 20px;
     }
 }

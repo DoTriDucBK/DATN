@@ -25,12 +25,12 @@ ul.ul-custom{
 input.search{
     display: inline-block;
     vertical-align: middle;
-    width: 290px;
+    width: 280px;
     height: calc(2.25rem + 2px);
     padding: .375rem .75rem;
     font-size: 1rem;
     line-height: 1.5;
-    color: #495057;
+    color: black;
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
@@ -38,7 +38,7 @@ input.search{
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 form.form-search{
-    width: 400px !important;
+    width: 395px !important;
     margin-left: 0px !important;
 }
 div.image-logo{
@@ -52,7 +52,7 @@ div.navbar-collapse-custom{
     margin-right: 0px !important;
 }
 nav div.nav-btn-search{
-    width: 99px;
+    width: 102px;
     height: 38px;
     border-radius: 5px;
     background-color: #069d86;
@@ -76,6 +76,7 @@ a.link{
 a.nav-link{
     color: black !important;
     margin-top: 7px !important;
+    font-weight: 450;
 }
 a.custom-link{
     margin-top: 0px !important;
@@ -92,6 +93,8 @@ nav button.nav-btn-dangki{
     height: 38px;
     border-radius: 5px;
     border: 1px solid wheat;
+    color: black;
+    font-weight: 450;
 }
 nav button.nav-btn-dangki:hover{
     transform: scale(1.05);
@@ -481,6 +484,7 @@ li.nav-item{
     }
     li.nav-item{
         margin-left: 5px !important;
+        font-weight: bold !important;
     }
     .dropdown {
         position: relative;

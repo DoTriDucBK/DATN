@@ -294,6 +294,8 @@ class Nav extends Component {
                                     <li className="dropdown-content-item-small"><Link to="/"> <label><i className="fas fa-school"></i>&nbsp;&nbsp;Trang chủ</label></Link></li>
                                     <li className="dropdown-content-item-small"><Link to="/listclass"><label><i className="fas fa-graduation-cap"></i>&nbsp;Danh sách lớp học</label></Link></li>
                                     <li className="dropdown-content-item-small" onClick={this.toggle}> <Link to=""><label><i className="fas fa-user-shield"></i>&nbsp;&nbsp;Đăng nhập</label></Link></li>
+                                    {reactLocalStorage.get("type") == "1" ?
+                                     <li className="dropdown-content-item-small"><Link to="/personal"><label><i className="fas fa-graduation-cap"></i>&nbsp;Trang cá nhân</label></Link></li>:<div></div>}
                                     <li className="dropdown-content-item-small"><label onClick={this.handleChangePassword}><i className="fas fa-unlock-alt"></i>&nbsp;&nbsp;Đổi mật khẩu</label></li>
                                     <li className="dropdown-content-item-small"><label onClick={this.handleLogout}><i className="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Đăng xuất</label></li>
                                     </ul>

@@ -18,7 +18,7 @@ class ListClass extends Component {
             activePage: 1,
             classPerPage: 4,
             modal: false,
-            nameTutor:reactLocalStorage.getObject("user.info").userName
+            nameTutor:reactLocalStorage.getObject("home.is_login")?reactLocalStorage.getObject("user.info").userName:""
         }
         this.toggle = this.toggle.bind(this);
     }

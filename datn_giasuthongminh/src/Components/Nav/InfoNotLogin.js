@@ -7,7 +7,7 @@ class InfoNotLogin extends Component {
     }
     render() {
         return (
-            <div className="infoMess-con">
+            <div className="infoMessLogin-con">
                 <div className="title-dialog-search">
                     <p className="title-dialog-search">Error</p>
                 </div>

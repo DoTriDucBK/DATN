@@ -31,10 +31,24 @@ class ClassInvite extends Component {
         })
     }
     handleClose = async () => {
+        var data2 = {
+            idClass:this.props.idClass,
+            status:"Chưa nhận lớp"
+        }
+        var classInfo = await ClassInfoAPI.editClassInfo(data2).then(result => {
+            if(result && result.code === "success"){
+                classInfo = result.data
+            }else if(result.code === "error"){
+                alert(result.message)
+            }
+        }).catch(err =>console.log(err));
         var data = {
             idClass_User: this.props.idClassUser,
             notification:0,
-            is_seen:1
+            is_seen:1,
+            idUser:0,
+            idTutor:0,
+            idClass:0
         }
         // console.log("1111111111  " , data);
         var classUser = await ClassUserAPI.editClassUser(data).then(result => {
@@ -45,6 +59,12 @@ class ClassInvite extends Component {
             }
         })
         .catch(err => console.log(err));
+        var dataFirebase = {
+            title:"Thông báo",
+            message:"Gia sư "+this.state.user[0].userName +" từ chối dạy lớp mã số "+ this.props.idClass +" của bạn!"
+        }
+        var notify =  Service.postNotification(dataFirebase,this.state.userResponse[0].tokenFirebase);
+        
         this.setState({ open: false,
             redirectHome:true
         });

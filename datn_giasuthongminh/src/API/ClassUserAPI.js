@@ -71,5 +71,9 @@ const ClassUserApi = {
         let result = await MyService.getRequestData("/class-user/search-notification", options);
         return result
     },
+    deleteClassUser: async (id) => {
+        let result = await MyService.deleteRequestData("/class-user/", { "idClass_User": id });
+        return result
+    }
 }
 export default ClassUserApi;

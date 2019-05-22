@@ -40,7 +40,7 @@ class TutorItem extends Component {
         });
     }
     redirectListClassUser = () => {
-        if(!reactLocalStorage.getObject("home.is_login")){
+        if((!reactLocalStorage.getObject("home.is_login") || reactLocalStorage.get("type") == "1")){
             this.toggleErr1();
         }else{
         this.setState({

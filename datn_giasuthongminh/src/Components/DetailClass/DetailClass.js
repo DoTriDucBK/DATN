@@ -11,6 +11,7 @@ import { reactLocalStorage } from "reactjs-localstorage";
 import UserShareClassAPI from '../../API/UserShareClassAPI';
 import UserAPI from '../../API/UserAPI';
 import Service from '../../utils/Service';
+import Utils from '../../utils/MyUtils';
 class DetailClass extends Component {
     constructor(props) {
         super(props);
@@ -86,13 +87,24 @@ class DetailClass extends Component {
         })
 
     }
+    onClickCancel = ()=> {
+        this.props.toggleDetail();
+    }
     render() {
         var { classInfo, status } = this.state;
         if (classInfo.length === 0)
             return <div></div>
         return (
             <div className="detailClass-container">
-                <h1 className="detailClass-title">Thông tin lớp học</h1>
+                <div className="detailClass-title">
+                    <div className="detailClass-title-left">
+                    <h1 className="detailClass-title">Thông tin lớp học</h1>
+                    </div>
+                    <div className="detailClass-title-cancel">
+                        <label className="detailClass-title-cancel" onClick={this.onClickCancel}><i className="far fa-times-circle"></i></label>
+                    </div>
+                </div>
+                
                 <div className="info-detail1">
                     <p className="info-detail-value"><label className="info-detail-value"><i className="fas fa-info-circle"></i> &nbsp;Thông tin lớp:</label> &nbsp;{classInfo[0].detailClass}</p>
                 </div>
@@ -109,7 +121,7 @@ class DetailClass extends Component {
                         <p className="info-detail-value"><label className="info-detail-value"><i className="fas fa-chalkboard-teacher"></i> &nbsp;Hình thức:</label>&nbsp;{classInfo[0].typeMethod}</p>
                     </div>
                     <div className="info-detail-right">
-                        <p className="info-detail-value"><label className="info-detail-value"><i className="fas fa-hand-holding-usd"></i> &nbsp;Học phí:</label>&nbsp;{classInfo[0].fee}</p>
+                        <p className="info-detail-value"><label className="info-detail-value"><i className="fas fa-hand-holding-usd"></i> &nbsp;Học phí:</label>&nbsp;{Utils.currencyFormat(classInfo[0].fee)}</p>
                     </div>
 
                 </div>

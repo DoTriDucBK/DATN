@@ -13,6 +13,7 @@ import TutorApi from '../../API/TutorAPI';
 import ClassUserAPI from '../../API/ClassUserAPI';
 import ClassTutorAPI from '../../API/ClassTutorAPI';
 import UserShareClassAPI from '../../API/UserShareClassAPI';
+import ChangePassword from '../ChangePassword/ChangePassword';
 class Nav extends Component {
     constructor(props) {
         super(props);
@@ -26,8 +27,9 @@ class Nav extends Component {
             modal: false,
             modalSignin: false,
             modalErr: false,
+            modalChangePass:false,
             userinfo: reactLocalStorage.getObject("user.info"),
-            is_login: reactLocalStorage.get("home.is_login"),
+            is_login: reactLocalStorage.getObject("home.is_login"),
             type: reactLocalStorage.get("type"),
             redirectManageClassOffer: false,
             listInvite: [],
@@ -36,6 +38,7 @@ class Nav extends Component {
         this.toggle = this.toggle.bind(this);
         this.toggleSignin = this.toggleSignin.bind(this);
         this.toggleErr = this.toggleErr.bind(this);
+        this.toggleChangePass = this.toggleChangePass.bind(this);
     }
     toggle() {
         this.setState(prevState => ({
@@ -50,6 +53,11 @@ class Nav extends Component {
     toggleErr() {
         this.setState(prevState => ({
             modalErr: !prevState.modalErr
+        }));
+    }
+    toggleChangePass(){
+        this.setState(prevState => ({
+            modalChangePass: !prevState.modalChangePass
         }));
     }
     async componentDidMount() {
@@ -154,7 +162,7 @@ class Nav extends Component {
         console.log(result)
         if (result) {
             reactLocalStorage.setObject("user.info", null);
-            reactLocalStorage.set("home.is_login", false);
+            reactLocalStorage.setObject("home.is_login", false);
             reactLocalStorage.set("type", 0);
             this.setState({
                 userinfo: null,
@@ -171,9 +179,12 @@ class Nav extends Component {
         console.log(this.state.listShare.length)
         return parseInt(a) + parseInt(b);
     }
+    handleChangePassword = () => {
+        this.toggleChangePass();
+    }
     render() {
         var user_name = this.state.userinfo ? this.state.userinfo.userName : "";
-        console.log(reactLocalStorage.getObject("home.is_login"));
+        console.log(typeof(reactLocalStorage.getObject("home.is_login")));
         if (this.state.redirectLogin) {
             return <Redirect push to="/login" />;
         } else if (this.state.redirectHome) {
@@ -256,7 +267,7 @@ class Nav extends Component {
                                                             <li className="dropdown-content-item"> <Link to="/manage-class-of-user"><label><i className="fas fa-plus-circle"></i>&nbsp;Danh sách lớp đã đăng</label></Link></li>
                                                         </div>}
                                                     <li className="dropdown-item-title">Chức năng cá nhân</li>
-                                                    <li className="dropdown-content-item"> <label><i className="fas fa-unlock-alt"></i>&nbsp;Đổi mật khẩu</label></li>
+                                                    <li className="dropdown-content-item"><label onClick={this.handleChangePassword}><i className="fas fa-unlock-alt"></i>&nbsp;Đổi mật khẩu</label></li>
                                                     <li className="dropdown-content-item" onClick={this.handleLogout}> <label><i className="fas fa-sign-out-alt"></i>&nbsp;Đăng xuất</label></li>
                                                 </ul>
 
@@ -308,6 +319,13 @@ class Nav extends Component {
 
                     <ModalBody>
                         <InfoMess toggleSearch = {this.toggleErr}/>
+                    </ModalBody>
+
+                </Modal>
+                <Modal isOpen={this.state.modalChangePass} toggle={this.toggleChangePass} className={this.props.className}>
+
+                    <ModalBody>
+                        <ChangePassword togglePass={this.toggleChangePass}/>
                     </ModalBody>
 
                 </Modal>

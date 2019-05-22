@@ -4,17 +4,19 @@ import ClassElement from '../ClassItem/ClassElement';
 import ClassElementTutor from '../ClassItem/ClassElementTutor';
 import { reactLocalStorage } from 'reactjs-localstorage';
 import ClassTutorAPI from '../../API/ClassTutorAPI';
+import TutorApi from '../../API/TutorAPI';
 class ManageClassOffer extends Component {
     constructor(props){
         super(props);
         this.state= {
-            idTutor: reactLocalStorage.getObject("user.info").idTutor,
+            nameTutor: reactLocalStorage.getObject("user.info").userName,
             listClassTutor:[]
         }
     }
     async componentDidMount(){
+        var tutor = await TutorApi.getTutorByName(reactLocalStorage.getObject("user.info").userName);
         var options = {
-            idTutor: this.state.idTutor
+            idTutor: tutor.data[0].idTutor
         }
         var listClassTutor = await ClassTutorAPI.getClassAndTutorByIdTutor(options);
         this.setState({
@@ -43,6 +45,7 @@ class ManageClassOffer extends Component {
         return listClass;
     }
     render() {
+        console.log(this.state.listClassTutor)
         return (
             <div className="manage-class-container">
                 <div className="manage-class-title">

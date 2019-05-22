@@ -32,7 +32,10 @@ class ClassShare extends Component {
         var data = {
             idUserUser: this.props.idUserUser,
             notification:0,
-            is_seen:1
+            is_seen:0,
+            idUser:0,
+            idUserOfClass:0,
+            idClass:0
         }
         // console.log("1111111111  " , data);
         var userShare = await UserShareClassAPI.editClassUser(data).then(result => {
@@ -43,6 +46,11 @@ class ClassShare extends Component {
             }
         })
         .catch(err => console.log(err));
+        var dataFirebase = {
+            title:"Thông báo",
+            message:"Học viên "+reactLocalStorage.getObject("user.info").userName +" từ chối yêu cầu đề nghị học ghép lớp có mã "+ this.props.idClass +" của bạn!"
+        }
+        var notify =  Service.postNotification(dataFirebase,this.state.userShare[0].tokenFirebase);
         this.setState({ open: false,
             redirectHome:true
         });

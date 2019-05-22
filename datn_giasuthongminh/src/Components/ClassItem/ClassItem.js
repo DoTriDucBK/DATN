@@ -16,6 +16,8 @@ import '../css/ModalCustome.css';
 import DetailClass from '../../Components/DetailClass/DetailClass';
 import Service from '../../utils/Service';
 import UserAPI from '../../API/UserAPI';
+import InfoNotLogin from '../Nav/InfoNotLogin';
+import { reactLocalStorage } from 'reactjs-localstorage';
 class ClassItem extends Component {
     constructor(props){
         super(props);
@@ -26,14 +28,21 @@ class ClassItem extends Component {
             open:false,
             redirectManageOffer:false,
             modal: false,
-            userOfClass:[]
+            userOfClass:[],
+            modalNotLogin:false,
         }
         this.toggle = this.toggle.bind(this);
+        this.toggleNotLogin = this.toggleNotLogin.bind(this);
     }
     toggle() {
         this.setState(prevState => ({
             modal: !prevState.modal
         }));
+    }
+    toggleNotLogin(){
+        this.setState(prevState => ({
+            modalNotLogin: !prevState.modalNotLogin
+        }))
     }
     handleClose = () => {
         this.setState({ open: false });
@@ -58,7 +67,7 @@ class ClassItem extends Component {
             .catch(err => console.log(err));
             var dataClass = {
                 idClass: this.props.idClass,
-                status: "Đang yêu cầu"
+                status: "Đang yêu cầu" 
             }
             var classInfo = ClassInfoAPI.editClassInfo(dataClass).then(result => {
                 if (result && result.code === "success") {
@@ -77,22 +86,28 @@ class ClassItem extends Component {
             redirectManageOffer: true
         });
     }
-    onClickOfferTutor = () => {
-
+    onClickOfferTutor = async() => {
+        if(!(reactLocalStorage.getObject("home.is_login"))){
+            this.toggleNotLogin()
+        }else{
+            let userOfClassInfo = await UserAPI.getUserByIdUser(this.props.idUser)
         this.setState({
 
-            open: true
+            open: true,
+            userOfClass:userOfClassInfo.data
         })
+        console.log(userOfClassInfo)
+    }
+        
+
 
     }
     async componentDidMount(){
-        let tutor = await TutorAPI.getTutorByName(this.state.nameTutor);
-        let userOfClassInfo = await UserAPI.getUserByIdUser(this.props.idUser)
+        console.log(this.props.idUser);
+        let tutorInfo = await TutorAPI.getTutorByName(this.props.nameTutor);
         this.setState({
-            tutor: tutor.data,
-            userOfClass:userOfClassInfo.data
+            tutor: tutorInfo.data
         })
-        console.log(this.state);
     }
     render() {
         if(this.state.redirectManageOffer){
@@ -163,34 +178,6 @@ class ClassItem extends Component {
                 >
                     <DialogTitle id="alert-dialog-title">{"Bạn có chắc chắn muốn dạy lớp?"}</DialogTitle>
                     <DialogContent id="alert-dialog-description">
-                        {/* <div className="tutor-offer-custom" >
-                            <div className="info-profile-tutor-custom">
-                                <div className="user-birthday">
-                                    <div className="user-dialog-custom">
-                                        <p><label className="dialog-text"><i className="fas fa-user"></i></label> &nbsp;</p>
-                                        {/* {this.state.tutor.data[0].nameTutor} */}
-
-                                    {/* </div>
-                                    <div className="birthday-dialog-custom">
-                                        <p><label className="dialog-text"><i className="fas fa-birthday-cake"></i></label>&nbsp;</p> */}
-                                        {/* {this.state.tutor.data[0].birthdayTutor} */}
-
-                                    {/* </div> */}
-                                {/* </div> */}
-                                {/* <div className="user-birthday"> */}
-                                    {/* <div className="user-dialog-custom"> */}
-                                        {/* <p><label className="dialog-text"><i className="fas fa-map-marker-alt"></i></label>&nbsp;</p> */}
-                                        {/* {this.state.tutor.data[0].nameCity} */}
-
-                                    {/* </div> */}
-                                    {/* <div className="birthday-dialog-custom"> */}
-                                        {/* <p><label className="dialog-text"><i className="fas fa-phone-square"></i></label>&nbsp;</p> */}
-                                        {/* {this.state.tutor.data[0].telTutor} */}
-
-                                    {/* </div> */}
-                                {/* </div> */}
-                            {/* </div> */}
-                        {/* </div>  */}
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.handleClose} color="primary">
@@ -204,7 +191,14 @@ class ClassItem extends Component {
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
 
                     <ModalBody>
-                        <DetailClass idClass={this.props.idClass} idUserOfClass = {this.props.idUser}/>
+                        <DetailClass idClass={this.props.idClass} idUserOfClass = {this.props.idUser} toggleDetail = {this.toggle}/>
+                    </ModalBody>
+
+                </Modal>
+                <Modal isOpen={this.state.modalNotLogin} toggle={this.toggleNotLogin} className={this.props.className}>
+
+                    <ModalBody>
+                        <InfoNotLogin toggleNotLogin={this.toggleNotLogin} />
                     </ModalBody>
 
                 </Modal>

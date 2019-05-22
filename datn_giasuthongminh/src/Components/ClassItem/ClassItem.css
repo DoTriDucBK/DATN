@@ -154,7 +154,7 @@ div.status-class-custom{
     background-color: #4267B2;
     margin: auto;
     margin-top: 25%;
-    border: 1px solid #F7F7F7;
+    border: 1px solid yellow;
     border-radius: 5px;
 }
 div.status-class-custom2{
@@ -163,7 +163,7 @@ div.status-class-custom2{
     background-color: #FF961E;
     margin: auto;
     margin-top: 25%;
-    border: 1px solid #F7F7F7;
+    border: 1px solid yellow;
     border-radius: 5px;
 }
 label.status-class-custom{

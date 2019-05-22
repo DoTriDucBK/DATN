@@ -27,6 +27,7 @@ import InfoTutor from '../TutorProfile/InfoTutor';
 import ManageInvite from '../ManageInvite/ManageInvite';
 import ManageOffer from '../ManageInvite/ManageOffer';
 import Personal from '../PersonalPage/Personal';
+import ChangePassword from '../ChangePassword/ChangePassword';
 class App extends Component {
 	constructor(props) {
 		super(props)
@@ -90,6 +91,7 @@ class App extends Component {
 						{/* Quản lý lời đề nghị của gia sư dạy lớp */}
 						<Route path="/manage-offer" component={ManageOffer}/>
 						<Route path="/personal" component={Personal}/>
+						<Route path="/change-password" component={ChangePassword}/>
 					</main>
 					<Footer />
 				</div>

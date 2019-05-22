@@ -77,7 +77,7 @@ class OfferClass extends Component {
     }
 
     handleCreateClass = (e) => {
-        if(this.state.sumSubject === "" || this.state.fee === "" || this.state.phone === "" || this.state.numberStudent === "" || this.state.addressDetail === "" || this.state.detailClass || this.state.idPartHour === "" || this.state.nameGrade ===""){
+        if(this.state.sumSubject === "" || this.state.fee === "" || this.state.phone === "" || this.state.numberStudent === "" || this.state.addressDetail === "" || this.state.detailClass==="" || this.state.idPartHour === "" || this.state.nameGrade ===""){
             this.toggleErr();
         }else{
             e.preventDefault();

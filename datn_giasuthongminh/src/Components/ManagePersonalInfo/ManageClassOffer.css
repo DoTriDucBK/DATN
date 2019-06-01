@@ -123,3 +123,256 @@ div.result-element-class{
     margin: auto;
     margin-top: 15px;
 }
+@media only screen and (max-width:320px){
+    div.manage-class-title{
+        width: 100%;
+    }
+    div.titleClass-manage1{
+        width: 60%;
+    }
+    p.titleClass-manage{
+        margin-top: 8px;
+        font-size: 14px;
+        font-weight: 500;
+    }
+    div.titleClass-manage2{
+        width: 40%;
+    }
+    div.select-manage-class{
+        display: none;
+    }
+    div.title-class-manage{
+        width: 100%;
+    }
+    div.manage{
+        display:none;
+    }
+    div.manage2{
+        width: 39%;
+        height: 100%;
+        float: left;
+        margin-left: 0%;
+    }
+    p.manage2{
+        font-size: 12px;
+        text-transform: uppercase;
+        text-align: left;
+        margin-left: 10px;
+        font-weight: 600;
+        margin-top: 7px;
+    }
+    div.manage3{
+        width: 34%;
+        height: 100%;
+        float: left;
+    }
+    p.manage3{
+        margin-top: 7px;
+        font-size: 12px;
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: 600;
+    }
+    div.manage4{
+        width: 27%;
+        height: 100%;
+        float: left;
+    }
+    p.manage4{
+        margin-top: 7px;
+        font-size: 12px;
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: 600;
+    }
+    div.result-element-class{
+        width: 86%;
+        height: 160px;
+        margin: auto;
+        margin-top: 15px;
+    }
+}
+@media only screen and (min-width:321px) and (max-width:425px){
+    div.manage-class-title{
+        width: 100%;
+    }
+    div.titleClass-manage1{
+        width: 60%;
+    }
+    p.titleClass-manage{
+        margin-top: 8px;
+        font-size: 14px;
+        font-weight: 500;
+    }
+    div.titleClass-manage2{
+        width: 40%;
+    }
+    div.select-manage-class{
+        display: none;
+    }
+    div.title-class-manage{
+        width: 100%;
+    }
+    div.manage{
+        display:none;
+    }
+    div.manage2{
+        width: 39%;
+        margin-left: 0%;
+    }
+    p.manage2{
+        font-size: 12px;
+        margin-left: 10px;
+        font-weight: 600;
+        margin-top: 7px;
+    }
+    div.manage3{
+        width: 34%;
+    }
+    p.manage3{
+        margin-top: 7px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+    div.manage4{
+        width: 27%;
+    }
+    p.manage4{
+        margin-top: 7px;
+        font-size: 12px;;
+        font-weight: 600;
+    }
+}
+@media only screen and (min-width:426px) and (max-width:768px){
+    div.manage-class-title{
+        width: 100%;
+    }
+    div.titleClass-manage1{
+        width: 30%;
+    }
+    p.titleClass-manage{
+        margin-top: 8px;
+        font-size: 15px;
+        font-weight: 500;
+    }
+    div.titleClass-manage2{
+        width: 70%;
+    }
+    div.select-manage-class{
+        display: none;
+    }
+    div.title-class-manage{
+        width: 100%;
+    }
+    div.manage{
+        width:17%;
+    }
+    div.manage2{
+        width: 45%;
+        margin-left: 0%;
+    }
+    p.manage2{
+        font-size: 15px;
+        text-transform: uppercase;
+        text-align: left;
+        margin-left: 10px;
+        font-weight: 600;
+        margin-top: 7px;
+    }
+    div.manage3{
+        width: 20%;
+    }
+    p.manage3{
+        margin-top: 7px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+    div.manage4{
+        width: 17%;
+    }
+    p.manage4{
+        margin-top: 7px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+}
+@media only screen and (min-width:769px) and (max-width:1024px){
+    div.manage-class-title{
+        width: 95%;
+    }
+    div.titleClass-manage1{
+        width: 30%;
+    }
+    p.titleClass-manage{
+        margin-top: 8px;
+        font-size: 16px;
+        font-weight: 700;
+    }
+    div.titleClass-manage2{
+        width: 70%;
+    }
+    div.title-class-manage{
+        width: 95%;
+    }
+    div.select-manage-class{
+        width: 95%;
+    }
+    div.select-container{
+        width: 100%;
+        height: 35px;
+        margin-top: 7px;
+    }
+    select.select-searchClassOffer{
+        width: 180px;
+        height: 100%;
+        float: left;
+        margin-left: 600px;
+    }
+    option.opt-searchClassOffer{
+        text-align: center;
+    }
+    button.manage-btnClass{
+        width: 120px;
+        height: 100%;
+        background-color: #069D86;
+        border-radius: 5px;
+        border: 1px solid #f7f7f7;
+        color: white;
+        float: left;
+        margin-left: 30px;
+    }
+    button.manage-btnClass:hover{
+        transform: scale(1.05);
+    }
+    div.manage{
+        width:17%;
+    }
+    div.manage2{
+        width: 45%;
+        margin-left: 0%;
+    }
+    p.manage2{
+        font-size: 15px;
+        text-transform: uppercase;
+        text-align: left;
+        margin-left: 10px;
+        font-weight: 600;
+        margin-top: 7px;
+    }
+    div.manage3{
+        width: 20%;
+    }
+    p.manage3{
+        margin-top: 7px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+    div.manage4{
+        width: 17%;
+    }
+    p.manage4{
+        margin-top: 7px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+}

@@ -145,7 +145,7 @@ class ClassOffer extends Component {
                     <div className="name-person-of-invite">
                         <p className="name-person-of-invite"><label className="name-person-of-invite"><i className="fas fa-phone-square"></i></label>&nbsp;{this.props.telTutor}</p>
                     </div>
-                    <div className="name-person-of-invite">
+                    <div className="name-person-of-invite emailTutor">
                         <p className="name-person-of-invite"><label className="name-person-of-invite"><i className="fas fa-envelope-square"></i></label>&nbsp;{this.props.emailTutor}</p>
                     </div>
                 </div>

@@ -4,9 +4,10 @@ import UserApi from '../../API/UserAPI';
 import { reactLocalStorage } from "reactjs-localstorage";
 import { password, required, emailAndPhone } from '../../utils/Validate';
 import { Redirect } from 'react-router';
-import TutorLoginApi from '../../API/TutorLoginAPI';
-
-// import {password, required, emailAndPhone} from '../../utils/Validate';
+import { Modal, ModalBody } from 'reactstrap';
+import '../css/ModalCustome.css';
+import ErrorLogin from './ErrorLogin';
+import Signin from '../Signin/Signin';
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -23,9 +24,22 @@ class Login extends Component {
             isClick: false,
             redirectSignUp: false,
             redirectHome: false,
-            type: ""
+            type: "",
+            modal: false,
+            modalSignin:false
         }
-
+        this.toggleErrorLogin = this.toggleErrorLogin.bind(this);
+        this.toggleSignin = this.toggleSignin.bind(this);
+    }
+    toggleErrorLogin() {
+        this.setState(prevState => ({
+            modal: !prevState.modal
+        }));
+    }
+    toggleSignin(){
+        this.setState(prevState => ({
+            modalSignin: !prevState.modalSignin
+        }))
     }
     redirectSignUp = () => {
         this.setState({ redirectSignUp: true });
@@ -40,9 +54,10 @@ class Login extends Component {
                 password: passwordInput.value,
                 type: parseInt(type)
             })
-            if (result && result.message)
+            if (result && result.message){
                 this.setState({ message: result.message })
-            else if (result && result.data) {
+                alert(result.message)
+            }else if (result && result.data) {
                 user = result.data;
                 reactLocalStorage.setObject("user.info", user);
                 reactLocalStorage.set("home.is_login", true);
@@ -57,7 +72,9 @@ class Login extends Component {
             })
             this.props.toggle();
     };
-
+    onClickSignin = () => {
+        this.toggleSignin();
+    }
     onChangeUsername = (e) => {
         var value = e.target.value;
         var { emailInput, passwordInput, isClick } = this.state;
@@ -102,9 +119,9 @@ class Login extends Component {
                 </div>
                 <div className="login-username">
                     <div className="login-username-title">
-                        <p className="login-username">Username</p>
+                        <p className="login-username">Email</p>
                     </div>
-                    <input type="text" placeholder="Tên đăng nhập"
+                    <input type="text" placeholder="Nhập email"
                         value={this.state.emailInput.value}
                         onChange={this.onChangeUsername}>
                     </input>
@@ -128,8 +145,22 @@ class Login extends Component {
                     <button className="btn-login" onClick={this.handleSubmit}>Đăng nhập</button>
                 </div>
                 <div className="log-sign">
-                    <p>Bạn chưa có tài khoản, <label><b onClick={this.redirectSignUp}>Đăng ký </b></label> ngay!</p>
+                    <p>Bạn chưa có tài khoản, <label><b onClick={this.onClickSignin}>Đăng ký </b></label> ngay!</p>
                 </div>
+                <Modal isOpen={this.state.modal} toggle={this.toggleErrorLogin} className={this.props.className}>
+
+                    <ModalBody>
+                        <ErrorLogin toggleErrorLogin={this.toggleErrorLogin} />
+                    </ModalBody>
+
+                </Modal>
+                <Modal isOpen={this.state.modalSignin} toggle={this.toggleSignin} className={this.props.className}>
+
+                    <ModalBody>
+                        <Signin toggleSignin={this.toggleSignin} />
+                    </ModalBody>
+
+                </Modal>
             </div>
         );
     }

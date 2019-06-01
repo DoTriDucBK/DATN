@@ -85,3 +85,239 @@ p.manage4-invite{
 div.custom{
     margin-top: 50px;
 }
+ @media only screen and (max-width:375px){
+    div.manage-invite-container{
+        padding-top: 80px;
+    }
+    div.manage-invite-title{
+        width: 100%;
+        height:35px;
+        margin: auto;
+    }
+    div.titleInvite-manage1{
+        width: 60%;
+    }
+    p.titleInvite-manage{
+        font-size: 14px;
+        font-weight: 600;
+    }
+    div.titleInvite-manage2{
+        width: 40%;
+    }
+    div.title-invite-manage{
+        width: 100%;
+    }
+    div.manage-invite{
+        width: 0%;
+    }
+    div.manage2-invite{
+        width: 41%;
+        height: 100%;
+        float: left;
+    }
+    p.manage2-invite{
+        font-size: 13px;
+        margin-left: 0px;
+    }
+    div.manage3-invite{
+        width: 29%;
+        height: 100%;
+        float: left;
+    }
+    p.manage3-invite{
+        margin-top: 7px;
+        font-size: 13px;
+    }
+    div.manage4-invite{
+        width: 29%;
+        height: 100%;
+        float: left;
+    }
+    p.manage4-invite{
+        margin-top: 7px;
+        font-size: 13px;
+    }
+    div.custom{
+        margin-top: 50px;
+    }
+    div.result-element-class{
+        width: 100%;
+    }
+} 
+@media only screen and (min-width:376px) and (max-width:425px){
+    div.manage-invite-container{
+        padding-top: 80px;
+    }
+    div.manage-invite-title{
+        width: 100%;
+        height:35px;
+        margin: auto;
+    }
+    div.titleInvite-manage1{
+        width: 50%;
+    }
+    p.titleInvite-manage{
+        font-size: 14px;
+        font-weight: 600;
+    }
+    div.titleInvite-manage2{
+        width: 50%;
+    }
+    div.title-invite-manage{
+        width: 100%;
+    }
+    div.manage-invite{
+        width: 0%;
+    }
+    div.manage2-invite{
+        width: 35%;
+        height: 100%;
+        float: left;
+    }
+    p.manage2-invite{
+        font-size: 13px;
+        margin-left: 0px;
+    }
+    div.manage3-invite{
+        width: 35%;
+        height: 100%;
+        float: left;
+    }
+    p.manage3-invite{
+        margin-top: 7px;
+        font-size: 13px;
+    }
+    div.manage4-invite{
+        width: 29%;
+        height: 100%;
+        float: left;
+    }
+    p.manage4-invite{
+        margin-top: 7px;
+        font-size: 13px;
+    }
+    div.custom{
+        margin-top: 50px;
+    }
+    div.result-element-class{
+        width: 100%;
+    }
+}
+@media only screen and (min-width:426px) and (max-width:768px){
+    div.manage-invite-container{
+        padding-top: 80px;
+    }
+    div.manage-invite-title{
+        width: 100%;
+        height:35px;
+        margin: auto;
+    }
+    div.titleInvite-manage1{
+        width: 30%;
+    }
+    p.titleInvite-manage{
+        font-size: 14px;
+        font-weight: 600;
+    }
+    div.titleInvite-manage2{
+        width: 70%;
+    }
+    div.title-invite-manage{
+        width: 100%;
+    }
+    div.manage-invite{
+        width: 20%;
+    }
+    div.manage2-invite{
+        width: 40%;
+        height: 100%;
+        float: left;
+    }
+    p.manage2-invite{
+        font-size: 13px;
+        margin-left: 0px;
+    }
+    div.manage3-invite{
+        width: 20%;
+        height: 100%;
+        float: left;
+    }
+    p.manage3-invite{
+        margin-top: 7px;
+        font-size: 13px;
+    }
+    div.manage4-invite{
+        width: 19%;
+        height: 100%;
+        float: left;
+    }
+    p.manage4-invite{
+        margin-top: 7px;
+        font-size: 13px;
+    }
+    div.custom{
+        margin-top: 50px;
+    }
+    div.result-element-class{
+        width: 100%;
+    }
+}
+@media only screen and (min-width:769px) and (max-width:1024px){
+    div.manage-invite-container{
+        padding-top: 80px;
+    }
+    div.manage-invite-title{
+        width: 95%;
+        height:40px;
+        margin: auto;
+    }
+    div.titleInvite-manage1{
+        width: 25%;
+    }
+    p.titleInvite-manage{
+        font-size: 16px;
+        font-weight: 600;
+    }
+    div.titleInvite-manage2{
+        width: 75%;
+    }
+    div.title-invite-manage{
+        width: 95%;
+    }
+    div.manage-invite{
+        width: 15%;
+    }
+    div.manage2-invite{
+        width: 42%;
+        height: 100%;
+        float: left;
+    }
+    p.manage2-invite{
+        font-size: 16px;
+        margin-left: 0px;
+    }
+    div.manage3-invite{
+        width: 25%;
+        height: 100%;
+        float: left;
+    }
+    p.manage3-invite{
+        margin-top: 7px;
+        font-size: 16px;
+    }
+    div.manage4-invite{
+        width: 17%;
+        height: 100%;
+        float: left;
+    }
+    p.manage4-invite{
+        margin-top: 7px;
+        font-size: 16px;
+    }
+    div.custom{
+        margin-top: 50px;
+    }
+    div.result-element-class{
+        width: 95%;
+    }
+}

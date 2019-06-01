@@ -42,7 +42,6 @@ class OfferClass extends Component {
         this.setState({
             [e.target.name]: e.target.value
         });
-        console.log(this.state)
     }
     // Tạo mảng chứa phương thức học
     componentWillMount() {
@@ -340,7 +339,7 @@ class OfferClass extends Component {
                     </div>
                     <div className="info1-right1">
                         <div className="info1-right-title">
-                            <label className="info-title">Có muốn ghép lớp?<span className="notnull">  *</span></label>
+                            <label className="info-title custom-title">Có muốn ghép lớp?<span className="notnull">  *</span></label>
                         </div>
                         <div className="info1-right-content">
                             <input type="radio" name="isDoubleClass" value="Có" checked={this.state.isDoubleClass === "Có"} onChange={this.handleChangeInputTextForm} /><label>Có</label>
@@ -357,7 +356,7 @@ class OfferClass extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="info1">
+                <div className="info1 detail-info1">
                     <div className="info1-left-title">
                         <label className="info-title">Mô tả chi tiết lớp học <span className="notnull">*</span></label>
                     </div>

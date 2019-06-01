@@ -170,14 +170,13 @@ class Nav extends Component {
                 type: 0
             })
         } else console.log("Lỗi kết nối mạng")
-        // reactLocalStorage.set("home.is_login", true);
-        // this.setState({
-        //     redirectHome: true, 
-        // })
     }
     calNumberShare = (a, b) => {
         console.log(this.state.listShare.length)
         return parseInt(a) + parseInt(b);
+    }
+    handleChangePass = (userinfo, is_login, type) => {
+        this.setState({ userinfo: userinfo, is_login: is_login, type: type })
     }
     handleChangePassword = () => {
         this.toggleChangePass();
@@ -194,10 +193,6 @@ class Nav extends Component {
         } else if (this.state.redirectManageClassOffer) {
             return <Redirect push to="/manage-offer" />
         }
-        // else if(this.state.redirectSearchTutor){
-        //     var textSearch = this.state.textSearch;
-        //     return <Redirect  to={"/searchTutor/" + textSearch + ""}/>
-        // }
         return (
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light nav-header">
@@ -262,6 +257,7 @@ class Nav extends Component {
                                                             <li className="dropdown-item-title">Chức năng học viên</li>
                                                             <li className="dropdown-content-item"> <Link to="/manage-invitation"><label><i className="fas fa-tasks"></i>&nbsp;&nbsp;Quản lý các yêu cầu gia sư</label></Link></li>
                                                             <li className="dropdown-content-item"> <Link to="/manage-class-of-user"><label><i className="fas fa-plus-circle"></i>&nbsp;Danh sách lớp đã đăng</label></Link></li>
+                                                            <li className="dropdown-content-item"> <Link to="/info-user"><label><i className="fas fa-tools"></i>&nbsp;Chỉnh sửa thông tin cá nhân</label></Link></li>
                                                         </div>}
                                                     <li className="dropdown-item-title">Chức năng cá nhân</li>
                                                     <li className="dropdown-content-item"><label onClick={this.handleChangePassword}><i className="fas fa-unlock-alt"></i>&nbsp;Đổi mật khẩu</label></li>
@@ -294,8 +290,14 @@ class Nav extends Component {
                                     <li className="dropdown-content-item-small"><Link to="/"> <label><i className="fas fa-school"></i>&nbsp;&nbsp;Trang chủ</label></Link></li>
                                     <li className="dropdown-content-item-small"><Link to="/listclass"><label><i className="fas fa-graduation-cap"></i>&nbsp;Danh sách lớp học</label></Link></li>
                                     <li className="dropdown-content-item-small" onClick={this.toggle}> <Link to=""><label><i className="fas fa-user-shield"></i>&nbsp;&nbsp;Đăng nhập</label></Link></li>
+                                    {reactLocalStorage.get("type") =="1"?
+                                            <li className="dropdown-content-item-small"><Link to="/manage-invite"><label><i className="fas fa-graduation-cap"></i>&nbsp;Lời mời</label></Link></li>:
+                                            <li className="dropdown-content-item-small"><Link to="/manage-offer"><label><i className="fas fa-graduation-cap"></i>&nbsp;Lời mời</label></Link></li>
+                                }
+                                {reactLocalStorage.get("type") == "2"?  <li className="dropdown-content-item-small"><Link to="/manage-class-of-user"><label><i className="fas fa-graduation-cap"></i>&nbsp;Danh sách lớp đã đăng</label></Link></li>:<div></div>}
                                     {reactLocalStorage.get("type") == "1" ?
-                                     <li className="dropdown-content-item-small"><Link to="/personal"><label><i className="fas fa-graduation-cap"></i>&nbsp;Trang cá nhân</label></Link></li>:<div></div>}
+                                     <li className="dropdown-content-item-small"><Link to="/personal"><label><i className="fas fa-graduation-cap"></i>&nbsp;Trang cá nhân</label></Link></li>:
+                                     <li className="dropdown-content-item-small"><Link to="/info-user"><label><i className="fas fa-graduation-cap"></i>&nbsp;Trang cá nhân</label></Link></li>}
                                     <li className="dropdown-content-item-small"><label onClick={this.handleChangePassword}><i className="fas fa-unlock-alt"></i>&nbsp;&nbsp;Đổi mật khẩu</label></li>
                                     <li className="dropdown-content-item-small"><label onClick={this.handleLogout}><i className="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Đăng xuất</label></li>
                                     </ul>
@@ -326,7 +328,7 @@ class Nav extends Component {
                 <Modal isOpen={this.state.modalChangePass} toggle={this.toggleChangePass} className={this.props.className}>
 
                     <ModalBody>
-                        <ChangePassword togglePass={this.toggleChangePass}/>
+                        <ChangePassword togglePass={this.toggleChangePass}  handleChangePass={this.handleChangePass}/>
                     </ModalBody>
 
                 </Modal>

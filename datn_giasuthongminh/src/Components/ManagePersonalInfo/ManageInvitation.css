@@ -50,3 +50,142 @@ p.manage4-tutor{
     text-align: center;
     font-weight: 600;
 }
+@media only screen and (max-width:375px){
+    div.title-class-tutor-manage{
+        width: 100% !important;
+    }
+    div.manage-tutor{
+        display: none;
+    }
+    div.manage2-tutor{
+        width: 39% !important;
+        height: 100%;
+        float: left;
+        margin-left: 0%;
+    }
+    p.manage2-tutor{
+        font-size: 12px !important;
+        margin-left: 0px !important;
+        margin-top: 7px;
+    }
+    div.manage3-tutor{
+        width: 35% !important;
+        height: 100%;
+        float: left;
+    }
+    p.manage3-tutor{
+        margin-top: 7px !important;
+        font-size: 12px !important;
+    }
+    div.manage4-tutor{
+        width: 24% !important;
+        height: 100%;
+        float: left;
+    }
+    p.manage4-tutor{
+        margin-top: 7px !important;
+        font-size: 12px !important;
+    }
+}
+@media only screen and (min-width:376px) and (max-width:425px){
+    div.title-class-tutor-manage{
+        width: 100% !important;
+    }
+    div.manage-tutor{
+        display: none;
+    }
+    div.manage2-tutor{
+        width: 39% !important;
+        height: 100%;
+        float: left;
+        margin-left: 0%;
+    }
+    p.manage2-tutor{
+        font-size: 12px !important;
+        margin-left: 0px !important;
+        margin-top: 7px;
+    }
+    div.manage3-tutor{
+        width: 35% !important;
+        height: 100%;
+        float: left;
+    }
+    p.manage3-tutor{
+        margin-top: 7px !important;
+        font-size: 12px !important;
+    }
+    div.manage4-tutor{
+        width: 24% !important;
+        height: 100%;
+        float: left;
+    }
+    p.manage4-tutor{
+        margin-top: 7px !important;
+        font-size: 12px !important;
+    }
+}
+@media only screen and (min-width:426px) and (max-width:768px){
+    div.title-class-tutor-manage{
+        width: 100% !important;
+        height: 40px;
+        margin: auto;
+        background-color: white;
+        margin-top: 10px;
+        border-top: 1px solid #DFDFDF;
+        border-bottom: 1px solid #DFDFDF;
+    }
+    div.manage-tutor{
+        width: 15%;
+        height: 100%;
+        float: left;
+    }
+    div.manage2-tutor{
+        width: 47%;
+        height: 100%;
+        float: left;
+        margin-left: 1%;
+    }
+    p.manage2-tutor{
+        font-size: 16px;
+        text-transform: uppercase;
+        text-align: left;
+        margin-left: 10px;
+        font-weight: 600;
+        margin-top: 7px;
+    }
+    div.manage3-tutor{
+        width: 20%;
+        height: 100%;
+        float: left;
+    }
+    p.manage3-tutor{
+        margin-top: 7px;
+        font-size: 16px;
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: 600;
+    }
+    div.manage4-tutor{
+        width: 17%;
+        height: 100%;
+        float: left;
+    }
+    p.manage4-tutor{
+        margin-top: 7px;
+        font-size: 16px;
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: 600;
+    }
+}
+@media only screen and (min-width:769px) and (max-width:1024px){
+    div.title-class-tutor-manage{
+        width: 95% !important;
+        height: 40px;
+        margin: auto;
+        background-color: white;
+        margin-top: 10px;
+        border-top: 1px solid #DFDFDF;
+        border-bottom: 1px solid #DFDFDF;
+    }
+}

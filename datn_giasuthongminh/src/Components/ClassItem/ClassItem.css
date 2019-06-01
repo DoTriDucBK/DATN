@@ -236,6 +236,9 @@ div.tutor-offer-custom{
         margin-top: 6px;
         font-size: 14px;
     }
+    div.info-class2{
+       display: none;
+    }
     div.numberDay{
         display: none;
     }

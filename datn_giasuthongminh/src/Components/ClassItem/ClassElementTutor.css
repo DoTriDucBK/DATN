@@ -22,3 +22,81 @@ div.DangYeuCau{
     margin: auto;
     margin-top: 30%;
 }
+@media only screen and (max-width:320px){
+    div.DaChapNhan{
+        width: 90px;
+        height: 40px;
+        border: 1px solid yellow;
+        border-radius: 5px;
+        background-color: #069D86;
+        margin: auto;
+        margin-top: 30%;
+    }
+    p.text-status{
+        color: yellow;
+        font-size: 14px;
+        font-weight: bold;
+        margin-top: 0px;
+    }
+    div.DangYeuCau{
+        width: 150px;
+        height: 40px;
+        border: 1px solid yellow;
+        border-radius: 5px;
+        background-color: red;
+        margin: auto;
+        margin-top: 30%;
+    }
+}
+@media only screen and (min-width:321px) and (max-width:425px){
+    div.DaChapNhan{
+        width: 110px;
+        height: 40px;
+        border: 1px solid yellow;
+        border-radius: 5px;
+        background-color: #069D86;
+        margin: auto;
+        margin-top: 30%;
+    }
+    p.text-status{
+        color: yellow;
+        font-size: 14px;
+        font-weight: bold;
+        margin-top: 6px;
+    }
+    div.DangYeuCau{
+        width: 150px;
+        height: 40px;
+        border: 1px solid yellow;
+        border-radius: 5px;
+        background-color: red;
+        margin: auto;
+        margin-top: 30%;
+    }
+}
+@media only screen and (min-width:426px) and (max-width:768px){
+    div.DaChapNhan{
+        width: 110px;
+        height: 40px;
+        border: 1px solid yellow;
+        border-radius: 5px;
+        background-color: #069D86;
+        margin: auto;
+        margin-top: 30%;
+    }
+    p.text-status{
+        color: yellow;
+        font-size: 14px;
+        font-weight: bold;
+        margin-top: 6px;
+    }
+    div.DangYeuCau{
+        width: 150px;
+        height: 40px;
+        border: 1px solid yellow;
+        border-radius: 5px;
+        background-color: red;
+        margin: auto;
+        margin-top: 30%;
+    }
+}

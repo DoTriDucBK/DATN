@@ -50,3 +50,48 @@ p.manage4-tutor{
     text-align: center;
     font-weight: 600;
 }
+@media only screen and (max-width:320px){
+    div.title-class-tutor-manage{
+        width: 100%;
+        height: 40px;
+        margin: auto;
+        background-color: white;
+        margin-top: 10px;
+        border-top: 1px solid #DFDFDF;
+        border-bottom: 1px solid #DFDFDF;
+    }
+    div.manage-tutor{
+        width: 0%;
+    }
+    div.manage2-tutor{
+        width: 41%;
+        margin-left: 0%;
+    }
+    p.manage2-tutor{
+        font-size: 13px;
+        margin-left: 0px;
+        margin-top: 7px;
+    }
+    div.manage3-tutor{
+        width: 30%;
+    }
+    p.manage3-tutor{
+        margin-top: 7px;
+        font-size: 13px;
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: 600;
+    }
+    div.manage4-tutor{
+        width: 25%;
+        height: 100%;
+        float: left;
+    }
+    p.manage4-tutor{
+        margin-top: 7px;
+        font-size: 13px;
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: 600;
+    }
+}

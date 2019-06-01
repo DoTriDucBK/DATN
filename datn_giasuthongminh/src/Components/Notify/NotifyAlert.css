@@ -1,0 +1,17 @@
+.react-confirm-alert-overlay{
+    background-color: #F7F7F7 !important;
+}
+.react-confirm-alert-body > h1{
+    font-size: 20px;
+    font-weight: 400;
+}
+.react-confirm-alert-button-group > button{
+    background: #107d82;
+}
+.react-confirm-alert-button-group{
+    justify-content: flex-end;
+}
+.react-confirm-alert-body{
+    margin-top: -135px; 
+    padding: 10px 30px 10px 30px;
+}

@@ -47,7 +47,7 @@ class ClassElementTutor extends Component {
                         <div className="info-class1">
                             <p className="info-class1"><label className="name-class"><i className="fas fa-map-marker-alt"></i></label>&nbsp;&nbsp;{this.props.city}</p>
                         </div>
-                        <div className="info-class2">
+                        <div className="info-class2 numberDay">
                             <p className="info-class1"><label className="name-class"><i className="fas fa-calendar-check"></i></label>&nbsp;&nbsp;{this.props.numberDay} buổi/1 tuần</p>
                         </div>
                     </div>

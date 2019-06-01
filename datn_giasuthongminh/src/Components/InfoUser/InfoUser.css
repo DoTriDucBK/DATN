@@ -1,0 +1,200 @@
+div.info-user-container{
+    width: 100%;
+    height: 500px;
+    padding-top: 90px;
+}
+div.title-info-user-con{
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+}
+h1.title-info-user-con{
+    color: #069D86;
+    font-size: 25px;
+    line-height: 50px;
+    text-transform: uppercase;
+}
+div.value-info-user-con{
+    width: 80%;
+    height: 180px;
+    margin: auto;
+    margin-top: 20px;
+    background-color: #F7F7F7;
+}
+div.value-info-user-item{
+    width: 100%;
+    height: 70px;
+    margin: auto;
+    margin-top: 20px;
+}
+div.value-info-user-item-left{
+    width: 43%;
+    height: 100%;
+    float: left;
+    margin-right: 3%;
+    margin-left: 4%;
+}
+div.value-info-user-item-title{
+    width: 100%;
+    height: 45%;
+}
+p.value-info-user-item-title{
+    font-size: 16px;
+    text-align: left;
+    color: #069D86
+}
+div.value-info-user-item-value{
+    width: 100%;
+    height: 55%;
+}
+input.value-info-user-item-value{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #676767;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+div.value-info-user-item-right{
+    width: 43%;
+    height: 100%;
+    float: left;
+    margin-left: 3%;
+}
+div.btn-submit-info-user{
+    width: 15%;
+    height: 45px;
+    margin: auto;
+    margin-top: 20px;
+}
+button.btn-submit-info-user{
+    width: 100%;
+    height: 100%;
+    background-color: #069D86;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+    border: 1px solid white;
+}
+button.btn-submit-info-user:hover{
+    transform: scale(1.05);
+}
+@media only screen and (max-width:425px){
+    div.info-user-container{
+        width: 100%;
+        height: 460px;
+        padding-top: 60px;
+    }
+    div.title-info-user-con{
+        width: 100%;
+        height: 50px;
+        margin-top: 10px;
+    }
+    h1.title-info-user-con{
+        color: #069D86;
+        font-size: 20px;
+        line-height: 50px;
+        text-transform: uppercase;
+    }
+    div.value-info-user-con{
+        width: 95%;
+        height: 230px;
+        margin: auto;
+        margin-top: 10px;
+        background-color: #F7F7F7;
+    }
+    div.value-info-user-item{
+        width: 100%;
+        height: 70px;
+        margin: auto;
+        margin-top: 20px;
+    }
+    div.value-info-user-item-left{
+        width: 95%;
+        height: 100%;
+        float: left;
+        margin-left: 3%;
+    }
+    div.value-info-user-item-right{
+        width: 95%;
+        height: 100%;
+        float: left;
+        margin-left: 3%;
+    }
+    div.btn-submit-info-user{
+        width: 35%;
+        height: 40px;
+        margin: auto;
+        margin-top: 20px;
+    }
+}
+@media only screen and (min-width:426px) and (max-width: 768px){
+    div.info-user-container{
+        width: 100%;
+        height: 450px;
+        padding-top: 90px;
+    }
+    div.value-info-user-con{
+        width: 90%;
+        height: 180px;
+        margin: auto;
+        margin-top: 20px;
+        background-color: #F7F7F7;
+    }
+    div.value-info-user-item{
+        width: 100%;
+        height: 70px;
+        margin: auto;
+        margin-top: 20px;
+    }
+    div.value-info-user-item-left{
+        width: 43%;
+        height: 100%;
+        float: left;
+        margin-right: 3%;
+        margin-left: 4%;
+    }
+    div.value-info-user-item-title{
+        width: 100%;
+        height: 45%;
+    }
+    p.value-info-user-item-title{
+        font-size: 16px;
+        text-align: left;
+        color: #069D86
+    }
+    div.value-info-user-item-value{
+        width: 100%;
+        height: 55%;
+    }
+    input.value-info-user-item-value{
+        width: 100%;
+        height: 100%;
+        border: 1px solid #676767;
+        border-radius: 5px;
+        padding-left: 10px;
+    }
+    div.value-info-user-item-right{
+        width: 43%;
+        height: 100%;
+        float: left;
+        margin-left: 3%;
+    }
+    div.btn-submit-info-user{
+        width: 15%;
+        height: 45px;
+        margin: auto;
+        margin-top: 20px;
+    }
+    button.btn-submit-info-user{
+        width: 100%;
+        height: 100%;
+        background-color: #069D86;
+        color: white;
+        font-size: 18px;
+        border-radius: 5px;
+        border: 1px solid white;
+    }
+    button.btn-submit-info-user:hover{
+        transform: scale(1.05);
+    }
+}

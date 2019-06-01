@@ -583,6 +583,9 @@ class Personal extends Component {
         // starSpacing="5px"
       />
                     </div>
+                    <div className="number-vote">
+                        <p className="number-vote">Số lượt đánh giá: <b>{tutor[0].times_vote}</b></p>
+                    </div>
                     </div>
                 </div>
                 <div className ="right-personal">

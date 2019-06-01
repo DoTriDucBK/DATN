@@ -24,19 +24,6 @@ const UserApi = {
         }
         return result
     },
-    // getUserById: async (user) => {
-    //     var result = null;
-    //     result = await MyService.getRequestData("/user/" + user.idUser)
-    //     // if (result.data) {
-
-    //     //     var languageUser = reactLocalStorage.get("user.language");
-    //     //     languageUser = (languageUser === undefined || languageUser == "vi") ? "vi" : "en";
-
-    //     //     reactLocalStorage.set("language", languageUser);
-    //     //     reactLocalStorage.setObject("user.info", result.data);
-    //     // }
-    //     return result
-    // },
     logout: async () => {
         var user = reactLocalStorage.getObject("user.info", null);
         if (!user){
@@ -82,7 +69,7 @@ const UserApi = {
         if (!params) return null;
         var user = reactLocalStorage.getObject("user.info", null);
         if (!user) return null;
-        var token = user ? user.user_acc_tokn : ""
+        var token = user ? user.token: ""
         var result = null;
         await MyService.putRequestData("/user/change-password", params, token)
             .then(data => result = data)

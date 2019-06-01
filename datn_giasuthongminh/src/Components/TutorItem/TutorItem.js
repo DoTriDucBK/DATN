@@ -77,7 +77,7 @@ class TutorItem extends Component {
                 <div className="image-tutor">
                 <img id="show_avatar" alt="ảnh đại diện" className="avatar" src={this.props.image}/>
                 {this.props.check == "1"?
-                <img id="check" alt="Đã xác thực thông tin" className="check" src="https://www.gnapartners.com/wp-content/uploads/check-icon.png" />:<div></div>}
+                <img id="check" alt="Đã xác thực thông tin" title="Đã xác thực bằng cấp" className="check" src="https://www.gnapartners.com/wp-content/uploads/check-icon.png" />:<div></div>}
                 </div>
                 <div className="infoTutor">
                     <div className="name">

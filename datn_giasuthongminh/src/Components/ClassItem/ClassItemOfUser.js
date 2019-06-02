@@ -2,20 +2,14 @@ import React, { Component } from 'react';
 import './ClassItem.css';
 import './ClassItemOfUser.css';
 import MyUtils from '../../utils/MyUtils';
-import {Redirect} from "react-router-dom";
 import TutorAPI from '../../API/TutorAPI';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Button from '@material-ui/core/Button';
 import ClassUserAPI from '../../API/ClassUserAPI';
 import { Modal, ModalBody } from 'reactstrap';
 import '../css/ModalCustome.css';
-import DetailClass from '../../Components/DetailClass/DetailClass'
+import DetailClassUser from '../../Components/DetailClass/DetailClassUser';
 import VoteTutor from '../VoteTutor/VoteTutor';
 import ClassInfoApi from '../../API/ClassInfoAPI';
+
 class ClassItemOfUser extends Component {
     constructor(props){
         super(props);
@@ -32,22 +26,29 @@ class ClassItemOfUser extends Component {
             idClass_User:0,
             oldStar:0,
             timesVote:0,
-            comment:""
+            comment:"",
+            modalDetailClass:false,
+            
         }
         this.toggle = this.toggle.bind(this);
+        this.toggleDetailClass = this.toggleDetailClass.bind(this);
     }
     toggle() {
         this.setState(prevState => ({
             modal: !prevState.modal
         }));
     }
+    toggleDetailClass() {
+        this.setState(prevState => ({
+            modalDetailClass: !prevState.modalDetailClass
+        }));
+    }
+    
     async componentDidMount(){
         let valueClassUser = await ClassUserAPI.getClassByIdClass(this.props.idClass);
         this.setState({
-            listClassUser:valueClassUser.data,
-            // status: valueClassUser.data[0].status
+            listClassUser:valueClassUser.data
         })
-        
     }
     searchTutor = async ()=>{
         let valueTutor = await TutorAPI.getTutorById(this.state.listClassUser[0].idTutor);
@@ -88,14 +89,14 @@ class ClassItemOfUser extends Component {
                         <div className="info-class1">
                             <p className="info-class1"><label className="name-class"><i className="fas fa-map-marker-alt"></i></label>&nbsp;&nbsp;{this.props.city}</p>
                         </div>
-                        <div className="info-class2">
+                        <div className="info-class2 numberDay">
                             <p className="info-class1"><label className="name-class"><i className="fas fa-calendar-check"></i></label>&nbsp;&nbsp;{this.props.numberDay} buổi/1 tuần</p>
                         </div>
                     </div>
                 </div>
                 <div className="class-fee">
                     <div className="value-fee"><b className="value-fee">{MyUtils.currencyFormat(this.props.fee)}đ</b></div>
-                    <div className="view-detail"><p className="view-detail"  onClick={this.toggle}><u><i>Xem chi tiết lớp</i></u></p></div>
+                    <div className="view-detail"><p className="view-detail" onClick = {this.toggleDetailClass}><u><i>Xem chi tiết lớp</i></u></p></div>
                 </div>
                 {this.props.status==="Đã nhận lớp" ?
                 <div className="class-offer">
@@ -104,6 +105,10 @@ class ClassItemOfUser extends Component {
                     </div>
                 </div>
                 :<div className="class-offer">
+                    {this.props.status === "Đang yêu cầu"?
+                    <div className="status-class-custom2">
+                        <label className="status-class-custom">{this.props.status}</label>
+                    </div>:<div className="status-class-custom3"><label className="status-class-custom">{this.props.status}</label></div>}
                 </div>}
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
 
@@ -112,6 +117,14 @@ class ClassItemOfUser extends Component {
                     </ModalBody>
 
                 </Modal>
+                <Modal isOpen={this.state.modalDetailClass} toggle={this.toggleDetailClass} className={this.props.className}>
+
+                    <ModalBody>
+                        <DetailClassUser idClass={this.props.idClass} idUserOfClass = {this.props.idUser} toggleDetail = {this.toggleDetailClass}/>
+                    </ModalBody>
+
+                </Modal>
+               
             </div>
         );
     }

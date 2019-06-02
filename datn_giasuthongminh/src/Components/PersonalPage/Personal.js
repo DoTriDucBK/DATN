@@ -44,7 +44,6 @@ class Personal extends Component {
             calSun:listTutor.data[0].sunday,
             idTutor:listTutor.data[0].idTutor
         })
-        console.log(listTutor.data[0].methodTeaching)
         if(listTutor.data[0].methodTeaching === "0"){
             this.setState({methodTeaching:"Online"})
         }else if(listTutor.data[0].methodTeaching === "1"){
@@ -281,7 +280,6 @@ class Personal extends Component {
             }
         ).catch(err => console.log(err)
         )
-        console.log(this.state)
     }
     componentWillMount () {
         this.checkedMonday = new Set();
@@ -580,7 +578,6 @@ class Personal extends Component {
         rating={tutor[0].star}
         starDimension="25px"
         starRatedColor="yellow"
-        // starSpacing="5px"
       />
                     </div>
                     <div className="number-vote">

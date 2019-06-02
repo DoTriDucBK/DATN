@@ -166,6 +166,15 @@ div.status-class-custom2{
     border: 1px solid yellow;
     border-radius: 5px;
 }
+div.status-class-custom3{
+    width: 80%;
+    height: 40px;
+    background-color: red;
+    margin: auto;
+    margin-top: 25%;
+    border: 1px solid yellow;
+    border-radius: 5px;
+}
 label.status-class-custom{
     color: white;
     font-size: 18px;
@@ -298,7 +307,7 @@ div.tutor-offer-custom{
     div.button-offer{
         width: 100% !important;
         height: 40px !important;
-        margin-top:20px !important;
+        margin-top:0px !important;
     }
     button.button-offer{
         width: 100% !important;
@@ -312,14 +321,14 @@ div.tutor-offer-custom{
         margin-top: 0% !important;
     }
     button.button-vote-tutor{
-        width: 80%;
+        width: 100% !important;
         height: 40px;
         border-radius: 5px;
         border: 1px solid #f7f7f7;
         background-color: #069D86;
         color: yellow;
-        font-size: 18px;
-        margin-top: 60px;
+        font-size: 14px !important;
+        margin-top: 40px !important;
     }
     button.button-offer:hover{
         transform: scale(1.05);
@@ -487,14 +496,14 @@ div.tutor-offer-custom{
         margin-top: 0% !important;
     }
     button.button-vote-tutor{
-        width: 80%;
+        width: 100% !important;
         height: 40px;
         border-radius: 5px;
         border: 1px solid #f7f7f7;
         background-color: #069D86;
         color: yellow;
-        font-size: 18px;
-        margin-top: 60px;
+        font-size: 15px !important;
+        margin-top: 20px !important;
     }
     button.button-offer:hover{
         transform: scale(1.05);
@@ -660,14 +669,14 @@ div.tutor-offer-custom{
         margin-top: 10px;
     }
     button.button-vote-tutor{
-        width: 80%;
-        height: 40px;
+        width: 100% !important;
+        height: 45px !important;
         border-radius: 5px;
         border: 1px solid #f7f7f7;
         background-color: #069D86;
         color: yellow;
-        font-size: 18px;
-        margin-top: 60px;
+        font-size: 16px !important;
+        margin-top: 40px !important;
     }
     button.button-offer:hover{
         transform: scale(1.05);

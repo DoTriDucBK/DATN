@@ -63,7 +63,9 @@ class ManageInvitation extends Component {
                     birthdayTutor={item.tutor[0].birthdayTutor}
                     telTutor={item.tutor[0].telTutor}
                     emailTutor={item.tutor[0].emailTutor} 
-                    status = {item.classInfo[0].status}/>
+                    status = {item.classInfo[0].status}
+                    idClassUser = {item.idClass_User}
+                    idClass={item.classInfo[0].idClass}/>
             </div>
         ); 
         return classTutor;}
@@ -81,7 +83,9 @@ class ManageInvitation extends Component {
                     birthdayTutor={item.tutor[0].birthdayTutor}
                     telTutor={item.tutor[0].telTutor}
                     emailTutor={item.tutor[0].emailTutor} 
-                    status = {item.classInfo[0].status}/>
+                    status = {item.classInfo[0].status}
+                    idClassUser = {item.idClass_User}
+                    idClass={item.classInfo[0].idClass}/>
             </div>
             );
             return classTutor;

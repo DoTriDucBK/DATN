@@ -147,3 +147,69 @@ p.tutor-name{
     font-weight: bold;
     text-align: center;
 }
+@media only screen and (max-width:320px){
+    div.vote-tutor-container{
+        width: 280px;
+    }
+    div.title-contai-left{
+        width: 90%;
+    }
+    div.cancel-item{
+        width: 10%;
+    }
+    div.value-score{
+        width: 90%;
+    }
+    div.btn-vote{
+        width: 100%;
+    }
+    button.btn-vote{
+        width: 40%;
+        height: 90%;
+        margin-left: 80px;
+    }
+}
+@media only screen and (min-width:321px) and (max-width:375px){
+    div.vote-tutor-container{
+        width: 320px;
+    }
+    div.title-contai-left{
+        width: 90%;
+    }
+    div.cancel-item{
+        width: 10%;
+    }
+    div.value-score{
+        width: 77%;
+    }
+    div.btn-vote{
+        width: 100%;
+    }
+    button.btn-vote{
+        width: 40%;
+        height: 90%;
+        margin-left: 100px;
+    }
+}
+@media only screen and (min-width:376px) and (max-width:425px){
+    div.vote-tutor-container{
+        width: 370px;
+    }
+    div.title-contai-left{
+        width: 90%;
+    }
+    div.cancel-item{
+        width: 10%;
+    }
+    div.value-score{
+        width: 70%;
+    }
+    div.btn-vote{
+        width: 100%;
+    }
+    button.btn-vote{
+        width: 40%;
+        height: 90%;
+        margin-left: 110px;
+    }
+}

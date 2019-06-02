@@ -127,6 +127,14 @@ div.class-info-tutor2{
 p.infomation-tutor2{
     color: #FF961E;
 }
+p.cancel-request{
+    margin-top: 25px;
+    margin-left: 15px;
+}
+p.cancel-request:hover{
+    color: red;
+    font-weight: bold;
+}
 @media only screen and (max-width:375px){
     div.image-logoBK{
         display: none;

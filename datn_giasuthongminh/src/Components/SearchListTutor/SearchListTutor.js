@@ -263,13 +263,14 @@ class SearchListTutor extends Component {
                     <div className="row">
                         {renderTodos}
                     </div>
+                    {pageNumbers.length > 1?
                     <div className="rank-page">
                         <div className="page-number">
                             <div className="item-page" onClick={this.handlePageChangePre}><label ><i className="fas fa-angle-left"></i></label></div>
                             {renderPageNumbers}
                             <div className="item-page"><label onClick={this.handlePageChangeNext}><i className="fas fa-angle-right"></i></label></div>
                         </div>
-                    </div>
+                    </div>:<div></div>}
 
                 </div>
             </div>

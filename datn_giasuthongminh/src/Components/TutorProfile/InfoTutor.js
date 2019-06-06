@@ -22,7 +22,7 @@ class InfoTutor extends Component {
             methodTeaching: new Set(),
             typeMethod:"",
             idTutor:0,
-            redirectPersonalPage:false,
+            redirectHome:false,
             image_personal:"",
             img_personal_local:"https://d1plicc6iqzi9y.cloudfront.net/sites/all/themes/blacasa/images/default/default_user.png",
             monday: new Set(),
@@ -382,18 +382,13 @@ class InfoTutor extends Component {
            image1 = await ImageApi.uploadHandler(this.state.file)
         }
         this.setState({image_personal:image1,
-        redirectPersonalPage:true
+        redirectHome:true
         })
     };
     render() {
         
-        if (this.state.redirectPersonalPage) {
-            return <Redirect to={{
-                pathname: '/personal-page',
-                state: {
-                    idTutor: [this.state.idTutor]
-                }
-            }}/>
+        if (this.state.redirectHome) {
+            return <Redirect push to="/" />
         }
         return (
             <div className="tutor-profile-con">

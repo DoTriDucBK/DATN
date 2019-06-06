@@ -45,7 +45,8 @@ class Signin extends Component {
             emailUser: userInfo.user_acc_emai.value,
             password: userInfo.user_acc_pass.value,
             type:2,
-            active:1
+            active:1,
+            point:500
         }
         console.log("1111111111  " , data);
         var result = await UserApi.register(data);

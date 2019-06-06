@@ -19,6 +19,10 @@ const ClassTutorApi = {
         let result = await MyService.getRequestData("/class-tutor/class-idTutor", { "idTutor": id });
         return result
     },
+    getClassByIdClass: async (id) => {
+        let result = await MyService.getRequestData("/class-tutor/class-idClass", { "idClass": id });
+        return result
+    },
     createClassTutor: async (data) => {
         console.log(data, "??????????????")
         var result = null;

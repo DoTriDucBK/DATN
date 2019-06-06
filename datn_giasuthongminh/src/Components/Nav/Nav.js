@@ -307,7 +307,7 @@ class Nav extends Component {
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
 
                     <ModalBody>
-                        <Login toggle={this.toggle} handleLogin={this.handleLogin} handleLogin2={this.handleLogin2} />
+                        <Login toggle={this.toggle} handleLogin={this.handleLogin}  />
                     </ModalBody>
 
                 </Modal>

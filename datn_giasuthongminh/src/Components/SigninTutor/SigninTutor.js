@@ -58,7 +58,8 @@ class SigninTutor extends Component {
                 emailUser: tutorInfo.tutor_acc_emai.value,
                 password: tutorInfo.tutor_acc_pass.value,
                 type: 1,
-                active: 1
+                active: 1,
+                point:500
             }
             console.log("1111111111  ", data);
             var result = await UserApi.register(data);

@@ -51,9 +51,8 @@ class ListClass extends Component {
     async componentDidMount() {
         let value = await ClassInfoAPI.getAll();
         this.setState({
-            classInfo: value.data
+            classInfo: value.data.sort((a,b)=>b.idClass - a.idClass)
         });
-        console.log(this.state)
     }
     handleChangeSearch = (e) => {
         this.setState({

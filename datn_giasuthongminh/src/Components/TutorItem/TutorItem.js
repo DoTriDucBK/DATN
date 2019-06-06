@@ -12,14 +12,15 @@ class TutorItem extends Component {
         super(props);
         this.state = {
             redirectPersonalPage: false,
-            nameTutor: "",
-            addTutor: "",
-            subjectTutor: "",
-            fee: "",
+            nameTutor: this.props.name,
+            addTutor: this.props.address,
+            subjectTutor: this.props.subject,
+            fee: this.props.fee,
             redirectListClassUser: false,
-            idTutor: [this.props.idTutor],
-            star:[this.props.star],
+            idTutor: this.props.idTutor,
+            star:this.props.star,
             modalErr1:false,
+            birthday:this.props.birthday,
         }
         this.toggleErr1 = this.toggleErr1.bind(this);
     }
@@ -31,12 +32,12 @@ class TutorItem extends Component {
     redirectPersonalPage = () => {
         this.setState({
             redirectPersonalPage: true,
-            nameTutor: [this.props.name],
-            addTutor: [this.props.address],
-            fee: [this.props.fee],
-            subjectTutor: [this.props.subject],
-            birthday: [this.props.birthday],
-            idTutor: [this.props.idTutor]
+            // nameTutor: [this.props.name],
+            // addTutor: [this.props.address],
+            // fee: [this.props.fee],
+            // subjectTutor: [this.props.subject],
+            // birthday: [this.props.birthday],
+            // idTutor: [this.props.idTutor]
         });
     }
     redirectListClassUser = () => {

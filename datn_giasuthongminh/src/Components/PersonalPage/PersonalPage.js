@@ -31,7 +31,7 @@ class PersonalPage extends Component {
         }
     }
     async componentDidMount(){
-        let listTutor = await TutorAPI.getTutorById(parseInt(this.props.location.state.idTutor));
+        let listTutor = await TutorAPI.getTutorById(this.state.idTutor);
         this.setState({
             tutor: listTutor.data,
             calMon:listTutor.data[0].monday,

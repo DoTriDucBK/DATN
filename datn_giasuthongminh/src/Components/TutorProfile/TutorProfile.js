@@ -650,7 +650,7 @@ class TutorProfile extends Component {
             infoTutor:this.state.infoTutor,
             birthdayTutor:this.state.birthdayTutor,
             addressTutor:this.state.nameCity,
-            link_image:"http://localhost:8081/uploads/"+this.state.file.name
+            link_image:this.state.file != null ?"http://localhost:8081/uploads/"+this.state.file.name:this.state.img_personal_local1
         }
         // console.log("1111111111  " , data);
         var tutor = await TutorApi.editTutor(data).then(result => {

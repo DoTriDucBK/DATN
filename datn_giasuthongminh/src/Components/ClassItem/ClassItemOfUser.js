@@ -9,6 +9,7 @@ import '../css/ModalCustome.css';
 import DetailClassUser from '../../Components/DetailClass/DetailClassUser';
 import VoteTutor from '../VoteTutor/VoteTutor';
 import ClassInfoApi from '../../API/ClassInfoAPI';
+import ClassTutorApi from '../../API/ClassTutorAPI';
 
 class ClassItemOfUser extends Component {
     constructor(props){
@@ -42,13 +43,21 @@ class ClassItemOfUser extends Component {
         this.setState(prevState => ({
             modalDetailClass: !prevState.modalDetailClass
         }));
+        console.log(this.props.comment)
     }
     
     async componentDidMount(){
-        let valueClassUser = await ClassUserAPI.getClassByIdClass(this.props.idClass);
-        this.setState({
-            listClassUser:valueClassUser.data
-        })
+        var valueClassUser = await ClassUserAPI.getClassByIdClass(this.state.idClass);
+        var valueClassTutor = await ClassTutorApi.getClassByIdClass(this.state.idClass);
+        if(valueClassUser.data.length > 0){
+            this.setState({
+                listClassUser:valueClassUser.data
+            })
+        }else if (valueClassTutor.data.length > 0){
+            this.setState({
+                listClassUser:valueClassTutor.data
+            })
+        }
     }
     searchTutor = async ()=>{
         let valueTutor = await TutorAPI.getTutorById(this.state.listClassUser[0].idTutor);
@@ -57,11 +66,9 @@ class ClassItemOfUser extends Component {
             nameTutor:valueTutor.data[0].nameTutor,
             idTutor:valueTutor.data[0].idTutor,
             status: this.state.listClassUser[0].status,
-            idClass_User:this.state.listClassUser[0].idClass_User,
             oldStar: valueTutor.data[0].star,
             timesVote:valueTutor.data[0].times_vote,
         })
-
         this.setState(prevState => ({
             modal: !prevState.modal
         }));
@@ -101,7 +108,9 @@ class ClassItemOfUser extends Component {
                 {this.props.status==="Đã nhận lớp" ?
                 <div className="class-offer">
                     <div className="button-offer">
-                        <button className="button-vote-tutor" onClick={this.searchTutor}>Đánh giá gia sư</button>
+                        {this.props.comment === null?
+                        <button className="button-vote-tutor" onClick={this.searchTutor}>Đánh giá gia sư</button>:
+                        <div className="status-class-custom"><label className="status-class-custom">{this.props.status}</label></div>}
                     </div>
                 </div>
                 :<div className="class-offer">
@@ -113,7 +122,7 @@ class ClassItemOfUser extends Component {
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
 
                     <ModalBody>
-                        <VoteTutor idClass_User = {this.state.idClass_User} oldStar={this.state.oldStar} timesVote = {this.state.timesVote} nameTutor={this.state.nameTutor} idTutor={this.state.idTutor} toggle={this.toggle} idClass={this.state.idClass} idUser={this.state.idUser} status={this.state.status}/>
+                        <VoteTutor  oldStar={this.state.oldStar} timesVote = {this.state.timesVote} nameTutor={this.state.nameTutor} idTutor={this.state.idTutor} toggle={this.toggle} idClass={this.state.idClass} idUser={this.state.idUser} status={this.state.status}/>
                     </ModalBody>
 
                 </Modal>

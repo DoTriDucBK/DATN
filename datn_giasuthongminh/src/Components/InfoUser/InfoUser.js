@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import './InfoUser.css';
 import UserAPI from '../../API/UserAPI';
 import { reactLocalStorage } from 'reactjs-localstorage';
+import { Redirect } from 'react-router';
 class InfoUser extends Component {
     constructor(props){
         super(props);
         this.state = {
-            userName: "",
+            idUser:reactLocalStorage.getObject("user.info").idUser,
+            userName:"" ,
             telUser: "",
             emailUser: "",
-            user:[]
+            user:[],
+            redirectHome:false
         }
     }
     handleChangeInput = (e) => {
@@ -18,9 +21,12 @@ class InfoUser extends Component {
         })
     }
     async componentDidMount(){
-        var userInfo = await UserAPI.getUserByName(reactLocalStorage.getObject("user.info").userName);
+        var userInfo = await UserAPI.getUserByIdUser(this.state.idUser);
         this.setState({
-            user:userInfo.data
+            user:userInfo.data,
+            userName:userInfo.data[0].userName,
+            emailUser:userInfo.data[0].emailUser,
+            telUser:userInfo.data[0].telUser
         })
     }
     submitInfo = async() => {
@@ -38,11 +44,15 @@ class InfoUser extends Component {
             }
         })
         .catch(err => console.log(err));
+        this.setState({
+            redirectHome:true
+        })
     }
     render() {
-        if(this.state.user.length === 0){
-            return <div></div>
+        if(this.state.redirectHome){
+            return <Redirect push to="/" />
         }
+        if(this.state.user.length === 0) return <div></div>
         return (
             <div className="info-user-container">
                 <div className="title-info-user-con">
@@ -57,7 +67,7 @@ class InfoUser extends Component {
                                 <p className="value-info-user-item-title">Họ tên</p>
                             </div>
                             <div className="value-info-user-item-value">
-                                <input className="value-info-user-item-value" type="text" name="userName" onChange={this.handleChangeInput} defaultValue = {this.state.user[0].userName}></input>
+                                <input className="value-info-user-item-value" type="text" name="userName" onChange={this.handleChangeInput} defaultValue = {this.state.userName}></input>
                             </div>
                         </div>
                         <div className="value-info-user-item-right">
@@ -65,7 +75,7 @@ class InfoUser extends Component {
                                 <p className="value-info-user-item-title">Số điện thoại</p>
                             </div>
                             <div className="value-info-user-item-value">
-                                <input className="value-info-user-item-value" type="text" name="telUser" onChange={this.handleChangeInput} defaultValue={this.state.user[0].telUser}></input>
+                                <input className="value-info-user-item-value" type="text" name="telUser" onChange={this.handleChangeInput} defaultValue={this.state.telUser}></input>
                             </div>
                         </div>
 
@@ -76,13 +86,13 @@ class InfoUser extends Component {
                                 <p className="value-info-user-item-title">Email</p>
                             </div>
                             <div className="value-info-user-item-value">
-                                <input className="value-info-user-item-value" type="text" name="emailUser" onChange={this.handleChangeInput} defaultValue={this.state.user[0].emailUser}></input>
+                                <input className="value-info-user-item-value" type="text" name="emailUser" onChange={this.handleChangeInput} defaultValue={this.state.emailUser}></input>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="btn-submit-info-user">
-                    <button className="btn-submit-info-user">Cập nhật</button>
+                    <button className="btn-submit-info-user" onClick={this.submitInfo}>Cập nhật</button>
                 </div>
             </div>
         );

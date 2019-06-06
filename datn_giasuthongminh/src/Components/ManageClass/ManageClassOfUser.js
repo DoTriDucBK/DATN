@@ -84,7 +84,8 @@ class ManageCLassOfUser extends Component {
                 numberDay={item.numberDay}
                 fee={item.fee}
                 status={item.status}
-                idUser={this.state.idUser} />
+                idUser={this.state.idUser}
+                comment={item.comment} />
         </div>
         });
         // Logic for displaying page numbers
